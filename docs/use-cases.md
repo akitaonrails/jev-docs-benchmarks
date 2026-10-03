@@ -1,6 +1,6 @@
 # Real use cases and fit in my projects
 
-Research snapshot: **20 September 2026**. Project assessments are based on the top-level READMEs present in `~/Projects` on this date, not code review, traffic measurements, or local Jev experiments. “Candidate” means a bounded experiment could be justified if the current path is demonstrably slow, expensive, or inaccurate. It is not a recommendation to integrate immediately.
+Research snapshot: **3 October 2026**. Project assessments are based on the top-level READMEs present in `~/Projects`, not code review, traffic measurements, or local model experiments. “Candidate” means a bounded experiment could be justified if the current path is demonstrably slow, expensive, or inaccurate. It is not a recommendation to integrate immediately. See [the alternatives comparison](alternatives.md) for how Clef's vision support and Laya's local fine-tuning affect these cases.
 
 ## The useful shape
 
@@ -47,4 +47,4 @@ Seven matching directories have **no top-level README** and were therefore not a
 4. Report confusion matrix, calibration by confidence band, cost per *correctly handled* case, end-to-end latency, review rate, and downstream outcomes. A routing model that is cheap but sends hard work to a weak model may cost more overall.
 5. Deploy only as a reversible feature with logging, a conservative review route, and a fallback. Treat safety or authorization judgments as advisory unless an exact policy independently enforces the action.
 
-**Overall:** The pattern is general in the sense that many applications contain semantic routing decisions. In this particular portfolio, those decisions are a **small slice** of the work. Most projects either need specialist image/audio/generative models or already have exact, cheap rules. Jev's most plausible value is operational efficiency at a repeated decision point, not a broad increase in capability.
+**Overall:** The pattern is general in the sense that many applications contain semantic routing decisions. In this particular portfolio, those decisions are a **small slice** of the work. Most projects either need specialist image/audio/generative models or already have exact, cheap rules. Clef makes a few image-routing experiments possible and Laya makes local specialization practical, but their most plausible value is still operational efficiency at a repeated decision point, not a broad increase in capability.

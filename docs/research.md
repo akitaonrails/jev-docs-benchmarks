@@ -1,6 +1,6 @@
 # What Jev is, what preceded it, and what is supported
 
-Research snapshot: **20 September 2026**. Claims below distinguish TypeSafe's statements, direct observations published by experimenters, and our inferences. No Jev API calls or local benchmarks were run for this report.
+Research snapshot: **3 October 2026**. Claims below distinguish TypeSafe's statements, direct observations published by experimenters, and our inferences. No Jev API calls or local benchmarks were run for this report. The newer open implementations are compared in [Jev alternatives](alternatives.md).
 
 ## Mechanics
 
@@ -20,11 +20,13 @@ The internal architecture, sampler, training data, and RLCD training procedure a
 | New labels described at inference time | Zero-shot text classification, studied by 2019 and available through Hugging Face | Several typed questions over one state in one hosted call |
 | Numerical confidence | Classifier probabilities and established calibration methods | Distributions in the standard response; claimed calibration must still be tested by domain |
 | Schema-valid decisions from an LLM | Constrained decoding / structured outputs | A model intended to return decisions directly, without autoregressive answer generation |
-| Local Jev-like service | Open Laya model served by Arbiter | TypeSafe's managed API, model, and larger published context limit |
+| Open Jev-like service | Clef, Laya, or Kev weights behind a compatible endpoint | TypeSafe's managed API, model, and larger context than Laya |
 
-Sources: [zero-shot classification research](https://arxiv.org/abs/1909.00161), [Hugging Face API](https://huggingface.co/docs/inference-providers/tasks/zero-shot-classification), [scikit-learn calibration](https://scikit-learn.org/1.8/modules/calibration.html), [OpenAI constrained outputs](https://openai.com/index/introducing-structured-outputs-in-the-api/), [Laya](https://github.com/NandhaKishorM/laya), [Arbiter](https://github.com/0xBakeer/arbiter).
+Sources: [zero-shot classification research](https://arxiv.org/abs/1909.00161), [Hugging Face API](https://huggingface.co/docs/inference-providers/tasks/zero-shot-classification), [scikit-learn calibration](https://scikit-learn.org/1.8/modules/calibration.html), [OpenAI constrained outputs](https://openai.com/index/introducing-structured-outputs-in-the-api/), [Clef](https://huggingface.co/Cloudflare/clef), [Laya](https://github.com/NandhaKishorM/laya), [Arbiter](https://github.com/0xBakeer/arbiter).
 
 Arbiter is a serving layer for Laya checkpoints, with a Jev-compatible endpoint; the [Fr3akaz0id fork](https://github.com/Fr3akaz0id/arbiter) adds an OpenAI-compatible approval endpoint. Compatibility establishes that clients can reuse the *contract*, not that model internals, calibration, or accuracy are equivalent. Laya's published results identify both strengths and weaknesses: its author reports better outcomes on some tasks and Jev ahead on large option sets and some distribution metrics. Its Jev figures come from third-party published tests using different prompts and samples, so its comparison table is indicative rather than controlled. Laya's local checkpoints also have much shorter default contexts than Jev. [Laya benchmarks and caveats](https://github.com/NandhaKishorM/laya).
+
+Cloudflare's Clef release supplies evidence that was missing from Jev's launch: open weights and a described implementation using a frozen Qwen backbone, LoRA adapters, and a direct option-scoring head. It does not prove that TypeSafe uses the same architecture, but it shows that established components can reproduce the product abstraction and compete with Jev in a broad public suite. [Cloudflare launch](https://blog.cloudflare.com/clef-decision-models/), [detailed comparison](alternatives.md).
 
 ## Claims audit
 
@@ -42,8 +44,10 @@ The [2,000-email phishing benchmark](https://github.com/anisselbd/jev-phishing-b
 
 A separate [27-ticket test](https://github.com/WallerChen/jev-measured) found Jev tied one small chat model at 27/27, while two others scored 26/27. The sample is too small and narrow for a general accuracy ranking. It is useful evidence that a cheap chat model can be competitive on a particular typed classification task.
 
+Paulo Câmara's article [“O aluno que marca a letra A”](paulo-camara-article.md) collects a wider set of early audits. Its strongest evidence shows that `Choice` can assign high probability to a preferred option when an outcome is unknowable, raw calibration degrades under ambiguity and domain change, and plausible untrusted context can redirect a decision. The separate annotation distinguishes those reproducible findings from the article's architecture, energy, neuroscience, and legal inferences.
+
 TypeSafe's [jaggedness document](https://docs.typesafe.ai/model-jaggedness/jev-1.13) acknowledges literal interpretation, weak counting and numeric precision, date comparison errors, irrelevant-context degradation, adversarial steering, and inconsistency between equivalent-looking questions. These matter more than schema compliance when a model gates an action. A probability or confidence threshold cannot replace a labeled validation set and a review path.
 
 ## Conclusion
 
-Jev is a credible implementation of a narrow, useful pattern. The product can make repeated semantic judgments cheaper and faster than asking a large chat model to generate text for each one. The underlying task, typed outputs, probabilities, and code-composed workflows are established. The public evidence does not yet establish a general accuracy lead, a fundamentally new task, or a safety guarantee. Evaluate it as a component for a specific measured decision, not as a general agent or reasoning upgrade.
+Jev is a credible implementation of a narrow, useful pattern. The product can make repeated semantic judgments cheaper and faster than asking a large chat model to generate text for each one. The underlying task, typed outputs, probabilities, and code-composed workflows are established. Clef, Laya, and Kev now make the category reproducible with open weights. The public evidence does not establish a general Jev accuracy lead, a fundamentally new task, or a safety guarantee. Evaluate it as a component for a specific measured decision, not as a general agent or reasoning upgrade.
