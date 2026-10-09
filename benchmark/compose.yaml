@@ -1,0 +1,52 @@
+name: jev-benchmark
+x-local: &local
+  profiles: [local]
+  gpus: all
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  tmpfs: [/tmp]
+  shm_size: 2gb
+  volumes:
+    - .:/work:ro
+    - ./results:/results
+    - model-cache:/cache
+  environment:
+    HF_HOME: /cache/huggingface
+    HF_HUB_DISABLE_TELEMETRY: '1'
+    USE_TF: '0'
+  restart: 'no'
+services:
+  runner:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.runner
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    network_mode: none
+    volumes:
+      - .:/work:ro
+    environment:
+      JEV_API_KEY: ${JEV_API_KEY:-}
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
+      CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+  laya:
+    <<: *local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.local
+      args:
+        ENGINE: laya
+    command: [laya]
+  clef-flash:
+    <<: *local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.local
+      args:
+        ENGINE: clef
+    command: [clef-flash]
+volumes:
+  model-cache:

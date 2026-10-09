@@ -1,0 +1,8 @@
+FROM python:3.12-slim
+ARG ENGINE
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HF_HOME=/cache/huggingface USE_TF=0
+RUN pip install --no-cache-dir torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+RUN pip install --no-cache-dir transformers==5.10.2 pillow huggingface_hub safetensors \
+    && if [ "$ENGINE" = "laya" ]; then pip install --no-cache-dir laya==0.4.1; fi
+WORKDIR /work
+ENTRYPOINT ["python", "/work/tools/local.py"]

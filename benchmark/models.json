@@ -1,0 +1,14 @@
+{
+  "laya": {
+    "repo": "convaiinnovations/laya",
+    "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148"
+  },
+  "laya-typed": {
+    "repo": "convaiinnovations/laya-typed-decisions",
+    "revision": "e929ae5cf69bc34259cd2f95c9e91145b818b1f0"
+  },
+  "clef-flash": {
+    "repo": "Cloudflare/clef-flash",
+    "revision": "fde727a287004204b7518dcc983fe64379776712"
+  }
+}
