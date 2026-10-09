@@ -21,9 +21,9 @@ start inference. Run one local model at a time once the GPU is free.
 ## Credentials
 
 The supplied Jev value was saved as `JEV_API_KEY` in `~/.config/zsh/secrets`.
-The Clef value was saved as `JEV_BENCH_CF_CREDENTIAL` pending confirmation of whether
-it is an API token, global API key, or password. It is deliberately not wired into
-HTTP authentication. The existing secrets file remains mode 0600. The original
+The user confirmed the Clef credential is a Workers AI API token; it is now saved
+as `CLOUDFLARE_API_TOKEN`. The supplied account ID is saved as
+`CLOUDFLARE_ACCOUNT_ID` and passed the 32-character hexadecimal format check. The existing secrets file remains mode 0600. The original
 `/tmp/jev.txt` is also mode 0600 and remains in place.
 
 For Cloudflare's bearer-token API, supply:
@@ -32,9 +32,8 @@ For Cloudflare's bearer-token API, supply:
 - `CLOUDFLARE_ACCOUNT_ID`: the account's 32-character hexadecimal ID.
 
 An email address is not an account ID. Do not put credentials in the repository,
-command arguments, screenshots, or chat. After confirming the credential type,
-rename/copy its export to the appropriate authentication variable in the secrets
-file. A login password must not be used as an API token. Authentication and account
+command arguments, screenshots, or chat. All three required variables are now configured. A login password must not be used
+as an API token. Authentication and account
 access have not been tested; no paid API requests have been made.
 
 From a shell that already sources your secrets file, the offline presence check is:
@@ -108,7 +107,7 @@ Verified without installing dependencies or using the GPU:
   downloading/loading a checkpoint.
 - Credential file permissions are 0600; no credential values are committed.
 
-Remaining: confirm Cloudflare credential type and account ID; verify NVIDIA Docker
+Remaining: verify hosted authentication without inference; verify NVIDIA Docker
 integration when safe; approve/build images; inspect pinned model code; smoke-test
 one request per model; then implement and review the dataset and scoring harness.
 No hosted inference should run until a spending limit is agreed.
