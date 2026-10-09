@@ -7,6 +7,8 @@ import sys
 
 allowed={'JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID'}
 env=os.environ.copy()
+env["BENCH_UID"]=str(os.getuid())
+env["BENCH_GID"]=str(os.getgid())
 for line in (Path.home()/'.config/zsh/secrets').read_text().splitlines():
     stripped=line.strip()
     if not stripped.startswith('export '): continue
