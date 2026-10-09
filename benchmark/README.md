@@ -1,123 +1,140 @@
-# Decision-model benchmark setup
+# Decision-model benchmark
 
-Prepared 9 October 2026. This directory currently provides container definitions and
-an opt-in local inference worker. The 480-case dataset, hosted adapters, and scoring
-harness proposed in the conversation are not implemented yet. No benchmark results
-exist, and no model has been downloaded or executed during setup.
+A frozen synthetic benchmark for Jev and Cloudflare Clef/Clef-flash, with local
+models deferred until the GPU is free. [Protocol](PROTOCOL.md) defines the scope,
+metrics and limitations before inference. [Scenarios](datasets/scenarios.py) are the
+readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation artifact.
+
+## Dataset
+
+- 13 domains × 10 authored scenarios × 4 forms = **520 classifications**.
+- Forms: original, reversed options, opaque option names, misleading commentary.
+- **24 separate probability probes** pair Choice/Noul on unknowable uniform outcomes.
+- 544 requests per model, 1,632 across Jev, Clef and Clef-flash.
+
+These are 130 authored scenario families, not 520 independent examples. Golds were
+AI-authored and reviewed against explicit fictional policies before inference. There
+is no independent human annotation or claim that these cases represent production
+traffic. Some cases share counterfactual policy pairs. Calibration and intervals
+are diagnostics for this synthetic collection, not general deployment guarantees.
+No gold answers, explanations, tags or case identifiers go into provider requests.
 
 ## Isolation
 
-All benchmark dependencies install inside Docker images. Model weights use the
-`jev-benchmark_model-cache` Docker volume; results use `benchmark/results/`.
-The repository is mounted read-only. Containers have no Docker socket, host home,
-privileged mode, published ports, or restart policy. Only local services request a
-GPU. No unrelated credentials are passed to them. The CPU preflight has networking
-disabled and checks variable presence only.
+The hosted runner and scorer use Python's standard library inside a small Docker
+image. No pip packages, SDKs, virtual environments or model weights are installed on
+the host. The small `launch.py` helper uses existing host Python only to read three
+literal credential exports and invoke Docker, without executing the secrets file.
 
-Local services require the `local` profile. Their entrypoint also refuses to load
-or download any model without `--allow-inference`, so a bare Compose startup cannot
-start inference. Run one local model at a time once the GPU is free.
+Containers have no host home or Docker socket, no GPU on the hosted/offline paths,
+no privileged mode or published ports. Inputs are read-only; results are writable.
+Hosted execution uses outbound HTTPS. Offline scoring has networking disabled and
+receives no credentials. The local services still require a separate profile and
+`--allow-inference`; they have not been built or run.
 
 ## Credentials
 
-The supplied Jev value was saved as `JEV_API_KEY` in `~/.config/zsh/secrets`.
-The user confirmed the Clef credential is a Workers AI API token; it is now saved
-as `CLOUDFLARE_API_TOKEN`. The supplied account ID is saved as
-`CLOUDFLARE_ACCOUNT_ID` and passed the 32-character hexadecimal format check. The existing secrets file remains mode 0600. The original
-`/tmp/jev.txt` is also mode 0600 and remains in place.
+Configured in `~/.config/zsh/secrets`, mode 0600:
 
-For Cloudflare's bearer-token API, supply:
+- `JEV_API_KEY`
+- `CLOUDFLARE_API_TOKEN` (confirmed Workers AI API token)
+- `CLOUDFLARE_ACCOUNT_ID`
 
-- `CLOUDFLARE_API_TOKEN`: token authorized for Workers AI on the selected account.
-- `CLOUDFLARE_ACCOUNT_ID`: the account's 32-character hexadecimal ID.
+The launcher reads only those exports and passes them as environment variables.
+Their values are never printed or committed. Do not print expanded Compose config;
+use `docker compose -f benchmark/compose.yaml config --quiet` instead.
+Users with Docker access can inspect container environments.
 
-An email address is not an account ID. Do not put credentials in the repository,
-command arguments, screenshots, or chat. All three required variables are now configured. A login password must not be used
-as an API token. Authentication and account
-access have not been tested; no paid API requests have been made.
+## Reproduce
 
-From a shell that already sources your secrets file, the offline presence check is:
+From the repository root:
 
 ```sh
-docker compose -f benchmark/compose.yaml build runner
-docker compose -f benchmark/compose.yaml run --rm runner
+# CPU images only; no local-model image or GPU access.
+docker compose -f benchmark/compose.yaml --profile hosted build runner hosted
+
+# Offline tests; no credentials or network.
+benchmark/tools/offline.sh -m unittest discover -s tests -v
+
+# Presence check, then an optional paid 3-request smoke test.
+python3 benchmark/tools/launch.py /work/tools/preflight.py
+python3 benchmark/tools/launch.py /work/tools/hosted.py \
+  --output /results/smoke-new --limit 1 --execute
+
+# Paid run. Use a new directory for a genuinely new run.
+python3 benchmark/tools/launch.py /work/tools/hosted.py \
+  --output /results/hosted-new --cost-cap 5 --execute
+
+# Offline scoring into a tracked report directory.
+benchmark/tools/offline.sh /work/tools/score.py \
+  /work/results/hosted-new --output /reports/hosted-new
 ```
 
-Do not print expanded Compose configuration after loading secrets: Docker environment
-variables are visible to users with Docker access. Use `config --quiet` for validation.
+Reusing an output directory resumes only when model set, dataset, runner hash and
+configuration match. Already persisted cases, including errors, are skipped. Keep
+failures visible; retries of completed errors need a separately identified run.
+The sequential schedule interleaves all models using a fixed random seed. Latency
+includes network/service overhead and retries; it is not a GPU microbenchmark.
 
-## Local candidates and RTX 5090
+The $5 flag caps a conservative input-cost reservation, not the provider invoice.
+The report computes price × actual reported successful input tokens; unreported
+failed-attempt charges and discounts are not knowable from that calculation.
+The user's instruction to run hosted models supersedes the previous setup-only hold.
 
-- **Laya English** and **Laya typed-decisions**: separate pinned checkpoints, scored
-  as separate entrants. Automatic routing is disabled to avoid silently mixing models.
-- **Clef-flash 9B**: intended BF16 candidate. Roughly 18 GB for 9B two-byte weights,
-  plus head, activations, and runtime memory. Short inputs and batch size one are the
-  starting point; actual 5090 fit and kernel support remain untested.
-- **Clef 27B**: hosted initially. Approximately 54 GB for two-byte backbone weights
-  alone exceeds 32 GB. Quantization/offloading would constitute another configuration
-  and needs separate compatibility and quality checks.
+Jev is pinned to `jev-1.13.0`. Hosted Clef names are vendor-managed aliases; returned
+model IDs and dates are recorded, but exact hosted weights cannot be pinned here.
+The CPU base image digest and Docker image ID are recorded with the run artifacts.
+No model-specific tuning is performed after seeing results.
 
-The Docker recipe uses CUDA 12.8 PyTorch wheels for Blackwell support and the
-Torch/Transformers versions named in Clef-flash's model card. Laya gets its own
-image. Build resolution and runtime compatibility are unverified: no image was built
-or pulled during this preparation. The main versions are pinned; transitive packages
-and base-image digests must be recorded/frozen after the first successful build.
+## Results and auditability
 
-Docker and Compose are installed. `nvidia-container-runtime` exists on this host,
-but Docker's advertised runtime names contain only `runc` and `io.containerd.runc.v2`.
-This is a prerequisite to investigate before the first GPU container: availability
-of the executable does not establish that Docker GPU device requests work. No daemon
-configuration was changed or restarted, and no GPU probe was run.
+`results/` holds resumable raw runs and is Git-ignored. Completed results are archived
+under `reports/` with raw response records, run configuration, scores, every failed
+classification, and analysis. The scorer verifies dataset and request hashes and
+rejects duplicate responses. Probabilities are checked for allowed labels, finite
+values and sum-to-one within documented rounding tolerance. Raw values are preserved;
+normalized values are used for scoring. Vendor confidence is not interpreted as accuracy.
 
-## Deferred commands — only when the GPU is available
+The dataset is test-only: no classifier, calibrator or threshold is fitted on it.
+If future work tunes against these results, use a fresh held-out dataset and keep
+related variants and policy pairs together. Post-run gold corrections must be an
+explicit erratum and separate rescoring, never a silent fixture change.
 
-Build dependencies inside Docker (these commands are documented, not executed):
+## Deferred local runs
+
+[models.json](models.json) pins Laya English, Laya typed-decisions and Clef-flash
+checkpoints. Treat the two Laya checkpoints as separate entrants, without automatic
+routing. The local worker is preliminary plumbing and still needs smoke testing and
+integration with the scorer before claiming comparable measurements.
+
+Laya should have a modest memory footprint. Clef-flash's 9B BF16 backbone implies
+roughly 18 GB in weights plus head/runtime/activations; actual RTX 5090 fit is untested.
+Full Clef's 27B BF16 backbone implies roughly 54 GB before overhead, so use hosted
+Clef initially. Quantization or offloading would be a separately named configuration.
+
+Docker and Compose work. `nvidia-container-runtime` exists, but Docker did not list
+an NVIDIA runtime during preparation. Check GPU integration later; no daemon settings
+were changed and no GPU container was started. Local recipes use CUDA 12.8 Torch
+wheels; local dependency resolution, runtime compatibility and pinned remote model
+code still need review. Do not run these while the GPU is occupied:
 
 ```sh
 docker compose -f benchmark/compose.yaml --profile local build laya clef-flash
+# Future opt-in entrypoint; requires prepared state/questions-only requests.jsonl.
+docker compose -f benchmark/compose.yaml --profile local run --rm -T laya \
+  laya --allow-inference < requests.jsonl
 ```
 
-The worker accepts JSONL containing only `state` and `questions`. Keep answer keys
-and explanations in the separate evaluation dataset. Given a reviewed request file:
-
-```sh
-docker compose -f benchmark/compose.yaml --profile local run --rm -T laya \
-  laya --allow-inference < requests.jsonl > benchmark/results/laya.jsonl
-
-docker compose -f benchmark/compose.yaml --profile local run --rm -T laya \
-  laya-typed --allow-inference < requests.jsonl > benchmark/results/laya-typed.jsonl
-
-docker compose -f benchmark/compose.yaml --profile local run --rm -T clef-flash \
-  clef-flash --allow-inference < requests.jsonl > benchmark/results/clef-flash.jsonl
-```
-
-First execution downloads weights and, for Clef-flash, imports Python code from the
-pinned model repository. Inspect that code before the approved first run. The worker
-is setup plumbing: it does not yet record timing, validate output schemas, score
-answers, or provide a resumable benchmark. Inspect raw output for library log noise
-before connecting it to the eventual scoring harness.
-
-## Verification and remaining work
-
-Verified without installing dependencies or using the GPU:
-
-- Compose configuration parses with `docker compose ... config --quiet`.
-- Python files parse with the standard-library AST parser.
-- Calling the local entrypoint without approval exits before importing Torch or
-  downloading/loading a checkpoint.
-- Credential file permissions are 0600; no credential values are committed.
-
-Remaining: verify hosted authentication without inference; verify NVIDIA Docker
-integration when safe; approve/build images; inspect pinned model code; smoke-test
-one request per model; then implement and review the dataset and scoring harness.
-No hosted inference should run until a spending limit is agreed.
-
-To remove benchmark containers later, use `docker compose -f benchmark/compose.yaml
---profile local down`. Add `--volumes` only if intentionally deleting cached weights.
-Images and build cache occupy Docker storage and can be removed separately by image ID.
+Model caches will live in a Docker volume. Containers use no restart policy. Cleanup:
+`docker compose -f benchmark/compose.yaml --profile local --profile hosted down`.
+Add `--volumes` only to intentionally delete cached weights; images occupy separate
+Docker storage. The original temporary credential file remains mode 0600.
 
 ## Sources
 
-- [Clef-flash model card](https://huggingface.co/Cloudflare/clef-flash)
-- [Workers AI Clef-flash API](https://developers.cloudflare.com/workers-ai/models/clef-flash/)
-- [Laya source and setup](https://github.com/NandhaKishorM/laya)
+- [TypeSafe API](https://docs.typesafe.ai/api)
+- [Jev models and pricing](https://docs.typesafe.ai/models)
+- [Clef API and pricing](https://developers.cloudflare.com/workers-ai/models/clef/)
+- [Clef-flash API and pricing](https://developers.cloudflare.com/workers-ai/models/clef-flash/)
+- [Clef-flash local model card](https://huggingface.co/Cloudflare/clef-flash)
+- [Laya](https://github.com/NandhaKishorM/laya)
