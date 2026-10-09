@@ -32,6 +32,23 @@ services:
       JEV_API_KEY: ${JEV_API_KEY:-}
       CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
       CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+  hosted:
+    profiles: [hosted]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.runner
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    volumes:
+      - .:/work:ro
+      - ./results:/results
+    environment:
+      JEV_API_KEY: ${JEV_API_KEY:-}
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
+      CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+    command: [/work/tools/preflight.py]
   laya:
     <<: *local
     build:
