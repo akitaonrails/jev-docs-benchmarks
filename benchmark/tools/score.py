@@ -124,7 +124,7 @@ def score(rows,manifest,responses,models):
             'median_valid_wall_seconds':quantile(lat,.5),'p95_valid_wall_seconds':quantile(lat,.95),
             'reported_input_tokens':sum(known),'valid_responses_missing_usage':len(valid)-len(known),
             'estimated_reported_usage_cost_usd':sum(known)*MODELS[model][1]/1e6,
-            'cost_note':'Published input rate times reported successful-response input tokens; excludes unknown failed-attempt charges, discounts and billing adjustments.',
+            'cost_note':'Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.',
             'served_models':sorted({str(r['result']['served_model']) for r in valid})}
         result['uncertainty']={}
         for kind in ['choice','noul']:
@@ -153,12 +153,12 @@ def num(x):return f'{x:.3f}' if x is not None else 'N/A'
 def markdown(out):
     models=out['models'];lines=['# Hosted decision benchmark v1 results','',
       'Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling, no local models, and no production-generalization claim.','',
-      '| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | Usage-based cost estimate |',
+      '| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | List-price usage value |',
       '| --- | ---: | ---: | --- | --- | --- | ---: |']
     for m,r in models.items():
         ops=r['operations'];ci=r['originals']['bootstrap_95_accuracy']
         lines.append(f"| {m} | {pct(r['originals']['accuracy'])} | {pct(r['all']['accuracy'])} | {pct(ci[0])}–{pct(ci[1])} | {ops['valid']}/{ops['planned']} | {num(ops['median_valid_wall_seconds'])} / {num(ops['p95_valid_wall_seconds'])} | ${ops['estimated_reported_usage_cost_usd']:.5f} |")
-    lines+=['','Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Cost is successful reported input usage × published rate, not an invoice; smoke-test calls are separate.','',
+    lines+=['','Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Cost is successful reported input usage × published rate, before free allowances, not an invoice; smoke-test calls are separate.','',
       'Three rubric ambiguities were flagged after inference began. Frozen scores above retain them; the separate sensitivity analysis removes all three families for every model. See `datasets/errata.json`.','',
       'Original-case baselines: '+', '.join(f'{k}: {pct(v)}' for k,v in out['baselines'].items())+'. The majority baseline uses gold label frequencies and is an oracle diagnostic.','',
       '## Per-use-case accuracy (all four variants)','','| Use case | '+' | '.join(models)+' |','| --- | '+' | '.join('---:' for _ in models)+' |']

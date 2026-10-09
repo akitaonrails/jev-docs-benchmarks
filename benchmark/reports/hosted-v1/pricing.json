@@ -1,0 +1,112 @@
+{
+  "verified_on": "2026-10-09",
+  "currency": "USD",
+  "actual_invoice_verified": false,
+  "input_usd_per_million": {
+    "jev": "0.042",
+    "clef": "0.24",
+    "clef-flash": "0.09"
+  },
+  "neurons_per_million_input": {
+    "clef": "21818",
+    "clef-flash": "8182"
+  },
+  "sources": [
+    "https://docs.typesafe.ai/models",
+    "https://developers.cloudflare.com/workers-ai/models/clef/",
+    "https://developers.cloudflare.com/workers-ai/models/clef-flash/",
+    "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+  ],
+  "runs": {
+    "hosted-v1": {
+      "archive_sha256": "a7a61e774b9df3dde77a898bb5305d2eb397800e16f0581293447ab18a13f350",
+      "utc_dates": [
+        "2026-10-09"
+      ],
+      "models": {
+        "jev": {
+          "requests": 544,
+          "input_tokens": 268356,
+          "output_tokens": 23969,
+          "http_attempts": 546,
+          "list_price_usd": "0.011270952"
+        },
+        "clef": {
+          "requests": 544,
+          "input_tokens": 165373,
+          "output_tokens": 0,
+          "http_attempts": 544,
+          "list_price_usd": "0.03968952"
+        },
+        "clef-flash": {
+          "requests": 544,
+          "input_tokens": 165373,
+          "output_tokens": 0,
+          "http_attempts": 544,
+          "list_price_usd": "0.01488357"
+        }
+      }
+    },
+    "smoke-v1": {
+      "archive_sha256": "b30d57b1e01cbce6e83c7e6e25e5ea8e9aed0ffd3acd4a34207d3799e80ab576",
+      "utc_dates": [
+        "2026-10-09"
+      ],
+      "models": {
+        "jev": {
+          "requests": 1,
+          "input_tokens": 502,
+          "output_tokens": 46,
+          "http_attempts": 1,
+          "list_price_usd": "0.000021084"
+        },
+        "clef": {
+          "requests": 1,
+          "input_tokens": 320,
+          "output_tokens": 0,
+          "http_attempts": 1,
+          "list_price_usd": "0.0000768"
+        },
+        "clef-flash": {
+          "requests": 1,
+          "input_tokens": 320,
+          "output_tokens": 0,
+          "http_attempts": 1,
+          "list_price_usd": "0.0000288"
+        }
+      }
+    }
+  },
+  "combined": {
+    "jev": {
+      "requests": 545,
+      "input_tokens": 268858,
+      "output_tokens": 24015,
+      "http_attempts": 547,
+      "list_price_usd": "0.011292036"
+    },
+    "clef": {
+      "requests": 545,
+      "input_tokens": 165693,
+      "output_tokens": 0,
+      "http_attempts": 545,
+      "list_price_usd": "0.03976632",
+      "estimated_neurons": "3615.089874"
+    },
+    "clef-flash": {
+      "requests": 545,
+      "input_tokens": 165693,
+      "output_tokens": 0,
+      "http_attempts": 545,
+      "list_price_usd": "0.01491237",
+      "estimated_neurons": "1355.700126"
+    }
+  },
+  "total_list_price_usd": "0.065970726",
+  "cloudflare": {
+    "estimated_neurons": "4970.790000",
+    "daily_free_neurons": 10000,
+    "usd_per_1000_neurons": "0.011",
+    "other_account_usage": "unknown"
+  }
+}

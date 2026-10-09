@@ -9,6 +9,9 @@ readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation ar
 
 [Findings and interpretation](reports/hosted-v1/analysis.md) · [Full tables](reports/hosted-v1/results.md) · [Machine-readable metrics](reports/hosted-v1/summary.json). All 1,632 planned requests completed. Jev and Clef tied at 97.2% across variants after the explicitly disclosed gold-ambiguity exclusions; probability probes exposed different weaknesses by primitive.
 
+[Verified pricing and cost reconciliation](reports/hosted-v1/pricing.md) distinguishes
+published-rate usage value from actual charges and accounts for the daily free allowance.
+
 ## Dataset
 
 - 13 domains × 10 authored scenarios × 4 forms = **520 classifications**.

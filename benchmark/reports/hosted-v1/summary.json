@@ -3055,7 +3055,7 @@
         "reported_input_tokens": 268356,
         "valid_responses_missing_usage": 0,
         "estimated_reported_usage_cost_usd": 0.011270952,
-        "cost_note": "Published input rate times reported successful-response input tokens; excludes unknown failed-attempt charges, discounts and billing adjustments.",
+        "cost_note": "Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.",
         "served_models": [
           "jev-1.13.0"
         ]
@@ -6338,7 +6338,7 @@
         "reported_input_tokens": 165373,
         "valid_responses_missing_usage": 0,
         "estimated_reported_usage_cost_usd": 0.03968952,
-        "cost_note": "Published input rate times reported successful-response input tokens; excludes unknown failed-attempt charges, discounts and billing adjustments.",
+        "cost_note": "Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.",
         "served_models": [
           "clef"
         ]
@@ -9688,7 +9688,7 @@
         "reported_input_tokens": 165373,
         "valid_responses_missing_usage": 0,
         "estimated_reported_usage_cost_usd": 0.01488357,
-        "cost_note": "Published input rate times reported successful-response input tokens; excludes unknown failed-attempt charges, discounts and billing adjustments.",
+        "cost_note": "Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.",
         "served_models": [
           "clef-flash"
         ]

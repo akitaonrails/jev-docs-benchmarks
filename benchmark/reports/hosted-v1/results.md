@@ -2,13 +2,13 @@
 
 Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling, no local models, and no production-generalization claim.
 
-| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | Usage-based cost estimate |
+| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | List-price usage value |
 | --- | ---: | ---: | --- | --- | --- | ---: |
 | jev | 96.2% | 95.2% | 92.3%–99.2% | 544/544 | 0.253 / 0.303 | $0.01127 |
 | clef | 94.6% | 95.0% | 90.0%–98.5% | 544/544 | 0.606 / 2.076 | $0.03969 |
 | clef-flash | 90.8% | 89.0% | 85.4%–95.4% | 544/544 | 0.491 / 0.884 | $0.01488 |
 
-Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Cost is successful reported input usage × published rate, not an invoice; smoke-test calls are separate.
+Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Cost is successful reported input usage × published rate, before free allowances, not an invoice; smoke-test calls are separate.
 
 Three rubric ambiguities were flagged after inference began. Frozen scores above retain them; the separate sensitivity analysis removes all three families for every model. See `datasets/errata.json`.
 

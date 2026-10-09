@@ -149,9 +149,12 @@ calls also succeeded, giving 1,635 logical requests and 1,637 HTTP attempts over
 Reported successful input usage implies approximately **$0.06584** for the main run:
 $0.01127 Jev, $0.03969 Clef, and $0.01488 Clef-flash at the documented prices. The smoke
 calls add approximately $0.00013. These are input-usage estimates, not a billing
-statement; possible charges for unreported failed attempts and any discounts are unknown.
+statement. The [pricing audit](pricing.md) confirms rates and reconciles smoke calls,
+Cloudflare’s daily free allowance, and the two unreported Jev attempts. Actual charges
+remain unverified.
 
-Jev was fastest and cheapest on this run from this machine. That differs from
+Jev was fastest from this machine and had the lowest list-price usage valuation.
+Cloudflare’s charge could be zero within its daily free allowance. That differs from
 Cloudflare's launch latency comparison, which used another deployment and measurement
 setup. Our numbers include WAN latency, use sequential interleaved requests, and do not
 measure sustained throughput or pure model inference speed. Hosted Clef weight revisions
