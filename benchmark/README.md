@@ -5,6 +5,10 @@ models deferred until the GPU is free. [Protocol](PROTOCOL.md) defines the scope
 metrics and limitations before inference. [Scenarios](datasets/scenarios.py) are the
 readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation artifact.
 
+## First hosted run
+
+[Findings and interpretation](reports/hosted-v1/analysis.md) · [Full tables](reports/hosted-v1/results.md) · [Machine-readable metrics](reports/hosted-v1/summary.json). All 1,632 planned requests completed. Jev and Clef tied at 97.2% across variants after the explicitly disclosed gold-ambiguity exclusions; probability probes exposed different weaknesses by primitive.
+
 ## Dataset
 
 - 13 domains × 10 authored scenarios × 4 forms = **520 classifications**.

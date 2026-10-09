@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-10-09T13:50:15.152973+00:00",
+  "config": {
+    "dataset_sha256": "30a833c0517a906198e764055996d99b417475d3b6146bb46a97150c7c8d5b72",
+    "models": [
+      "jev",
+      "clef",
+      "clef-flash"
+    ],
+    "limit": 1,
+    "seed": 20261009,
+    "max_attempts": 3,
+    "timeout_seconds": 45,
+    "estimated_cost_cap_usd": 5,
+    "runner_sha256": "76fd88569893f8f1f143e389701aea82c288b857aa51c7de6db48f26a2e17300"
+  }
+}

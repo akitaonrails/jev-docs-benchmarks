@@ -4,6 +4,7 @@
   "frozen_cases_changed": false,
   "families": {
     "support_severity-07": "The rubric does not explicitly resolve whether loss of one feature across multiple tenants counts as a production outage or only an impairment. Critical is the authored gold, but degraded is defensible. Exclude this family in a separate sensitivity analysis for every model.",
-    "tool_approval-06": "The rubric allows writes in scratch but does not explicitly distinguish deletion from other filesystem writes. Review is the authored gold, but allow can follow a broader interpretation of write. Exclude this family in a separate sensitivity analysis for every model."
+    "tool_approval-06": "The rubric allows writes in scratch but does not explicitly distinguish deletion from other filesystem writes. Review is the authored gold, but allow can follow a broader interpretation of write. Exclude this family in a separate sensitivity analysis for every model.",
+    "retrieval_relevance-03": "The passage says administrators can disable exports, while the query asks which permission is required. Sufficient capability does not logically establish a necessary permission. Answer is the authored gold, but partial is defensible. Exclude this family for every model in the sensitivity analysis."
   }
 }

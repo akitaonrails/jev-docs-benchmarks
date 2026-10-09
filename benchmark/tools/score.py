@@ -2,6 +2,7 @@
 import argparse
 from collections import Counter, defaultdict
 import itertools
+import gzip
 import json
 import math
 from pathlib import Path
@@ -158,12 +159,12 @@ def markdown(out):
         ops=r['operations'];ci=r['originals']['bootstrap_95_accuracy']
         lines.append(f"| {m} | {pct(r['originals']['accuracy'])} | {pct(r['all']['accuracy'])} | {pct(ci[0])}–{pct(ci[1])} | {ops['valid']}/{ops['planned']} | {num(ops['median_valid_wall_seconds'])} / {num(ops['p95_valid_wall_seconds'])} | ${ops['estimated_reported_usage_cost_usd']:.5f} |")
     lines+=['','Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Cost is successful reported input usage × published rate, not an invoice; smoke-test calls are separate.','',
-      'Two rubric ambiguities were flagged after inference began. Frozen scores above retain them; the separate sensitivity analysis removes both families for every model. See `datasets/errata.json`.','',
+      'Three rubric ambiguities were flagged after inference began. Frozen scores above retain them; the separate sensitivity analysis removes all three families for every model. See `datasets/errata.json`.','',
       'Original-case baselines: '+', '.join(f'{k}: {pct(v)}' for k,v in out['baselines'].items())+'. The majority baseline uses gold label frequencies and is an oracle diagnostic.','',
       '## Per-use-case accuracy (all four variants)','','| Use case | '+' | '.join(models)+' |','| --- | '+' | '.join('---:' for _ in models)+' |']
     for d in out['dataset']['domains']:
         lines.append('| '+d+' | '+' | '.join(pct(r['domains'][d]['accuracy']) for r in models.values())+' |')
-    lines+=['','## Sensitivity excluding disputed golds','','| Model | Remaining originals (128) | Remaining variants (512) |','| --- | ---: | ---: |']
+    lines+=['','## Sensitivity excluding disputed golds','','| Model | Remaining originals (127) | Remaining variants (508) |','| --- | ---: | ---: |']
     for m,r in models.items():
         a=r['sensitivity_excluding_disputed'];lines.append(f"| {m} | {pct(a['originals']['accuracy'])} | {pct(a['all']['accuracy'])} |")
     lines+=['','## Accuracy by presentation','','| Model | Original | Reordered | Opaque labels | Injected commentary |','| --- | ---: | ---: | ---: | ---: |']
@@ -181,7 +182,10 @@ def markdown(out):
 def main():
     p=argparse.ArgumentParser();p.add_argument('run_dir');p.add_argument('--output',required=True);a=p.parse_args()
     run=Path(a.run_dir);meta=json.loads((run/'run.json').read_text())
-    rows,manifest=load_cases();responses=[json.loads(l) for l in (run/'responses.jsonl').read_text().splitlines()]
+    rows,manifest=load_cases()
+    raw=run/'responses.jsonl'
+    text=raw.read_text() if raw.exists() else gzip.decompress((run/'responses.jsonl.gz').read_bytes()).decode()
+    responses=[json.loads(l) for l in text.splitlines()]
     if meta['config']['limit']:rows=rows[:meta['config']['limit']]
     out=score(rows,manifest,responses,meta['config']['models'])
     path=Path(a.output);path.mkdir(parents=True,exist_ok=True)

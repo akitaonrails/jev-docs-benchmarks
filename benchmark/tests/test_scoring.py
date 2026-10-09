@@ -47,7 +47,6 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(quantile([0,10],.5),5)
         self.assertIsNone(quantile([],.5))
 
-if __name__=='__main__':unittest.main()
 
 class ReportTests(unittest.TestCase):
     def test_complete_synthetic_perfect_run(self):
@@ -68,7 +67,9 @@ class ReportTests(unittest.TestCase):
         domains=list(dict.fromkeys(c['domain'] for c in rows if c['kind']=='classification'))
         out=score(rows,{'sha256':'fixture','domains':domains},responses,['jev'])
         self.assertEqual(out['models']['jev']['all']['accuracy'],1)
-        self.assertEqual(out['models']['jev']['sensitivity_excluding_disputed']['all']['n'],512)
+        self.assertEqual(out['models']['jev']['sensitivity_excluding_disputed']['all']['n'],508)
         self.assertEqual(out['models']['jev']['uncertainty']['choice']['mean_absolute_error'],0)
         self.assertIn('100.0%',markdown(out))
         with self.assertRaises(ValueError):score(rows,{'sha256':'fixture','domains':domains},responses+[responses[0]],['jev'])
+
+if __name__=='__main__':unittest.main()

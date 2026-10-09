@@ -9,3 +9,7 @@ Research snapshot: **3 October 2026**. Jev and the open decision-model ecosystem
 5. [Real use cases and project fit](use-cases.md) — where typed decisions pay off, plus a README-based review of the `ai*` and `frank*` projects in `~/Projects`.
 
 The recommended test, if a real bottleneck appears, is to compare a pinned Jev version with existing code, a small local classifier, and a cheap constrained-output LLM on the **same labeled examples**. Include error costs, review rate, latency, and operational cost. A vendor speed multiple by itself is not a purchase decision.
+
+## Our hosted benchmark
+
+The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Local GPU runs remain deferred. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.

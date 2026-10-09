@@ -87,3 +87,18 @@ The suite targets negation, authority, exceptions, missing facts, lexical distra
 and label sensitivity. It may prove easier than expected; that is a result. It does not
 measure long contexts, multilingual robustness, multimodal performance, real operational
 calibration, or domain-specific jargon learned from customer histories.
+
+## Audit notes after the freeze
+
+The first run exposed three plausible alternative interpretations in the authored golds.
+They are listed in `datasets/errata.json`, with discovery timing explicitly marked
+as after inference began. Frozen primary scores retain every case; a separate
+sensitivity analysis excludes all three families equally across models. This exclusion
+was not preregistered and must not be presented as the original protocol.
+
+There is no repeated-identical-prompt control beyond the small transport smoke test.
+Variant agreement rates may include service nondeterminism; they do not isolate a
+causal effect of option ordering or labeling. The fixture manifest's field named
+`independent_classification_families` counts authored families; the deliberate policy
+pairs share observations and should not be construed as fully independent samples.
+Bootstrap intervals are descriptive, not formal evidence about deployment performance.
