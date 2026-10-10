@@ -31,6 +31,9 @@ def load_cases(dataset=None):
     return rows,manifest
 
 def payload(case,model):
+    from next_contract import REGISTRY, request_for
+    if model in REGISTRY:
+        return request_for(case, model)
     # Never serialize the entire fixture. Gold, rationale and identifiers stay local.
     req=case['request']
     return {'state':req['state'],'questions':req['questions'],'model':{**MODELS,**LOCAL_MODELS}[model][0]}

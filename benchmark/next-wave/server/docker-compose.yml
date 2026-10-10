@@ -1,0 +1,109 @@
+# Next-wave decision models for the jev-docs benchmark. ONE MODEL PER SERVICE, manual lifecycle:
+#   start:  docker compose up -d <service>      stop:  docker compose stop <service>
+# Never run them all at once; stopping a service frees its VRAM. See homelab-docs decision-models-inventory.md.
+name: decision-models-next
+
+x-rocm: &rocm
+  restart: "no"
+  environment:
+    HSA_OVERRIDE_GFX_VERSION: "11.5.1"
+    PYTORCH_ROCM_ARCH: "gfx1151"
+    HF_HOME: /models/hf
+    HF_HUB_OFFLINE: "1"
+  devices: ["/dev/kfd:/dev/kfd", "/dev/dri:/dev/dri"]
+  group_add: ["485", "488"]
+  security_opt: ["label:disable"]
+  mem_limit: 40g
+  memswap_limit: 48g
+  logging: {driver: json-file, options: {max-size: 10m, max-file: "3"}}
+
+services:
+  eikos-4b:
+    <<: *rocm
+    image: decision-models-qwen35:local
+    container_name: dm-eikos-4b
+    working_dir: /models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b
+    command: ["env", "PYTHONPATH=/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b", "python", "serve.py", "--model", ".", "--host", "0.0.0.0", "--port", "8000", "--device", "cuda"]
+    volumes: ["decision_models_eikos4b:/models:ro"]
+    ports: ["192.168.0.90:11437:8000"]
+
+  jebadiah-4b-v2:
+    <<: *rocm
+    image: decision-models-qwen35:local
+    container_name: dm-jebadiah-4b-v2
+    command: ["jebadiah-serve", "--model", "/models/hf/hub/models--frontier-infra--jebadiah-4b-v2/snapshots/0816094bb1446b63326438db33619c71ede2cc4b", "--revision", "0816094bb1446b63326438db33619c71ede2cc4b", "--alias", "jebadiah", "--alias", "jebadiah-4b-v2", "--host", "0.0.0.0", "--port", "8000"]
+    volumes: ["decision_models_jebadiah4b:/models:ro"]
+    ports: ["192.168.0.90:11438:8000"]
+
+  kev-0.8b:
+    <<: *rocm
+    image: decision-models-qwen35:local
+    container_name: dm-kev-0.8b
+    command: ["python", "-m", "kev.serve", "--run", "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f", "--host", "0.0.0.0", "--port", "8000", "--device", "cuda"]
+    volumes: ["decision_models_kev:/models:ro"]
+    ports: ["192.168.0.90:11440:8000"]
+
+  kev-4b:
+    <<: *rocm
+    image: decision-models-qwen35:local
+    container_name: dm-kev-4b
+    command: ["python", "-m", "kev.serve", "--run", "jaredpalmer/kev-4b@6cfce5c2fa4b4bd64026336ab649c5ca78857d52", "--host", "0.0.0.0", "--port", "8000", "--device", "cuda"]
+    volumes: ["decision_models_kev:/models:ro"]
+    ports: ["192.168.0.90:11441:8000"]
+
+  kev-9b:
+    <<: *rocm
+    image: decision-models-qwen35:local
+    container_name: dm-kev-9b
+    command: ["python", "-m", "kev.serve", "--run", "jaredpalmer/kev-9b@db029f08b290afd9fee4aa4bbcd9ae48602d1eb0", "--host", "0.0.0.0", "--port", "8000", "--device", "cuda"]
+    volumes: ["decision_models_kev:/models:ro"]
+    ports: ["192.168.0.90:11442:8000"]
+
+  simple-jev:
+    <<: *rocm
+    image: decision-models-qwen35:local
+    container_name: dm-simple-jev
+    command: ["simple-jev", "--model", "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a", "--classifier-prompt-policy", "shared_examples_binary", "--device", "auto", "--dtype", "bfloat16", "--host", "0.0.0.0", "--port", "8000"]
+    volumes: ["decision_models_simplejev:/models:ro"]
+    ports: ["192.168.0.90:11443:8000"]
+
+  decider-4b:
+    <<: *rocm
+    image: decision-models-decider:local
+    container_name: dm-decider-4b
+    command: ["env", "DECIDER_MODEL=/models/hf/hub/models--Mapika--decider-4b/snapshots/eb5fbdfc9448473ec25e399882912863afbdb70e", "python", "/opt/run_decider.py"]
+    volumes: ["decision_models_decider:/models:ro"]
+    ports: ["192.168.0.90:11439:8000"]
+
+  laya-multilingual:
+    <<: *rocm
+    image: decision-models-encoders:local
+    container_name: dm-laya-multilingual
+    command: ["env", "MODEL_KIND=laya", "MODEL_REPO=convaiinnovations/laya-multilingual", "MODEL_REV=1720e3e3357cfe1e281542e223f8273b0890ca34", "uvicorn", "encoders_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    volumes: ["decision_models_layaml:/models:ro"]
+    ports: ["192.168.0.90:11444:8000"]
+
+  gliner2.5-decide:
+    <<: *rocm
+    image: decision-models-encoders:local
+    container_name: dm-gliner2.5-decide
+    command: ["env", "MODEL_KIND=gliner", "MODEL_REPO=fastino/GLiNER2.5-Decide", "MODEL_REV=9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90", "uvicorn", "encoders_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    volumes: ["decision_models_gliner:/models:ro"]
+    ports: ["192.168.0.90:11445:8000"]
+
+  gliner2.5-multi-decide:
+    <<: *rocm
+    image: decision-models-encoders:local
+    container_name: dm-gliner2.5-multi-decide
+    command: ["env", "MODEL_KIND=gliner", "MODEL_REPO=fastino/GLiNER2.5-multi-Decide", "MODEL_REV=e173bca1f0c4217d7a55b3b0c705d5ece8a0218d", "uvicorn", "encoders_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    volumes: ["decision_models_gliner:/models:ro"]
+    ports: ["192.168.0.90:11446:8000"]
+
+volumes:
+  decision_models_eikos4b: {external: true}
+  decision_models_jebadiah4b: {external: true}
+  decision_models_kev: {external: true}
+  decision_models_simplejev: {external: true}
+  decision_models_decider: {external: true}
+  decision_models_layaml: {external: true}
+  decision_models_gliner: {external: true}

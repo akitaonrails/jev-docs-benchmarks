@@ -34,7 +34,7 @@ def class_metrics(cases,records):
         gold=c['semantic_gold'];ok=pred==gold
         correct.append(int(ok));preds.append(pred);golds.append(gold)
         matrix[gold][pred or 'INVALID_OR_MISSING']+=1
-        if r:
+        if r and r.get('probabilities'):
             probs=r['probabilities']
             briers.append(sum((p-int(k==c['gold']))**2 for k,p in probs.items()))
             p=probs[r['choice']];calibration.append((p,int(ok)))
@@ -52,7 +52,8 @@ def class_metrics(cases,records):
         f1.append(2*tp/(2*tp+fp+fn) if 2*tp+fp+fn else 0)
     unknown_indices=[i for i,g in enumerate(golds) if g in ABSTAIN]
     unknown_predictions=[i for i,p in enumerate(preds) if p in ABSTAIN]
-    return {'n':len(cases),'valid':len(calibration),'correct':sum(correct),'accuracy':mean(correct),
+    return {'n':len(cases),'valid':sum(bool(records.get(c['id'],{}).get('result')) for c in cases),
+        'probability_distributions':len(calibration),'correct':sum(correct),'accuracy':mean(correct),
         'macro_f1':mean(f1),'brier_valid_only':mean(briers),'ece_valid_only':ece,
         'probability_ge_0_9_count':len(high),'probability_ge_0_9_error_rate':1-mean(high) if high else None,
         'probability_ge_0_9_coverage':len(high)/len(cases) if cases else None,

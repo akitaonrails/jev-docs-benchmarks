@@ -1,0 +1,187 @@
+{
+  "eikos-4b": {
+    "port": 11437,
+    "selector": "eikos-4b",
+    "interface": "systemone",
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "env",
+      "PYTHONPATH=/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b",
+      "python",
+      "serve.py",
+      "--model",
+      ".",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ]
+  },
+  "jebadiah-4b-v2": {
+    "port": 11438,
+    "selector": "jebadiah-4b-v2",
+    "interface": "systemone",
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "jebadiah-serve",
+      "--model",
+      "/models/hf/hub/models--frontier-infra--jebadiah-4b-v2/snapshots/0816094bb1446b63326438db33619c71ede2cc4b",
+      "--revision",
+      "0816094bb1446b63326438db33619c71ede2cc4b",
+      "--alias",
+      "jebadiah",
+      "--alias",
+      "jebadiah-4b-v2",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ]
+  },
+  "kev-0.8b": {
+    "port": 11440,
+    "selector": "kev-0.8b",
+    "interface": "systemone",
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "python",
+      "-m",
+      "kev.serve",
+      "--run",
+      "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ]
+  },
+  "kev-4b": {
+    "port": 11441,
+    "selector": "kev-4b",
+    "interface": "systemone",
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "python",
+      "-m",
+      "kev.serve",
+      "--run",
+      "jaredpalmer/kev-4b@6cfce5c2fa4b4bd64026336ab649c5ca78857d52",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ]
+  },
+  "kev-9b": {
+    "port": 11442,
+    "selector": "kev-9b",
+    "interface": "systemone",
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "python",
+      "-m",
+      "kev.serve",
+      "--run",
+      "jaredpalmer/kev-9b@db029f08b290afd9fee4aa4bbcd9ae48602d1eb0",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ]
+  },
+  "simple-jev": {
+    "port": 11443,
+    "selector": "simple-jev",
+    "interface": "systemone",
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "simple-jev",
+      "--model",
+      "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "--classifier-prompt-policy",
+      "shared_examples_binary",
+      "--device",
+      "auto",
+      "--dtype",
+      "bfloat16",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ]
+  },
+  "decider-4b": {
+    "port": 11439,
+    "selector": "decider-4b",
+    "interface": "systemone",
+    "image": "sha256:71036f87aaa8ed037d793989baa0efb6378ffd25a58b302acdc0ff387ae5edf7",
+    "command": [
+      "env",
+      "DECIDER_MODEL=/models/hf/hub/models--Mapika--decider-4b/snapshots/eb5fbdfc9448473ec25e399882912863afbdb70e",
+      "python",
+      "/opt/run_decider.py"
+    ]
+  },
+  "laya-multilingual": {
+    "port": 11444,
+    "selector": "laya-multilingual",
+    "interface": "systemone",
+    "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+    "command": [
+      "env",
+      "MODEL_KIND=laya",
+      "MODEL_REPO=convaiinnovations/laya-multilingual",
+      "MODEL_REV=1720e3e3357cfe1e281542e223f8273b0890ca34",
+      "uvicorn",
+      "encoders_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ]
+  },
+  "gliner2.5-decide": {
+    "port": 11445,
+    "selector": "gliner2.5-decide",
+    "interface": "gliner",
+    "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+    "command": [
+      "env",
+      "MODEL_KIND=gliner",
+      "MODEL_REPO=fastino/GLiNER2.5-Decide",
+      "MODEL_REV=9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+      "uvicorn",
+      "encoders_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ]
+  },
+  "gliner2.5-multi-decide": {
+    "port": 11446,
+    "selector": "gliner2.5-multi-decide",
+    "interface": "gliner",
+    "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+    "command": [
+      "env",
+      "MODEL_KIND=gliner",
+      "MODEL_REPO=fastino/GLiNER2.5-multi-Decide",
+      "MODEL_REV=e173bca1f0c4217d7a55b3b0c705d5ece8a0218d",
+      "uvicorn",
+      "encoders_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ]
+  }
+}
