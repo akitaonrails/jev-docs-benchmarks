@@ -171,3 +171,7 @@ Reproduce the valuation without inference:
 ```sh
 benchmark/tools/offline.sh /work/tools/value.py
 ```
+
+## Hardware and specialization qualify this ranking
+
+The quality tiers above describe this untuned workload. Laya’s smaller architecture and much lower measured local latency can matter for constrained deployments. We have not measured CPU speed, peak memory or energy, so neither universal inferiority nor best local cost follows. See [model size and deployment tradeoffs](model-tradeoffs.md) for a separate resource-aware comparison and next-round requirements.

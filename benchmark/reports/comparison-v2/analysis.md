@@ -212,3 +212,7 @@ model on a held-out split. That would answer whether a specialized local classif
 can win a real workload. The current experiment answers the narrower question:
 **the tested stock models are easy to call, but their reliable task and language
 coverage differs substantially.**
+
+## Model size and intended deployment
+
+The technical ranking above is an accuracy ranking for these fixtures. The tested Laya checkpoints are compact 421M encoders, and their measured warm local requests were substantially faster than local Flash. That tradeoff may be useful for narrower tasks or constrained local devices if quality requirements are met. CPU performance, peak memory and energy remain unmeasured. See [model size and deployment tradeoffs](../../../docs/model-tradeoffs.md) for the resource-aware interpretation, specialized-checkpoint caveats and next-round measurement plan.
