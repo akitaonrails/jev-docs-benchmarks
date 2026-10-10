@@ -51,3 +51,18 @@ all long PT-BR inputs. These small synthetic task cells guide further evaluation
 they do not establish production accuracy. The broader evidence preserves the
 cost-benefit recommendation above while showing that language and deployment can
 change individual decisions.
+
+## Expanded open-model follow-up
+
+Ten additional local configurations now have [measured results](../benchmark/reports/next-wave-comparison-v2/analysis.md).
+Jev and hosted Clef remain the leading quality group on the difficult bilingual
+cases. Jebadiah 4B v2 is the strongest local compact candidate by point estimate;
+Kev 9B benefits more from examples and distractors. Some local models match Jev
+on particular small task cells, and Kev 9B wins one English data-handling cell.
+Those cells do not establish general superiority.
+
+Size correlates with score, but both workload and training matter. The stock-Qwen
+Simple-Jev configuration trails the stronger decision models on v2 while matching
+Jebadiah on v1 originals. Multilingual Laya is fast but remains weak on this
+supplied-rule workload. This broadens the candidate shortlist; it does not create
+a portfolio-wide need for a classifier or establish local dollar savings.

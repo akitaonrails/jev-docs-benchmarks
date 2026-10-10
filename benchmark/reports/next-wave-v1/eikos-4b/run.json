@@ -1,0 +1,57 @@
+{
+  "started_at": "2026-10-10T13:39:50.928163+00:00",
+  "config": {
+    "models": [
+      "eikos-4b"
+    ],
+    "limit": 0,
+    "dataset_sha256": "30a833c0517a906198e764055996d99b417475d3b6146bb46a97150c7c8d5b72",
+    "dataset_directory": "/work/datasets",
+    "registry": {
+      "port": 11437,
+      "selector": "eikos-4b",
+      "interface": "systemone",
+      "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+      "command": [
+        "env",
+        "PYTHONPATH=/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b",
+        "python",
+        "serve.py",
+        "--model",
+        ".",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--device",
+        "cuda"
+      ]
+    },
+    "runner_sha256": "ee8b7b459d18c4096992a4131d2c030e24db0e25cc0e76aad698324f7aa043b5",
+    "contract_sha256": "7e1ea10273a36dd760135a476e180653fe5f920a6b114e5a38a4c220404978ed",
+    "shared_runner_sha256": "0bf65692fd8f2d9a8dda5ee39f69cbb8998f62ca2b0cecf2d0085ddb25613131",
+    "max_attempts": 1,
+    "seed": 20261010,
+    "probability_semantics": "native-distribution"
+  },
+  "provenance": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "env",
+      "PYTHONPATH=/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b",
+      "python",
+      "serve.py",
+      "--model",
+      ".",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ],
+    "running_benchmark_containers": [
+      "dm-eikos-4b"
+    ]
+  }
+}

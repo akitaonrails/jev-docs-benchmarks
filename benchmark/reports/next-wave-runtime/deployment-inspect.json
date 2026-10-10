@@ -1,0 +1,407 @@
+{
+  "eikos-4b": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "env",
+      "PYTHONPATH=/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b",
+      "python",
+      "serve.py",
+      "--model",
+      ".",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ],
+    "working_dir": "/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_eikos4b",
+        "Source": "/var/lib/docker/volumes/decision_models_eikos4b/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "jebadiah-4b-v2": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "jebadiah-serve",
+      "--model",
+      "/models/hf/hub/models--frontier-infra--jebadiah-4b-v2/snapshots/0816094bb1446b63326438db33619c71ede2cc4b",
+      "--revision",
+      "0816094bb1446b63326438db33619c71ede2cc4b",
+      "--alias",
+      "jebadiah",
+      "--alias",
+      "jebadiah-4b-v2",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "working_dir": "/app/server",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_jebadiah4b",
+        "Source": "/var/lib/docker/volumes/decision_models_jebadiah4b/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "kev-0.8b": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "python",
+      "-m",
+      "kev.serve",
+      "--run",
+      "jaredpalmer/kev-0.8b@bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ],
+    "working_dir": "/app/server",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_kev",
+        "Source": "/var/lib/docker/volumes/decision_models_kev/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "kev-4b": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "python",
+      "-m",
+      "kev.serve",
+      "--run",
+      "jaredpalmer/kev-4b@6cfce5c2fa4b4bd64026336ab649c5ca78857d52",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ],
+    "working_dir": "/app/server",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_kev",
+        "Source": "/var/lib/docker/volumes/decision_models_kev/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "kev-9b": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "python",
+      "-m",
+      "kev.serve",
+      "--run",
+      "jaredpalmer/kev-9b@db029f08b290afd9fee4aa4bbcd9ae48602d1eb0",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--device",
+      "cuda"
+    ],
+    "working_dir": "/app/server",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_kev",
+        "Source": "/var/lib/docker/volumes/decision_models_kev/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "simple-jev": {
+    "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+    "command": [
+      "simple-jev",
+      "--model",
+      "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "--classifier-prompt-policy",
+      "shared_examples_binary",
+      "--device",
+      "auto",
+      "--dtype",
+      "bfloat16",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "working_dir": "/app/server",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_simplejev",
+        "Source": "/var/lib/docker/volumes/decision_models_simplejev/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "decider-4b": {
+    "image": "sha256:71036f87aaa8ed037d793989baa0efb6378ffd25a58b302acdc0ff387ae5edf7",
+    "command": [
+      "env",
+      "DECIDER_MODEL=/models/hf/hub/models--Mapika--decider-4b/snapshots/eb5fbdfc9448473ec25e399882912863afbdb70e",
+      "python",
+      "/opt/run_decider.py"
+    ],
+    "working_dir": "/app/server",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_decider",
+        "Source": "/var/lib/docker/volumes/decision_models_decider/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "laya-multilingual": {
+    "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+    "command": [
+      "env",
+      "MODEL_KIND=laya",
+      "MODEL_REPO=convaiinnovations/laya-multilingual",
+      "MODEL_REV=1720e3e3357cfe1e281542e223f8273b0890ca34",
+      "uvicorn",
+      "encoders_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "working_dir": "/opt/encoders",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_layaml",
+        "Source": "/var/lib/docker/volumes/decision_models_layaml/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "gliner2.5-decide": {
+    "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+    "command": [
+      "env",
+      "MODEL_KIND=gliner",
+      "MODEL_REPO=fastino/GLiNER2.5-Decide",
+      "MODEL_REV=9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+      "uvicorn",
+      "encoders_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "working_dir": "/opt/encoders",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_gliner",
+        "Source": "/var/lib/docker/volumes/decision_models_gliner/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  },
+  "gliner2.5-multi-decide": {
+    "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+    "command": [
+      "env",
+      "MODEL_KIND=gliner",
+      "MODEL_REPO=fastino/GLiNER2.5-multi-Decide",
+      "MODEL_REV=e173bca1f0c4217d7a55b3b0c705d5ece8a0218d",
+      "uvicorn",
+      "encoders_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "working_dir": "/opt/encoders",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_gliner",
+        "Source": "/var/lib/docker/volumes/decision_models_gliner/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "clef minus jev": {
+    "difference": -0.017857142857142856,
+    "family_bootstrap_95": [
+      -0.05357142857142857,
+      0.011904761904761904
+    ],
+    "families": 84
+  },
+  "jebadiah-4b-v2 minus jev": {
+    "difference": -0.07142857142857142,
+    "family_bootstrap_95": [
+      -0.125,
+      -0.023809523809523808
+    ],
+    "families": 84
+  },
+  "kev-9b minus jev": {
+    "difference": -0.09523809523809523,
+    "family_bootstrap_95": [
+      -0.16071428571428573,
+      -0.03571428571428571
+    ],
+    "families": 84
+  },
+  "clef-flash minus jev": {
+    "difference": -0.10119047619047619,
+    "family_bootstrap_95": [
+      -0.16071428571428573,
+      -0.05357142857142857
+    ],
+    "families": 84
+  },
+  "clef-flash-local minus jev": {
+    "difference": -0.10119047619047619,
+    "family_bootstrap_95": [
+      -0.16071428571428573,
+      -0.047619047619047616
+    ],
+    "families": 84
+  },
+  "decider-4b minus jev": {
+    "difference": -0.10119047619047619,
+    "family_bootstrap_95": [
+      -0.16666666666666666,
+      -0.041666666666666664
+    ],
+    "families": 84
+  },
+  "kev-4b minus jev": {
+    "difference": -0.10119047619047619,
+    "family_bootstrap_95": [
+      -0.16071428571428573,
+      -0.041666666666666664
+    ],
+    "families": 84
+  },
+  "eikos-4b minus jev": {
+    "difference": -0.1488095238095238,
+    "family_bootstrap_95": [
+      -0.2261904761904762,
+      -0.07738095238095238
+    ],
+    "families": 84
+  },
+  "simple-jev minus jev": {
+    "difference": -0.23214285714285715,
+    "family_bootstrap_95": [
+      -0.30952380952380953,
+      -0.15476190476190477
+    ],
+    "families": 84
+  },
+  "kev-0.8b minus jev": {
+    "difference": -0.34523809523809523,
+    "family_bootstrap_95": [
+      -0.42857142857142855,
+      -0.2619047619047619
+    ],
+    "families": 84
+  },
+  "gliner2.5-decide minus jev": {
+    "difference": -0.4523809523809524,
+    "family_bootstrap_95": [
+      -0.5416666666666666,
+      -0.36904761904761907
+    ],
+    "families": 84
+  },
+  "laya minus jev": {
+    "difference": -0.5476190476190477,
+    "family_bootstrap_95": [
+      -0.6369047619047619,
+      -0.4583333333333333
+    ],
+    "families": 84
+  },
+  "laya-typed minus jev": {
+    "difference": -0.5476190476190477,
+    "family_bootstrap_95": [
+      -0.6309523809523809,
+      -0.4583333333333333
+    ],
+    "families": 84
+  },
+  "laya-multilingual minus jev": {
+    "difference": -0.6071428571428571,
+    "family_bootstrap_95": [
+      -0.6904761904761905,
+      -0.5238095238095238
+    ],
+    "families": 84
+  },
+  "gliner2.5-multi-decide minus jev": {
+    "difference": -0.6369047619047619,
+    "family_bootstrap_95": [
+      -0.7261904761904762,
+      -0.5476190476190477
+    ],
+    "families": 84
+  },
+  "kev-4b minus kev-0.8b": {
+    "difference": 0.24404761904761904,
+    "family_bootstrap_95": [
+      0.16071428571428573,
+      0.3333333333333333
+    ],
+    "families": 84
+  },
+  "kev-9b minus kev-4b": {
+    "difference": 0.005952380952380952,
+    "family_bootstrap_95": [
+      -0.06547619047619048,
+      0.07142857142857142
+    ],
+    "families": 84
+  }
+}

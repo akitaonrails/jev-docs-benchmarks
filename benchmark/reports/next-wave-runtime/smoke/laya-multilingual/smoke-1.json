@@ -1,0 +1,55 @@
+{
+  "request": {
+    "model": "laya-multilingual",
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "questions": {
+      "decision": {
+        "type": "choice",
+        "instructions": "Route this support request to the responsible department.",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        }
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "model": "laya-rl-agent",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 0.9998,
+          "shipping": 0.0,
+          "technical": 0.0002
+        },
+        "confidence": 0.9981,
+        "answer_confidence": 0.9998,
+        "action": {
+          "act_probability": 1.0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 44,
+      "output_tokens": 0,
+      "state_tokens": 11,
+      "state_tokens_dropped": 0,
+      "truncated": false,
+      "truncated_questions": []
+    },
+    "server": {
+      "repo": "convaiinnovations/laya-multilingual",
+      "revision": "1720e3e3357cfe1e281542e223f8273b0890ca34",
+      "device": "cuda:0",
+      "cold": false,
+      "predict_s": 0.013,
+      "torch_cuda_allocated_mb": 1355,
+      "torch_cuda_peak_mb": 1598
+    }
+  },
+  "seconds": 0.014419868122786283
+}

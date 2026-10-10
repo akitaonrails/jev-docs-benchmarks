@@ -125,9 +125,9 @@ def score(rows,manifest,responses,models):
             'median_valid_wall_seconds':quantile(lat,.5),'p95_valid_wall_seconds':quantile(lat,.95),
             'reported_input_tokens':sum(known),'valid_responses_missing_usage':len(valid)-len(known),
             'estimated_reported_usage_cost_usd':sum(known)*MODELS[model][1]/1e6 if model in MODELS else None,
-            'cost_note': 'Local compute cost unmeasured; no hosted token rate applies.' if model in LOCAL_MODELS else 'Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.',
+            'cost_note': 'Local compute cost unmeasured; no hosted token rate applies.' if model not in MODELS else 'Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.',
             'served_models':sorted({str(r['result']['served_model']) for r in valid})}
-        if model in LOCAL_MODELS:
+        if model not in MODELS:
             usages=[r['result']['usage'] for r in valid]
             servers=[r['response'].get('server',{}) for r in valid]
             prediction_times=[s['predict_s'] for s in servers if isinstance(s.get('predict_s'),(int,float))]

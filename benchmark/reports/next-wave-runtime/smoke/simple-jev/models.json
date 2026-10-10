@@ -1,0 +1,12 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "object": "model",
+      "created": 0,
+      "owned_by": "simple-jev",
+      "x_max_choice_options": 255
+    }
+  ]
+}

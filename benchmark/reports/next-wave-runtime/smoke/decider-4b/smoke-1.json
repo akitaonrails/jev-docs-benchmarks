@@ -1,0 +1,40 @@
+{
+  "request": {
+    "model": "decider-4b",
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "questions": {
+      "decision": {
+        "type": "choice",
+        "instructions": "Route this support request to the responsible department.",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        }
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "model": "decider-4b-v2.1",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "billing",
+        "confidence": 0.9996,
+        "x_p_max": 0.9998,
+        "certainty": 0.9977,
+        "probabilities": {
+          "billing": 0.9998,
+          "shipping": 0.0001,
+          "technical": 0.0001
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 56,
+      "output_tokens": 0
+    }
+  },
+  "seconds": 0.1119325221516192
+}

@@ -1,0 +1,21 @@
+{
+  "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+  "command": [
+    "simple-jev",
+    "--model",
+    "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "--classifier-prompt-policy",
+    "shared_examples_binary",
+    "--device",
+    "auto",
+    "--dtype",
+    "bfloat16",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000"
+  ],
+  "running_benchmark_containers": [
+    "dm-simple-jev"
+  ]
+}

@@ -1,5 +1,23 @@
 # Technical and cost-benefit ranking
 
+## Expanded local comparison: 10 October update
+
+The [expanded analysis](../benchmark/reports/next-wave-comparison-v2/analysis.md)
+adds ten local configurations. Jebadiah 4B v2 leads the tested local compact
+bilingual point estimates (90.5%); Mapika Decider and Kev 4B tie Flash’s 87.5%.
+Kev 9B helps more with examples/distractors. Local Flash remains ahead of the
+added locals on the original policy suite. There is no single local winner across
+all these conditions, and the local dollar costs are unmeasured.
+
+The paid-hosted recommendation remains Jev for measured quality and low operations
+effort, Flash for the lowest token spend, and full Clef within available free
+allowance. This new wave incurred no hosted inference charges. The original
+six-model calculations below remain a historical pricing/quality analysis; consult
+the expanded report for the current local shortlist and resource tradeoffs.
+
+## Original six-model comparison
+
+
 Updated **10 October 2026**. The detailed tables below cover **v1's** frozen,
 synthetic, explicit-policy text workload, with no fine-tuning. They are not universal
 model rankings.

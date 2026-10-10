@@ -1,0 +1,39 @@
+{
+  "request": {
+    "model": "kev-0.8b",
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "questions": {
+      "decision": {
+        "type": "choice",
+        "instructions": "Route this support request to the responsible department.",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        }
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "model": "kev-0.8b",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "billing",
+        "confidence": 0.9244,
+        "probabilities": {
+          "billing": 0.9496,
+          "shipping": 0.0073,
+          "technical": 0.043
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 43,
+      "output_tokens": 62
+    },
+    "latency_ms": 30.7
+  },
+  "seconds": 0.033033862011507154
+}

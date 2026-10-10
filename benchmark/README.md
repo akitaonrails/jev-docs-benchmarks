@@ -190,3 +190,11 @@ per model, 3,024 new classifications. Use its [protocol](expansion-v2/README.md)
 [complete tables](reports/comparison-v2/results.md). It has its own `score_v2.py`;
 do not feed its archives into the v1 scorer or average its scores into v1.
 The [setup guide](../docs/setup.md) contains the exact v1/v2 commands.
+
+## Next-wave open models
+
+The [next-wave protocol](next-wave/README.md) covers ten additional configurations,
+including three Kev sizes and native GLiNER classification mappings. See the
+[expanded analysis](reports/next-wave-comparison-v2/analysis.md),
+[ranking](reports/next-wave-comparison-v2/ranking.md), and
+[expanded policy-suite tables](reports/next-wave-comparison-v1/results.md).

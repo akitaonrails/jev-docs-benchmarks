@@ -53,3 +53,19 @@ Seven matching directories have **no top-level README** and were therefore not a
 5. Deploy only as a reversible feature with logging, a conservative review route, and a fallback. Treat safety or authorization judgments as advisory unless an exact policy independently enforces the action.
 
 **Overall:** The pattern is general in the sense that many applications contain semantic routing decisions. In this particular portfolio, those decisions are a **small slice** of the work. Most projects either need specialist image/audio/generative models or already have exact, cheap rules. Clef makes a few image-routing experiments possible and Laya makes local specialization practical, but their most plausible value is still operational efficiency at a repeated decision point, not a broad increase in capability.
+
+## What the expanded benchmark changes
+
+The [sixteen-configuration bilingual comparison](../benchmark/reports/next-wave-comparison-v2/analysis.md)
+provides more local candidates, not application-level validation. Jebadiah’s intent
+and entailment results make it worth considering for a bounded FrankClaw or
+Frank Investigator pilot; English retrieval ties across several models justify
+keeping a specialist reranker in the ai-memory comparison. Each compact task cell
+has only twelve families. No actual portfolio traffic was evaluated.
+
+For support severity, the [concrete policy-exception case](../benchmark/reports/next-wave-comparison-v1/support-ticket-case-study.md)
+shows several high-scoring models downgrading confirmed production data loss for
+one customer, despite the supplied rule. Extracting impact facts and applying
+exact rules in code is a workflow to evaluate, not a measured improvement here.
+The benchmark does not justify replacing authorization, fraud verification, OCR,
+translation or source-backed investigation with a model label.

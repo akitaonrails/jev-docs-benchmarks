@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "id": "laya-multilingual",
+      "repo": "convaiinnovations/laya-multilingual",
+      "revision": "1720e3e3357cfe1e281542e223f8273b0890ca34",
+      "kind": "laya",
+      "device": "cuda:0"
+    }
+  ]
+}

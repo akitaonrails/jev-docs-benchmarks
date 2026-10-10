@@ -4,6 +4,11 @@ Checked **10 October 2026** against upstream repositories, model cards, GitHub/H
 metadata and the live Decision Index. This is a test shortlist, not a measured
 ranking on our fixtures. No new model was downloaded, installed or run for this review.
 
+**Subsequent setup:** the homelab agent installed ten configurations after this review.
+See the [installation handoff](homelab-installation-report.md) and
+[frozen next-wave protocol](../benchmark/next-wave/README.md). Heavy-model candidates
+remain assessments, not installed entrants.
+
 ## Current homelab deployment
 
 The benchmark added **one Docker container**, `decision-models-systemone`, using
@@ -209,7 +214,7 @@ In particular, our small policy suite favoring Jev does not establish that Jev b
 all open models. The broader board has at least one open-weight candidate above it.
 Conversely, popular small encoders can remain weak on broad explicit-policy tasks.
 
-## Recommended next experiment
+## Original proposed experiment and subsequent status
 
 Start with **Eikos-4B, Jebadiah-4B-v2, Mapika Decider-4B, Kev-4B, Simple-Jev over a
 fixed Qwen-4B, Laya multilingual, and the English/multilingual GLiNER2.5-Decide pair**.
@@ -235,4 +240,7 @@ classifier/reranker baseline to test whether specialized training adds value.
 
 Deployment would remain containerized, with pinned model/code/base revisions, a
 reviewed adapter per family, explicit model lifecycle, and cold versus warm timing.
-This document proposes those additions; none has been installed or benchmarked yet.
+The initial eight configurations plus Kev 0.8B/9B have now been installed and
+benchmarked. See the [completed expanded analysis](../benchmark/reports/next-wave-comparison-v2/analysis.md).
+The additional representation track, Jebadiah 9B, Strands, Von, CLM, Nimble and
+heavy-model/GLiDE extensions remain future work.

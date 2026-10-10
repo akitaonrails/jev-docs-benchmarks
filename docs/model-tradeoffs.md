@@ -19,7 +19,7 @@ For scale, 421M parameters at two bytes each imply about **0.84 GB of parameter 
 | Laya English | 44.0% / 41.7% | 41 / 78 ms | Small, fast measured local candidate; unreliable for this broad untuned policy workload. |
 | Laya typed-decisions | 50.0% / 35.7% | 43 / 190 ms | Specialized checkpoint; its training workflows do not establish broad policy or Portuguese coverage. |
 | Local Clef-flash | 89.3% / 85.7% | 618 / 935 ms | Better measured general coverage, with substantially slower requests in this deployment. |
-| Laya multilingual | Not tested yet | Not tested yet | A separate candidate for Portuguese; English-checkpoint results do not establish its quality. |
+| Laya multilingual | 35.7% / 38.1% | 19 / 45 ms | Separate multilingual checkpoint, now measured; fast but weak on this supplied-rule workload. |
 
 The latency rows use the same AMD homelab, warm sequential requests and client-observed LAN timings. They exclude startup/downloads and do not establish sustained throughput. See [captured results and limitations](../benchmark/reports/comparison-v2/analysis.md#runtime-and-reproducibility).
 
@@ -29,11 +29,11 @@ A short-text, narrowly defined local router may benefit from Laya after domain e
 
 ## Compare projects within their constraints
 
-| Family or approach | Distinction to preserve | Evidence still needed here |
+| Family or approach | Distinction to preserve | Measured status and remaining evidence |
 | --- | --- | --- |
-| Laya / GLiNER compact encoders | Smaller resource envelope; native classification interface and language specialization | CPU performance, peak memory, native label/rubric mapping, multilingual accuracy |
-| Eikos / Jebadiah / Mapika / Kev around 4B | Larger backbones and different decision training/calibration; Eikos advertises EN/PT training | Frozen-case accuracy, exact checkpoint/base/runtime, memory and latency |
-| Simple-Jev | Stock-model token readout wrapper; checkpoint and prompt policy define the entrant | Whether specialized training beats the fixed stock baseline at comparable resources |
+| Laya / GLiNER compact encoders | Smaller resource envelope; native classification interface and language specialization | Mapped native interfaces and multilingual accuracy now measured; CPU, energy and a comparable full-process memory series remain unmeasured |
+| Eikos / Jebadiah / Mapika / Kev around 4B | Larger backbones and different decision training/calibration; Eikos advertises EN/PT training | Frozen-case accuracy, pins and latency measured; complete comparable memory/energy measurements still needed |
+| Simple-Jev | Stock-model token readout wrapper; checkpoint and prompt policy define the entrant | Fixed stock baseline now measured; results vary by suite and do not isolate training from prompting/runtime |
 | PPLX / Rune larger models | Higher weight residency; MoE active parameters do not equal total stored weights | Actual ROCm compatibility, capacity and quality gain sufficient to justify deployment |
 | Hosted Jev / Clef / GLiDE | Provider operates the hardware; API price and WAN latency are relevant | Actual account costs, availability/privacy requirements; hosted hardware efficiency is unknown |
 
@@ -47,6 +47,23 @@ Rank measured quality on the existing frozen cases, then provide deployment-spec
 
 ## Installation delegation status
 
-The next-wave installation request was queued through ai-memory to `default/homelab-docs` on 10 October, message `01a125d8-2eaa-7de2-ba47-d2f270ac0337`. It requests eight configurations: Eikos-4B, Jebadiah-4B-v2, Mapika Decider-4B, Kev-4B, fixed-Qwen Simple-Jev, Laya multilingual, and both English/multilingual GLiNER2.5-Decide. It requests Docker isolation, pinned provenance, native API contracts, sequential model residency and footprint evidence. PPLX/Rune require a capacity/runtime assessment first. A queued request is not confirmation of installation; benchmark adapter integration awaits the service contracts and smoke evidence.
+The next-wave installation request was queued through ai-memory to `default/homelab-docs` on 10 October, message `01a125d8-2eaa-7de2-ba47-d2f270ac0337`. It requests eight configurations: Eikos-4B, Jebadiah-4B-v2, Mapika Decider-4B, Kev-4B, fixed-Qwen Simple-Jev, Laya multilingual, and both English/multilingual GLiNER2.5-Decide. It requests Docker isolation, pinned provenance, native API contracts, sequential model residency and footprint evidence. PPLX/Rune require a capacity/runtime assessment first. The later [installation handoff](homelab-installation-report.md) confirms these eight plus Kev 0.8B and 9B, with pinned images and sequential lifecycle controls. The [next-wave protocol](../benchmark/next-wave/README.md) records the client mappings; [full measurements and recommendations](../benchmark/reports/next-wave-comparison-v2/analysis.md) are complete.
 
 [Size versus score analysis](size-vs-quality.md) quantifies the observed association and checks same-family scaling evidence and counterexamples.
+
+## Measured expansion update
+
+Multilingual Laya now measured 36.9% compact bilingual accuracy with a 19 ms median
+on this GPU, versus Kev 0.8B’s 63.1% and 86 ms. English GLiNER scored 52.4% with a
+208 ms median; multilingual GLiNER scored 33.9% with 63 ms. Those GLiNER results
+use a mapped native interface and opaque option IDs. No CPU or energy ranking
+follows. The table above focuses on Laya and Flash; use the
+[expanded ranking](../benchmark/reports/next-wave-comparison-v2/ranking.md) for all
+sixteen configurations. Smaller footprint remains a potential deployment advantage,
+but these untuned checkpoints did not meet the broad supplied-rule quality of the
+leaders.
+
+The new encoder responses also record peak **PyTorch device allocation**: 1,653 MiB
+for Laya multilingual, 2,348 MiB for English GLiNER, and 1,466 MiB for multilingual
+GLiNER across v2. These are allocator peaks, not total process/resident memory or
+CPU requirements. Comparable measurements for every entrant remain unavailable.

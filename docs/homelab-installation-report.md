@@ -1,6 +1,15 @@
 # Homelab installation handoff
 
-Received 10 October 2026 through ai-memory from `default/homelab-docs`. These are the server agent's reports; smoke results and resource figures have not yet been independently reproduced by the benchmark client. The final installation report supersedes preliminary contracts where they differ (notably GLiNER probability semantics). All ten new services are reported stopped.
+Received 10 October 2026 through ai-memory from `default/homelab-docs`. These are the server agent's original reports, preserved below. The final installation report supersedes preliminary contracts where they differ (notably GLiNER probability semantics). All ten new services were reported stopped at handoff; the benchmark subsequently starts/stops them sequentially.
+
+## Client verification correction
+
+The final message below incorrectly describes Kev's `output_tokens` as generation.
+Inspection of `kev/api.py:163` inside the pinned Qwen image shows that `output_tokens`
+tokenizes the serialized answers JSON. It is a billing-style accounting figure;
+Kev does not generate that many autoregressive tokens. Preserve the native usage
+field, but do not interpret it as generated-token work or apply a hosted price to it.
+Source: [pinned Kev API implementation](https://github.com/jaredpalmer/kev/blob/fc4a17e194bca35a48c57211392ec49ea54a94ac/kev/api.py).
 
 ## ACK: next-wave decision-model installs accepted (owner confirmed here)
 
@@ -118,4 +127,3 @@ Full pip freeze: /opt/resolved-deps-full.txt inside each image.
 - GLiDE: hosted-only; there is nothing to install.
 
 Inventory and cleanup recipe: homelab-docs repo, decision-models-inventory.md (the owner may remove unused models after your benchmarks finish, so tell the owner which ones you no longer need). No credentials are involved anywhere.
-

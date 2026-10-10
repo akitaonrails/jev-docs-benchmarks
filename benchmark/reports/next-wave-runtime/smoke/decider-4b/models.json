@@ -1,0 +1,9 @@
+{
+  "models": [
+    {
+      "name": "decider-4b-v2.1",
+      "description": "decider: one-pass typed decisions with calibrated probabilities",
+      "release_date": "2026-09-24"
+    }
+  ]
+}

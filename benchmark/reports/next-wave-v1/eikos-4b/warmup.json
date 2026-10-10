@@ -1,0 +1,19 @@
+{
+  "model": ".",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.970687747001648,
+        "technical": 0.02931223064661026
+      },
+      "confidence": 0.970687747001648
+    }
+  },
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 0
+  },
+  "latency_s": 0.15418148999742698
+}

@@ -1,0 +1,39 @@
+{
+  "request": {
+    "model": "eikos-4b",
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "questions": {
+      "decision": {
+        "type": "choice",
+        "instructions": "Route this support request to the responsible department.",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        }
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "model": ".",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 0.9537315964698792,
+          "shipping": 0.017468202859163284,
+          "technical": 0.028800198808312416
+        },
+        "confidence": 0.9537315964698792
+      }
+    },
+    "usage": {
+      "input_tokens": 126,
+      "output_tokens": 0
+    },
+    "latency_s": 0.21711666200280888
+  },
+  "seconds": 0.21908026793971658
+}

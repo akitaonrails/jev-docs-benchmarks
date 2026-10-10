@@ -1,0 +1,20 @@
+{
+  "request": {
+    "model": "jebadiah-4b-v2",
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "questions": {
+      "decision": {
+        "type": "choice",
+        "instructions": "Route this support request to the responsible department.",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        }
+      }
+    }
+  },
+  "status": 503,
+  "response": "{\"error\":{\"message\":\"the model is loading\",\"type\":\"service_unavailable\"}}",
+  "seconds": 0.001066263997927308
+}

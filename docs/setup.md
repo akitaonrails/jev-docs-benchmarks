@@ -251,3 +251,38 @@ The original `benchmark/docker/Dockerfile.local` and local Compose profile are
 **untested workstation CUDA preparation**, not the measured AMD setup. They are not
 used by the client/homelab commands above. No claim about RTX 5090 fit, speed or
 compatibility follows from the homelab measurements.
+
+## Next-wave ROCm services
+
+Ten additional pinned services are installed under `/var/opt/docker/ai/decision-models-next`,
+ports 11437–11446. They are separate Docker containers and must run **one at a time**.
+The [captured Compose file](../benchmark/next-wave/server/docker-compose.yml) records
+service names, model snapshots, read-only cache volumes, ports and device access.
+The [installation handoff](homelab-installation-report.md) records runtime caveats.
+
+Use the [next-wave protocol](../benchmark/next-wave/README.md) and lifecycle controller:
+
+```sh
+python benchmark/next-wave/run.py --execute
+# Restrict an evaluation to the three sizes in one family:
+python benchmark/next-wave/run.py --models kev-0.8b kev-4b kev-9b --execute
+```
+
+The controller uses host Python's standard library for SSH/Docker lifecycle only;
+inference clients run inside the existing `jev-benchmark-runner` image. It verifies
+the active container image and command, warms the endpoint, archives completed runs
+and stops the service in a `finally` block. Run from a session that can SSH to
+`192.168.0.90` and invoke server Docker with noninteractive sudo. An abrupt host crash
+can bypass cleanup; inspect and stop that specific benchmark service before resuming.
+
+Manual lifecycle, using a service name from the Compose file:
+
+```sh
+ssh 192.168.0.90 'cd /var/opt/docker/ai/decision-models-next && sudo docker compose up -d kev-4b'
+ssh 192.168.0.90 'cd /var/opt/docker/ai/decision-models-next && sudo docker compose stop kev-4b'
+```
+
+Do not start the whole Compose stack. Do not stop unrelated server GPU workloads.
+PPLX/Rune are not installed; they require further capacity/runtime work. GLiDE remains
+a hosted candidate. Default context limits, Simple-Jev's prompt policy and GLiNER's
+native classification mapping are part of the frozen entrant configuration.

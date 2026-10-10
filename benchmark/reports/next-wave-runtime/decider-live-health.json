@@ -1,0 +1,1 @@
+{"ok":true,"model":"/models/hf/hub/models--Mapika--decider-4b/snapshots/eb5fbdfc9448473ec25e399882912863afbdb70e","device":"cuda","layout":"plain","temperature":1.099,"temperature_by_type":{"choice":1.11,"noul":1.56,"score":1.287}}

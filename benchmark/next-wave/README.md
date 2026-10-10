@@ -38,8 +38,15 @@ pinned offline snapshot paths, startup command and immutable container image.
 python benchmark/next-wave/run.py --execute
 # A selected family only:
 python benchmark/next-wave/run.py --models kev-0.8b kev-4b kev-9b --execute
+# After all ten entrants complete, verify archives and reproduce comparisons offline:
+sh benchmark/next-wave/score.sh
 ```
 
 Warm latency describes this ROCm deployment, including pure-PyTorch DeltaNet
 fallbacks. It must not be presented as optimized CUDA speed. Existing hosted
 results are reused; there are no additional paid API calls in this wave.
+
+The suites use at most six choices (v1) and four choices (v2), below Jebadiah’s
+20-option cap. Precision is runtime-specific: the Kev live metadata reports BF16;
+encoder precision is not inferred from parameter count. Parameter-storage examples
+in the research are estimates at a stated precision, not measured resident memory.

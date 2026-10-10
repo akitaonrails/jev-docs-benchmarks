@@ -1,0 +1,38 @@
+{
+  "request": {
+    "model": "simple-jev",
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "questions": {
+      "decision": {
+        "type": "choice",
+        "instructions": "Route this support request to the responsible department.",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        }
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "model": "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "answers": {
+      "decision": {
+        "type": "choice",
+        "confidence": 0.9999916553497314,
+        "probabilities": {
+          "billing": 0.9999916553497314,
+          "shipping": 5.043434612161946e-07,
+          "technical": 7.889258995419368e-06
+        },
+        "choice": "billing"
+      }
+    },
+    "usage": {
+      "input_tokens": 1090,
+      "output_tokens": 0
+    }
+  },
+  "seconds": 1.565065654926002
+}

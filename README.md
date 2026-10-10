@@ -2,7 +2,8 @@
 
 **Measure how reliably decision models apply supplied rules, how their probabilities
 behave, and what those decisions cost.** Compare TypeSafe Jev with hosted and local
-Clef/Clef-flash and Laya, using identical inputs, inspectable expected answers, raw
+Clef/Clef-flash, Laya, Kev, Eikos, Jebadiah, Mapika Decider, Simple-Jev and GLiNER,
+using frozen inputs, inspectable expected answers, raw
 response archives, and reproducible scoring.
 
 The goal is to find **where each model works, where it fails, and whether its quality,
@@ -15,8 +16,10 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **Latest results:** [English / PT-BR analysis](benchmark/reports/comparison-v2/analysis.md)
-  and [task, language and condition tables](benchmark/reports/comparison-v2/results.md).
+- **Latest results:** [expanded open-model analysis](benchmark/reports/next-wave-comparison-v2/analysis.md),
+  [ranking and size comparison](benchmark/reports/next-wave-comparison-v2/ranking.md),
+  and [task/language tables](benchmark/reports/next-wave-comparison-v2/results.md).
+- **First six models:** [initial English / PT-BR analysis](benchmark/reports/comparison-v2/analysis.md).
 - **Original policy suite:** [hosted versus local analysis](benchmark/reports/comparison-v1/analysis.md)
   and [complete six-model tables](benchmark/reports/comparison-v1/results.md).
 - **Which is worth using?** [Technical and cost-benefit ranking](docs/cost-benefit-ranking.md).
@@ -25,10 +28,41 @@ that one model is universally best. See [methodology and limitations](#methodolo
 - **Research:** [business summary](docs/business-summary.md), [mechanics and prior art](docs/research.md),
   [alternatives](docs/alternatives.md), [use cases](docs/use-cases.md),
   [Paulo Câmara article analysis](docs/paulo-camara-article.md).
-- **Next candidates:** [open-model shortlist and homelab lifecycle](docs/next-models.md).
+- **Open-model coverage:** [researched shortlist](docs/next-models.md) and
+  [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
 
-## Completed v2: broader tasks and English / PT-BR
+## Expanded comparison: ten additional local configurations
+
+**9,392 new scored responses, all valid, zero retries.** Together with the first
+runs, the repository now contains 16 bilingual configurations and 14 policy-suite
+configurations. The new inference ran sequentially on the AMD homelab in about
+55 minutes; all benchmark containers are stopped afterward.
+
+| Configuration | Compact bilingual accuracy | Main observation |
+| --- | ---: | --- |
+| Jev | 97.6% | Highest point estimate; full hosted Clef is close at 95.8%. |
+| Jebadiah 4B v2 | 90.5% | Highest tested local compact point estimate. |
+| Kev 9B | 88.1% | Larger gains with examples/distractors than compact inputs. |
+| Mapika Decider 4B / Kev 4B / Flash deployments | 87.5% each | Equal aggregate counts conceal different task/language errors. |
+| Simple-Jev with stock Qwen 4B | 74.4% | Fixed prompt/readout baseline; matches Jebadiah on v1 originals but trails on v2. |
+| Laya multilingual | 36.9% | Fastest observed local median, about 19 ms; weak on these supplied-rule cases. |
+
+The [full sixteen-row ranking](benchmark/reports/next-wave-comparison-v2/ranking.md)
+also includes Eikos, Kev 0.8B, the original Laya checkpoints and both GLiNER models.
+GLiNER is a native classification mapping track, without fabricated probability metrics.
+
+Size correlates strongly with compact score in the tested known-size sample
+(Spearman **0.920**), but the Kev series is more informative: **63.1% → 87.5% → 88.1%**
+at 0.8B/4B/9B. The last step is uncertain on compact inputs and more useful with
+examples or distractors. See [size analysis](docs/size-vs-quality.md).
+
+The new wave adds **no hosted inference charges**; local operating cost remains
+unmeasured. [Analysis and cost-benefit recommendations](benchmark/reports/next-wave-comparison-v2/analysis.md),
+[concrete support-ticket failure](benchmark/reports/next-wave-comparison-v1/support-ticket-case-study.md),
+and [reproduction protocol](benchmark/next-wave/README.md).
+
+## Initial v2: first six entrants, English / PT-BR
 
 Seven tasks, 84 new scenarios, paired languages and three conditions: **3,024 new
 classifications across six entrants**, all valid, with no retries. Compact inputs
@@ -55,7 +89,7 @@ v1's exact agreement does not generalize. The new hosted run's list-price usage 
 [analysis and scoped cost-benefit ranking](benchmark/reports/comparison-v2/analysis.md)
 for paired uncertainty, concrete errors, language token costs and limitations.
 
-## Completed v1: short English, explicit policies
+## Initial v1: first six entrants, explicit policies
 
 13 tasks × 10 original scenarios × four presentations = **520 classifications/model**,
 plus **24 separate uncertainty probes/model**. Hosted runs were recorded 9 October 2026;
@@ -153,7 +187,8 @@ benchmark/expansion-v2/        Paired EN/PT-BR source cases and frozen manifest
 benchmark/tools/              Stdlib runners, validators, scoring and valuation
 benchmark/tests/              Offline correctness checks
 benchmark/docker/             Client and deferred workstation image recipes
-benchmark/homelab/            ROCm service template, app and pinned downloader
+benchmark/homelab/             Original ROCm service and pinned downloader
+benchmark/next-wave/           New service snapshots, adapters and lifecycle protocol
 benchmark/reports/            Published metrics, raw gzip responses and provenance
 benchmark/results/            Ignored working outputs from new runs
 ```

@@ -1,0 +1,4 @@
+{
+  "discovery_status": 404,
+  "note": "Native runtime has no /v1/models; provenance captured through container command and image."
+}

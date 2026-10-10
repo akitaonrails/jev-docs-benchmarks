@@ -1,0 +1,19 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "/models/hf/hub/models--frontier-infra--jebadiah-4b-v2/snapshots/0816094bb1446b63326438db33619c71ede2cc4b",
+      "object": "model",
+      "owned_by": "jebadiah",
+      "revision": "0816094bb1446b63326438db33619c71ede2cc4b",
+      "aliases": [
+        "0816094bb1446b63326438db33619c71ede2cc4b",
+        "jebadiah",
+        "jebadiah-4b-v2"
+      ],
+      "ready": false,
+      "max_choice_criteria": 20,
+      "max_decide_options": null
+    }
+  ]
+}

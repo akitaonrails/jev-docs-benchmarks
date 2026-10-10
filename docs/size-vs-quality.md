@@ -2,7 +2,7 @@
 
 Checked 10 October 2026. **Our results show a positive association, but do not establish that size alone causes better decisions.** Same-family external results support scaling on unfamiliar tasks while also providing counterexamples on familiar tasks.
 
-## Our measurements: a strong-looking correlation from a very small sample
+## Initial six-entrant run: a strong-looking correlation from a very small sample
 
 Use v2 compact cases only: 84 English and 84 matched Portuguese cases per entrant. Count hosted Clef-flash once, rather than treating its local deployment as another independent model. Exclude Jev from the size calculation because we have no verified parameter count.
 
@@ -30,7 +30,35 @@ print(correlation([log10(n) for n in sizes_b], accuracy))
 
 The most useful observed contrast is **Clef 27B versus Flash 9B: +8.33 percentage points** on compact bilingual cases, for three times the nominal parameters. However, their backbones also differ (Qwen3.8 versus Qwen3.5), so this is not a controlled experiment changing only parameter count. Comparing either to Laya additionally changes architecture, training, context handling and language coverage. Parameter count is correlated with those factors in our sample.
 
-## Same-family evidence: Kev
+## New homelab measurements: the Kev size series
+
+All three pinned Kev 1.0 configurations have now completed both frozen suites.
+
+| Size | Compact English | Compact PT-BR | Combined compact | v1 policy originals |
+| --- | ---: | ---: | ---: | ---: |
+| 0.8B | 54/84 — 64.3% | 52/84 — 61.9% | 106/168 — 63.1% | 82/130 — 63.1% |
+| 4B | 74/84 — 88.1% | 73/84 — 86.9% | 147/168 — 87.5% | 107/130 — 82.3% |
+| 9B | 78/84 — 92.9% | 70/84 — 83.3% | 148/168 — 88.1% | 114/130 — 87.7% |
+
+On compact bilingual cases, **4B gains 24.4 percentage points over 0.8B**, with a
+family-clustered bootstrap 95% interval of **+16.1 to +33.3 points**. The **9B gain
+over 4B is only 0.6 points**, with an interval of **−6.5 to +7.1 points**: these
+cases do not establish a reliable improvement at that step. English improved while
+Portuguese declined numerically. The v1 policy-original gain is larger, +5.4 points,
+but that is another workload and should not be pooled into the bilingual result.
+
+This gives direct evidence of a substantial benefit from 0.8B to 4B on our cases,
+and diminishing observed returns on compact inputs thereafter. **The input
+condition changes that conclusion:** with worked examples, 9B scores 155/168
+(92.3%) versus 4B’s 139/168 (82.7%); with distractors, 137/168 (81.5%) versus
+125/168 (74.4%). Across all 504 correlated rows, 9B scores 87.3% versus 4B’s
+81.5%. Larger capacity helped more in those conditions; compact-input saturation
+does not establish equivalence across workloads. On compact inputs, the multiclass Brier score also improves from **0.215 at 4B**
+to **0.158 at 9B** (lower is better), despite the near-tied top-choice accuracy.
+That is another reason to evaluate more than the winning label alone. See the [frozen protocol](../benchmark/next-wave/README.md)
+and the [raw archives](../benchmark/reports/next-wave-v2/).
+
+## External same-family evidence: Kev
 
 The current [Kev README](https://github.com/jaredpalmer/kev) publishes these results for its versioned family. They are **upstream measurements, not our runs**. The held-out index is chance-corrected and must not be mixed with accuracy percentages or with the live Decision Index's differently composed Full score.
 
@@ -45,9 +73,13 @@ All four sizes increase monotonically on the breadth index and new-source test a
 
 **The 27B model does not beat 9B on every task distribution:** trained-source test accuracy falls from 87.3% to 86.6%. The table supplies no uncertainty interval for that difference, so it is an observed reversal, not proof that the smaller model is reliably superior. Even within this family, the 27B backbone is a different generation and post-training state; this is stronger comparative evidence than unrelated models, but still not a pure size ablation.
 
-## What this changes in our next benchmark
+## Expanded cross-model correlations
 
-Prioritize a pinned **Kev 0.8B / 4B / 9B** comparison on exactly the same frozen cases, with 27B conditional on capacity. Keep precision, input representation and runtime policy as comparable as supported. Add Jebadiah 4B/9B later as a second family, rather than drawing a universal scaling conclusion from Kev alone.
+The completed expansion gives **Spearman 0.920** and **Pearson(log-size, compact accuracy) 0.948** across fourteen known-size entrants, excluding Jev and duplicate local Flash. Restricting to twelve native SystemOne entrants gives **0.892 / 0.943**. These remain descriptive associations among dependent model families. [Full ranking and intervals](../benchmark/reports/next-wave-comparison-v2/ranking.md), [condition-specific coefficients](../benchmark/reports/next-wave-comparison-v2/size-correlations-by-condition.json).
+
+## What to test next
+
+The pinned **Kev 0.8B / 4B / 9B** comparison is complete. A 27B run remains conditional on capacity. Jebadiah 4B/9B would supply a second size family for a future round; this run contains only Jebadiah 4B. Precision, input representation and runtime policy must remain explicit in any extension.
 
 Report accuracy and paired differences separately by language, task and input condition. Also compare native probability quality, errors and truncation. Across a larger set of entrants, report both Spearman(size, score) and Pearson(log-size, score), with sensitivity to duplicate revisions, family composition and MoE total versus active parameters. Do not treat hundreds of test cases as hundreds of independent model sizes.
 

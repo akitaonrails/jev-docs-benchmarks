@@ -36,3 +36,5 @@ The [v2 protocol](../benchmark/expansion-v2/README.md) adds 84 new scenario fami
 [Model size and deployment tradeoffs](model-tradeoffs.md) qualifies the rankings by resource constraints, specialization and measured versus unmeasured efficiency.
 
 [Size versus score analysis](size-vs-quality.md) quantifies the observed association and checks same-family scaling evidence and counterexamples.
+
+[Expanded open-model comparison](../benchmark/reports/next-wave-comparison-v2/analysis.md) adds ten configurations, with [rankings and size analysis](../benchmark/reports/next-wave-comparison-v2/ranking.md). Earlier six-model reports remain historical snapshots.

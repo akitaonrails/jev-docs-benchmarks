@@ -1,0 +1,36 @@
+{
+  "request": {
+    "text": "I was charged twice. Please refund the duplicate payment.",
+    "tasks": {
+      "decision": {
+        "labels": {
+          "billing": "Payments and refunds",
+          "shipping": "Delivery and tracking",
+          "technical": "Software problems"
+        },
+        "prompt": "Route this support request to the responsible department.",
+        "multi_label": false
+      }
+    },
+    "include_confidence": true
+  },
+  "status": 200,
+  "response": {
+    "result": {
+      "decision": {
+        "label": "billing",
+        "confidence": 0.9113682508468628
+      }
+    },
+    "server": {
+      "repo": "fastino/GLiNER2.5-multi-Decide",
+      "revision": "e173bca1f0c4217d7a55b3b0c705d5ece8a0218d",
+      "device": "cuda:0",
+      "cold": false,
+      "predict_s": 0.267,
+      "torch_cuda_allocated_mb": 1205,
+      "torch_cuda_peak_mb": 1217
+    }
+  },
+  "seconds": 0.2690184130333364
+}

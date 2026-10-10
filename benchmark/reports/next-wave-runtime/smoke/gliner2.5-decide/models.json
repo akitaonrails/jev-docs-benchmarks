@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "id": "GLiNER2.5-Decide",
+      "repo": "fastino/GLiNER2.5-Decide",
+      "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+      "kind": "gliner",
+      "device": "cuda:0"
+    }
+  ]
+}

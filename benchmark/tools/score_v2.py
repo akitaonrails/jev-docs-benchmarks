@@ -92,7 +92,7 @@ def main():
                 'attempts': sum(len(r['attempts']) for r in recs.values()),
                 'median_seconds': quantile([r['latency_seconds'] for r in valid_records], .5),
                 'p95_seconds': quantile([r['latency_seconds'] for r in valid_records], .95),
-                'cold_requests': sum(s.get('cold') is True for s in server_records) if model not in MODELS else None,
+                'cold_requests': sum(s.get('cold') is True for s in server_records) if any('cold' in s for s in server_records) else None,
                 'served_models': sorted({str(r['result']['served_model']) for r in valid_records})}}
     if 'clef-flash' in records and 'clef-flash-local' in records:
         a, b = records['clef-flash'], records['clef-flash-local']
@@ -134,7 +134,9 @@ def main():
         r = result['runtime']
         gs = [g for key, g in result['groups'].items() if key.startswith('all/')]
         cost = str(sum(D(g['listed_usage_usd']) for g in gs)) if model in MODELS else 'Unmeasured'
-        lines.append(f"| {model} | {r['valid']}/{r['requests']} | {r['median_seconds']*1000:.0f} / {r['p95_seconds']*1000:.0f} ms | {sum(g['input_tokens'] for g in gs):,} | {cost} |")
+        missing = sum(g['missing_token_usage'] for g in gs)
+        tokens = f"{sum(g['input_tokens'] for g in gs):,}" if not missing else f"Unknown ({missing} responses lack usage)"
+        lines.append(f"| {model} | {r['valid']}/{r['requests']} | {r['median_seconds']*1000:.0f} / {r['p95_seconds']*1000:.0f} ms | {tokens} | {cost} |")
     output=Path(args.output);output.mkdir(parents=True,exist_ok=True)
     (output/'summary.json').write_text(json.dumps(out,indent=2)+'\n')
     (output/'results.md').write_text('\n'.join(lines)+'\n')

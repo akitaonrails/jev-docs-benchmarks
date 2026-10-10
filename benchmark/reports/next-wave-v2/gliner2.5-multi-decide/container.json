@@ -1,0 +1,18 @@
+{
+  "image": "sha256:c8d232638501ac643e5434d41c0833a15bcd72a15817bc27ba7dba482b97cab4",
+  "command": [
+    "env",
+    "MODEL_KIND=gliner",
+    "MODEL_REPO=fastino/GLiNER2.5-multi-Decide",
+    "MODEL_REV=e173bca1f0c4217d7a55b3b0c705d5ece8a0218d",
+    "uvicorn",
+    "encoders_app:app",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000"
+  ],
+  "running_benchmark_containers": [
+    "dm-gliner2.5-multi-decide"
+  ]
+}

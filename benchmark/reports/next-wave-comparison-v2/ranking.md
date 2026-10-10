@@ -1,0 +1,86 @@
+# Expanded ranking and size analysis
+
+Descriptive ordering on 168 compact bilingual cases per entrant. Adjacent ranks are not significance claims. GLiNER is a native-interface mapping track; probability metrics are unavailable. Sizes are nominal model/backbone labels, not exact parameter audits.
+
+| Model | Nominal B | Compact EN / PT-BR | Combined compact | All 504 | v1 originals | Warm median / p95 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| jev | Unknown | 97.6% / 97.6% | 97.6% | 495/504 | 96.2% | 255 / 304 ms |
+| clef | 27 | 97.6% / 94.0% | 95.8% | 486/504 | 94.6% | 302 / 683 ms |
+| jebadiah-4b-v2 | 4 | 91.7% / 89.3% | 90.5% | 436/504 | 85.4% | 205 / 485 ms |
+| kev-9b | 9 | 92.9% / 83.3% | 88.1% | 440/504 | 87.7% | 561 / 883 ms |
+| clef-flash | 9 | 91.7% / 83.3% | 87.5% | 439/504 | 90.8% | 394 / 804 ms |
+| clef-flash-local | 9 | 89.3% / 85.7% | 87.5% | 439/504 | 90.8% | 618 / 935 ms |
+| decider-4b | 4 | 89.3% / 85.7% | 87.5% | 430/504 | 86.9% | 186 / 480 ms |
+| kev-4b | 4 | 88.1% / 86.9% | 87.5% | 411/504 | 82.3% | 246 / 469 ms |
+| eikos-4b | 4 | 85.7% / 79.8% | 82.7% | 413/504 | 87.7% | 235 / 514 ms |
+| simple-jev | 4 | 77.4% / 71.4% | 74.4% | 383/504 | 85.4% | 1349 / 1687 ms |
+| kev-0.8b | 0.8 | 64.3% / 61.9% | 63.1% | 295/504 | 63.1% | 86 / 171 ms |
+| gliner2.5-decide | 0.34 | 54.8% / 50.0% | 52.4% | 251/504 | Not run | 208 / 521 ms |
+| laya | 0.421 | 44.0% / 41.7% | 42.9% | 197/504 | 43.8% | 41 / 78 ms |
+| laya-typed | 0.421 | 50.0% / 35.7% | 42.9% | 204/504 | 43.8% | 43 / 190 ms |
+| laya-multilingual | 0.322 | 35.7% / 38.1% | 36.9% | 170/504 | 43.8% | 19 / 45 ms |
+| gliner2.5-multi-decide | 0.287 | 32.1% / 35.7% | 33.9% | 175/504 | Not run | 63 / 156 ms |
+
+## Size correlations
+
+| Selection | n | Spearman | Pearson(log10 size, accuracy) |
+| --- | ---: | ---: | ---: |
+| Known-size entrants, deduplicated Flash | 14 | 0.920 | 0.948 |
+| SystemOne only, deduplicated Flash | 12 | 0.892 | 0.943 |
+| Kev size series | 3 | 1.000 | 0.951 |
+
+### Kev size effects by input condition
+
+| Model | Compact | Worked examples | Distractors | All 504 |
+| --- | ---: | ---: | ---: | ---: |
+| kev-0.8b | 63.1% | 60.7% | 51.8% | 58.5% |
+| kev-4b | 87.5% | 82.7% | 74.4% | 81.5% |
+| kev-9b | 88.1% | 92.3% | 81.5% | 87.3% |
+
+Jev is excluded because its size is unverified. Related checkpoints and shared backbones are dependent observations. These coefficients describe the tested configurations, not a causal scaling law or a random sample of available models. Nominal size bins ignore small head/adapter and exact-backbone differences. MoE models were not run.
+
+## Task strengths against hosted Jev
+
+Each cell has only 12 authored families. Counts describe exploratory task/language cells, not independent victories.
+
+| Entrant | Cells above Jev | Tied with Jev | Below Jev |
+| --- | ---: | ---: | ---: |
+| clef | 1 | 10 | 3 |
+| jebadiah-4b-v2 | 0 | 6 | 8 |
+| kev-9b | 1 | 2 | 11 |
+| clef-flash | 0 | 5 | 9 |
+| clef-flash-local | 0 | 4 | 10 |
+| decider-4b | 0 | 5 | 9 |
+| kev-4b | 0 | 4 | 10 |
+| eikos-4b | 0 | 2 | 12 |
+| simple-jev | 0 | 1 | 13 |
+| kev-0.8b | 0 | 0 | 14 |
+| gliner2.5-decide | 0 | 0 | 14 |
+| laya | 0 | 0 | 14 |
+| laya-typed | 0 | 0 | 14 |
+| laya-multilingual | 0 | 0 | 14 |
+| gliner2.5-multi-decide | 0 | 0 | 14 |
+
+## Paired compact differences, clustered by authored family
+
+English and Portuguese observations are kept together when bootstrapping the 84 families. Intervals are exploratory and not adjusted for multiple comparisons.
+
+| Comparison | Difference (points) | Family bootstrap 95% (points) |
+| --- | ---: | --- |
+| clef minus jev | -1.8 | [-5.4, +1.2] |
+| jebadiah-4b-v2 minus jev | -7.1 | [-12.5, -2.4] |
+| kev-9b minus jev | -9.5 | [-16.1, -3.6] |
+| clef-flash minus jev | -10.1 | [-16.1, -5.4] |
+| clef-flash-local minus jev | -10.1 | [-16.1, -4.8] |
+| decider-4b minus jev | -10.1 | [-16.7, -4.2] |
+| kev-4b minus jev | -10.1 | [-16.1, -4.2] |
+| eikos-4b minus jev | -14.9 | [-22.6, -7.7] |
+| simple-jev minus jev | -23.2 | [-31.0, -15.5] |
+| kev-0.8b minus jev | -34.5 | [-42.9, -26.2] |
+| gliner2.5-decide minus jev | -45.2 | [-54.2, -36.9] |
+| laya minus jev | -54.8 | [-63.7, -45.8] |
+| laya-typed minus jev | -54.8 | [-63.1, -45.8] |
+| laya-multilingual minus jev | -60.7 | [-69.0, -52.4] |
+| gliner2.5-multi-decide minus jev | -63.7 | [-72.6, -54.8] |
+| kev-4b minus kev-0.8b | +24.4 | [+16.1, +33.3] |
+| kev-9b minus kev-4b | +0.6 | [-6.5, +7.1] |

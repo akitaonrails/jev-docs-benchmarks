@@ -1,0 +1,36 @@
+{
+  "model": "laya-rl-agent",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.9999,
+        "technical": 0.0001
+      },
+      "confidence": 0.9989,
+      "answer_confidence": 0.9999,
+      "action": {
+        "act_probability": 1.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 30,
+    "output_tokens": 0,
+    "state_tokens": 6,
+    "state_tokens_dropped": 0,
+    "truncated": false,
+    "truncated_questions": []
+  },
+  "server": {
+    "repo": "convaiinnovations/laya-multilingual",
+    "revision": "1720e3e3357cfe1e281542e223f8273b0890ca34",
+    "device": "cuda:0",
+    "cold": true,
+    "predict_s": 0.372,
+    "torch_cuda_allocated_mb": 1355,
+    "torch_cuda_peak_mb": 1597,
+    "load_s": 3.379
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "image": "sha256:71036f87aaa8ed037d793989baa0efb6378ffd25a58b302acdc0ff387ae5edf7",
+  "command": [
+    "env",
+    "DECIDER_MODEL=/models/hf/hub/models--Mapika--decider-4b/snapshots/eb5fbdfc9448473ec25e399882912863afbdb70e",
+    "python",
+    "/opt/run_decider.py"
+  ],
+  "running_benchmark_containers": [
+    "dm-decider-4b"
+  ]
+}

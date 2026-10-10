@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-10T14:32:46.863213+00:00",
+  "scored_requests": 9392,
+  "valid": 9392,
+  "errors": 0,
+  "active_benchmark_containers": [],
+  "first_response": "2026-10-10T13:37:27.861985+00:00",
+  "last_response": "2026-10-10T14:32:02.788254+00:00"
+}

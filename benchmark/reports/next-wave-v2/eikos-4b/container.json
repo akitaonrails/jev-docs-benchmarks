@@ -1,0 +1,20 @@
+{
+  "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+  "command": [
+    "env",
+    "PYTHONPATH=/models/hf/hub/models--caiovicentino1--Eikos-4B/snapshots/d06420bda550072bf1385905b1f0e1421fcd710b",
+    "python",
+    "serve.py",
+    "--model",
+    ".",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--device",
+    "cuda"
+  ],
+  "running_benchmark_containers": [
+    "dm-eikos-4b"
+  ]
+}

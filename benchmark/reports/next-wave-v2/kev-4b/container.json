@@ -1,0 +1,19 @@
+{
+  "image": "sha256:0df83477574d6825de3e9831df50c4cc79d34a1f735b604f952e4d69b2444e55",
+  "command": [
+    "python",
+    "-m",
+    "kev.serve",
+    "--run",
+    "jaredpalmer/kev-4b@6cfce5c2fa4b4bd64026336ab649c5ca78857d52",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000",
+    "--device",
+    "cuda"
+  ],
+  "running_benchmark_containers": [
+    "dm-kev-4b"
+  ]
+}
