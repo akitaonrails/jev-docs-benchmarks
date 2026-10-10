@@ -11,7 +11,8 @@ source=Path(a.run_dir);target=Path(a.report_dir);target.mkdir(parents=True,exist
 raw=(source/'responses.jsonl').read_bytes()
 rows=[json.loads(x) for x in raw.splitlines()]
 config=json.loads((source/'run.json').read_text())['config']
-manifest=json.loads((Path(__file__).resolve().parents[1]/'datasets/manifest.json').read_text())
+dataset=Path(config['dataset_directory']) if 'dataset_directory' in config else Path(__file__).resolve().parents[1]/'datasets'
+manifest=json.loads((dataset/'manifest.json').read_text())
 expected=config['limit'] or manifest['classification_cases']+manifest['probability_probes']
 if len(rows)!=expected*len(config['models']):
     raise SystemExit('Refusing to archive incomplete run as completed')

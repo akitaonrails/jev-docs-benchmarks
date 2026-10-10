@@ -20,9 +20,10 @@ LOCAL_MODELS={'laya':('laya',None),'laya-typed':('laya-typed',None),'clef-flash-
 def digest(obj):
     return hashlib.sha256(json.dumps(obj,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
-def load_cases():
-    path=ROOT/'datasets/cases.jsonl'
-    manifest=json.loads((ROOT/'datasets/manifest.json').read_text())
+def load_cases(dataset=None):
+    directory=Path(dataset) if dataset else ROOT/'datasets'
+    path=directory/'cases.jsonl'
+    manifest=json.loads((directory/'manifest.json').read_text())
     if hashlib.sha256(path.read_bytes()).hexdigest()!=manifest['sha256']:
         raise ValueError('Dataset differs from frozen manifest')
     rows=[json.loads(x) for x in path.read_text().splitlines()]
@@ -74,12 +75,13 @@ def redact(value):
     return json.loads(text)
 
 def run(args):
-    rows,manifest=load_cases()
+    rows,manifest=load_cases(getattr(args,'dataset',None))
     if args.limit: rows=rows[:args.limit]
     out=Path(args.output);out.mkdir(parents=True,exist_ok=True)
     result_path=out/'responses.jsonl'
     config={'dataset_sha256':manifest['sha256'],'models':args.models,'limit':args.limit,
         'seed':20261009,'max_attempts':3,'timeout_seconds':45,
+        'dataset_directory':str(Path(args.dataset).resolve()) if getattr(args,'dataset',None) else str(ROOT/'datasets'),
         'estimated_cost_cap_usd':args.cost_cap,'runner_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     config_path=out/'run.json'
     if config_path.exists():
@@ -145,6 +147,7 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument('--models',nargs='+',choices=MODELS,default=list(MODELS))
     p.add_argument('--output',required=True)
+    p.add_argument('--dataset',help='Frozen dataset directory; defaults to v1')
     p.add_argument('--limit',type=int,default=0)
     p.add_argument('--cost-cap',type=float,default=5)
     p.add_argument('--execute',action='store_true')

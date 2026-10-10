@@ -25,9 +25,9 @@ def validate_server(body, model, pins):
 
 
 def run(args):
-    rows, manifest = load_cases()
+    rows, manifest = load_cases(getattr(args, 'dataset', None))
     if args.smoke:
-        rows = [rows[0], next(c for c in rows if c['kind'] == 'probability' and c['variant'] == 'noul')]
+        rows = [rows[0], next((c for c in rows if c['kind'] == 'probability' and c['variant'] == 'noul'), rows[1])]
     url = urlsplit(args.base_url)
     if url.scheme != 'http' or url.hostname != '192.168.0.90' or url.port != 11436 or url.path not in ('', '/'):
         raise ValueError('This adapter only permits the configured homelab service')
@@ -48,6 +48,7 @@ def run(args):
               'limit': len(rows) if args.smoke else 0, 'case_ids': [c['id'] for c in rows],
               'seed': 20261009, 'max_attempts': 1, 'timeout_seconds': 180,
               'base_url': args.base_url, 'pins': pins,
+              'dataset_directory': str(Path(args.dataset).resolve()) if getattr(args, 'dataset', None) else str(ROOT / 'datasets'),
               'runner_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'shared_runner_sha256': hashlib.sha256((ROOT / 'tools/hosted.py').read_bytes()).hexdigest()}
     meta = output / 'run.json'
@@ -108,6 +109,7 @@ if __name__ == '__main__':
     parser.add_argument('--base-url', default='http://192.168.0.90:11436')
     parser.add_argument('--models', nargs='+', choices=LOCAL_MODELS, default=list(LOCAL_MODELS))
     parser.add_argument('--output', required=True)
+    parser.add_argument('--dataset', help='Frozen dataset directory; defaults to v1')
     parser.add_argument('--smoke', action='store_true')
     parser.add_argument('--execute', action='store_true')
     args = parser.parse_args()

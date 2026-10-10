@@ -1,0 +1,27 @@
+{
+  "version": "2.0",
+  "sha256": "a89ae706767f5d7f79e4ea2898e39065e6e95d3d7fe3e5c71517514bceb7420a",
+  "classification_cases": 504,
+  "probability_probes": 0,
+  "authored_families": 84,
+  "domains": [
+    "sentiment",
+    "intent",
+    "entailment",
+    "retrieval",
+    "data_handling",
+    "current_status",
+    "threshold_policy"
+  ],
+  "languages": [
+    "en",
+    "pt-BR"
+  ],
+  "conditions": [
+    "compact",
+    "examples",
+    "distractors"
+  ],
+  "authorship": "AI-authored bilingual synthetic cases; no independent human adjudication",
+  "frozen_before_inference": true
+}
