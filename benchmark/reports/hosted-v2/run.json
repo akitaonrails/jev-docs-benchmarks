@@ -1,0 +1,18 @@
+{
+  "started_at": "2026-10-10T04:23:52.989642+00:00",
+  "config": {
+    "dataset_sha256": "a89ae706767f5d7f79e4ea2898e39065e6e95d3d7fe3e5c71517514bceb7420a",
+    "models": [
+      "jev",
+      "clef",
+      "clef-flash"
+    ],
+    "limit": 0,
+    "seed": 20261009,
+    "max_attempts": 3,
+    "timeout_seconds": 45,
+    "dataset_directory": "/work/expansion-v2",
+    "estimated_cost_cap_usd": 5,
+    "runner_sha256": "6e7f1eff3423858fe4017592e55983b9cb69f5bf952f2cd8ba19de646338b4fd"
+  }
+}

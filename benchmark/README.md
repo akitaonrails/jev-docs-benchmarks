@@ -1,4 +1,7 @@
-# Decision-model benchmark
+# Benchmark developer guide
+
+See the root [README](../README.md) for goals and results, and [setup guide](../docs/setup.md)
+for the tested client/server workflow. This page provides implementation details.
 
 A frozen synthetic benchmark for Jev and Cloudflare Clef/Clef-flash, with local
 Laya/Laya-typed/Clef-flash on the AMD homelab. [Protocol](PROTOCOL.md) defines the scope,
@@ -44,7 +47,8 @@ Containers have no host home or Docker socket, no GPU on the hosted/offline path
 no privileged mode or published ports. Inputs are read-only; results are writable.
 Hosted execution uses outbound HTTPS. Offline scoring has networking disabled and
 receives no credentials. The local services still require a separate profile and
-`--allow-inference`; they have not been built or run.
+`--allow-inference`; those workstation CUDA recipes have not been built or run.
+The separate AMD homelab service has completed the recorded local runs.
 
 ## Credentials
 
@@ -164,7 +168,7 @@ docker compose -f benchmark/compose.yaml --profile local run --rm -T laya \
 Model caches will live in a Docker volume. Containers use no restart policy. Cleanup:
 `docker compose -f benchmark/compose.yaml --profile local --profile hosted down`.
 Add `--volumes` only to intentionally delete cached weights; images occupy separate
-Docker storage. The original temporary credential file remains mode 0600.
+Docker storage. Credentials are not part of the published repository.
 
 ## Sources
 
@@ -176,3 +180,13 @@ Docker storage. The original temporary credential file remains mode 0600.
 - [Laya](https://github.com/NandhaKishorM/laya)
 
 [Current technical and cost-benefit ranking](../docs/cost-benefit-ranking.md) adds classification-only unit economics, the 10 October Flash price change, and scenario-dependent recommendations.
+
+
+## Completed bilingual expansion
+
+V2 adds 84 new authored families × English/PT-BR × three conditions = 504 cases
+per model, 3,024 new classifications. Use its [protocol](expansion-v2/README.md),
+[analysis and ranking](reports/comparison-v2/analysis.md), and
+[complete tables](reports/comparison-v2/results.md). It has its own `score_v2.py`;
+do not feed its archives into the v1 scorer or average its scores into v1.
+The [setup guide](../docs/setup.md) contains the exact v1/v2 commands.

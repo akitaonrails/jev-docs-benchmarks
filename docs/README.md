@@ -1,4 +1,4 @@
-# Jev research
+# Research and benchmark documentation
 
 Research snapshot: **3 October 2026**. Jev and the open decision-model ecosystem are changing quickly; models, prices, and documented limits may change. The original research sections review public primary sources and published experiments. Subsequent measurements from this repository are linked below.
 
@@ -10,7 +10,10 @@ Research snapshot: **3 October 2026**. Jev and the open decision-model ecosystem
 
 The recommended test, if a real bottleneck appears, is to compare a pinned Jev version with existing code, a small local classifier, and a cheap constrained-output LLM on the **same labeled examples**. Include error costs, review rate, latency, and operational cost. A vendor speed multiple by itself is not a purchase decision.
 
-## Our hosted benchmark
+## Setup and measured benchmarks
+
+[Repository overview](../README.md) explains the goals and evidence layout.
+[Setup and reproduction guide](setup.md) covers Docker, hosted credentials, pinned model downloads, and the actual AMD homelab deployment.
 
 The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Workstation RTX 5090 runs remain deferred; AMD homelab runs completed on 10 October. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
 
@@ -19,3 +22,9 @@ The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../
 [Hosted versus local comparison](../benchmark/reports/comparison-v1/analysis.md) adds measured Laya, Laya-typed and pinned local Clef-flash results, with [six-model tables](../benchmark/reports/comparison-v1/results.md).
 
 [Technical and cost-benefit ranking](cost-benefit-ranking.md) combines measured quality, current pricing, free allowance scenarios and unmeasured local costs. Pricing rechecked 10 October; Clef-flash is now $0.038/M input tokens.
+
+## Bilingual expansion
+
+The [v2 protocol](../benchmark/expansion-v2/README.md) adds 84 new scenario families in matched English and Brazilian Portuguese, with compact, worked-example, and distractor conditions. It is evaluated separately from v1.
+
+[Completed bilingual analysis and ranking](../benchmark/reports/comparison-v2/analysis.md) and [full task/language tables](../benchmark/reports/comparison-v2/results.md) cover all 3,024 v2 classifications, including truncation and hosted/local disagreements.

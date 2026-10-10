@@ -38,3 +38,16 @@ Jev is the preferred paid default when errors matter; Flash wins pure API cost;
 full Clef is attractive within Cloudflare's available daily free allowance. Local
 Flash preserves measured classification behavior, but local operating costs are
 unmeasured. Stock Laya's weak accuracy makes its low latency insufficient here.
+
+
+## Broader bilingual follow-up
+
+The [v2 experiment](../benchmark/reports/comparison-v2/analysis.md) adds seven tasks
+and paired English/PT-BR cases. Jev scored 97.6% compact accuracy in both languages;
+full Clef matched English and scored 94.0% in PT-BR. Local Flash matched Jev on a few
+specific tasks, but both Flash deployments were weaker overall. Stock Laya remained
+far behind, and worked examples did not consistently help. Base Laya also truncated
+all long PT-BR inputs. These small synthetic task cells guide further evaluation;
+they do not establish production accuracy. The broader evidence preserves the
+cost-benefit recommendation above while showing that language and deployment can
+change individual decisions.

@@ -1,6 +1,6 @@
 # Jev alternatives: Clef, Laya, and the emerging ecosystem
 
-Research snapshot: **3 October 2026**. This comparison uses the vendors' documentation, model cards, source repositories, and the open Decision Index suite. Benchmark numbers are the publishers' results; this repository did not rerun them.
+Research snapshot: **3 October 2026**. This comparison uses the vendors' documentation, model cards, source repositories, and the open Decision Index suite. Decision Index numbers below are the publishers' results, not our own rerun. Our separate [measured benchmark](../benchmark/reports/comparison-v1/analysis.md) was completed on 9–10 October; the price row and short price descriptions below were refreshed on 10 October.
 
 ## Short conclusion
 
@@ -10,8 +10,8 @@ Laya makes the same point from the other direction. It is a small open encoder m
 
 The practical category now has three distinct products:
 
-- **Jev:** the cheapest listed hosted service of the three, text only, proprietary, and convenient.
-- **Clef / Clef-flash:** open weights plus managed hosting, stronger published general results, and vision support, but substantially larger models and higher hosted prices.
+- **Jev:** inexpensive hosted text decisions, proprietary weights; the strongest paid balance in our explicit-policy suite. Clef-flash now has a lower input price.
+- **Clef / Clef-flash:** open weights plus managed hosting, stronger published general results, and vision support, with substantially larger models; current pricing differs sharply between full Clef and Flash.
 - **Laya:** small, local, customizable models for narrow repeated tasks, with shorter context and much weaker zero-shot evidence.
 
 The novelty is therefore less about inventing classification and more about packaging arbitrary, request-defined decisions into a fast API. Clef's published implementation makes that technical lineage much clearer than Jev's public material does.
@@ -26,7 +26,7 @@ The novelty is therefore less about inventing classification and more about pack
 | Input | Text or text-bearing JSON | Text/JSON and images; the local model card also demonstrates video as frames | Text/JSON and images; the local model card also demonstrates video as frames | Text |
 | Hosted context | 64k total; 32k state plus longest question | 65,536 tokens | 65,536 tokens | 1,024 tokens for the typed checkpoint; other checkpoints range from 512 to 1,024 by default |
 | Questions / options | Multiple questions; up to 255 choices | Up to 64 questions per hosted request | Up to 64 questions per hosted request | Jev-compatible server; up to 100 options over HTTP, subject to head and truncation limits |
-| Listed hosted input price | **$0.042 / million tokens** | **$0.24 / million tokens** | **$0.09 / million tokens** | No vendor inference fee; the operator pays hardware and maintenance |
+| Listed hosted input price | **$0.042 / million tokens** | **$0.24 / million tokens** | **$0.038 / million tokens** | No vendor inference fee; the operator pays hardware and maintenance |
 | Customization | No account-specific fine-tuning or LoRA | Weights are available, so self-hosted adaptation is possible | Weights are available, so self-hosted adaptation is possible | Fine-tuning is a central use case; scripts cover commodity NVIDIA GPUs and Apple Silicon |
 | Best fit | Cheap, hosted, high-volume text judgments | Hosted or self-hosted decisions where quality or vision justifies a large model | Lower-latency hosted decisions and lighter self-hosting than Clef | Private or offline, stable-domain decisions with labeled training data |
 
@@ -114,3 +114,5 @@ For these projects, the category is **general as an interface but niche as a rep
 Jev was early and polished, but the public evidence now supports calling this a product category rather than a unique technical primitive. Clef demonstrates an open large-model implementation with a compatible API and wider modalities. Laya demonstrates the small, local, task-specific end of the same design space.
 
 The useful question is no longer “is Jev novel?” It is: **for one measured decision, which combination of model quality, price, latency, privacy, context, and maintenance beats the current rule, classifier, or constrained LLM?** No vendor benchmark can answer that without the project's own labeled cases.
+
+For current workload costs and conditional recommendations, see [technical and cost-benefit ranking](cost-benefit-ranking.md).

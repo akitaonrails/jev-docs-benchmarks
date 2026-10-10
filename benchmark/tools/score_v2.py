@@ -61,11 +61,14 @@ def main():
                     usages = [r['result']['usage'] for r in valid]
                     tokens = sum(u.get('input_tokens',0) for u in usages)
                     metrics = class_metrics(cases, recs)
-                    metrics.update(uniform_baseline=sum(1/len(c['semantic_map']) for c in cases)/len(cases),
+                    metrics.update(oracle_majority_baseline=sum(max(Counter(c['semantic_gold'] for c in cases if c['domain']==d).values()) for d in {c['domain'] for c in cases})/len(cases),
+                        uniform_baseline=sum(1/len(c['semantic_map']) for c in cases)/len(cases),
                         median_seconds=quantile([r['latency_seconds'] for r in valid],.5),
                         p95_seconds=quantile([r['latency_seconds'] for r in valid],.95),
                         input_tokens=tokens, missing_token_usage=sum('input_tokens' not in u for u in usages),
                         listed_usage_usd=str(D(tokens)*D(prices['input_usd_per_million'][model])/1_000_000) if model in MODELS else None,
+                        state_tokens_dropped=sum(u.get('state_tokens_dropped',0) for u in usages) if any('state_tokens_dropped' in u for u in usages) else None,
+                        truncated_questions=sum(len(u.get('truncated_questions',[])) for u in usages) if any('truncated_questions' in u for u in usages) else None,
                         truncation_reported=sum(bool(u.get('truncated')) for u in usages),
                         truncation_telemetry_missing=sum('truncated' not in u for u in usages))
                     groups[f'{domain}/{language}/{condition}'] = metrics
@@ -81,7 +84,26 @@ def main():
                     bool(recs[c['id']]['result']) and bool(recs[key]['result']) and
                     c['semantic_map'][recs[c['id']]['result']['choice']] == lookup[key]['semantic_map'][recs[key]['result']['choice']]
                     for c,key in zip(cases,other_ids))
-        out['models'][model] = {'groups': groups, 'pt_minus_en': pairs}
+        valid_records = [r for r in recs.values() if r['result']]
+        server_records = [r['response'].get('server', {}) for r in valid_records]
+        out['models'][model] = {'groups': groups, 'pt_minus_en': pairs,
+            'runtime': {'requests': len(recs), 'valid': len(valid_records),
+                'errors': sum(bool(r['error']) for r in recs.values()),
+                'attempts': sum(len(r['attempts']) for r in recs.values()),
+                'median_seconds': quantile([r['latency_seconds'] for r in valid_records], .5),
+                'p95_seconds': quantile([r['latency_seconds'] for r in valid_records], .95),
+                'cold_requests': sum(s.get('cold') is True for s in server_records) if model not in MODELS else None,
+                'served_models': sorted({str(r['result']['served_model']) for r in valid_records})}}
+    if 'clef-flash' in records and 'clef-flash-local' in records:
+        a, b = records['clef-flash'], records['clef-flash-local']
+        out['flash_hosted_local_agreement'] = {
+            'requests': len(rows),
+            'matching_payload_hashes': sum(a[k]['request_sha256'] == b[k]['request_sha256'] for k in a),
+            'matching_choices': sum(bool(a[k]['result']) and bool(b[k]['result']) and
+                a[k]['result']['choice'] == b[k]['result']['choice'] for k in a),
+            'different_case_ids': [k for k in a if a[k]['result'] and b[k]['result'] and
+                a[k]['result']['choice'] != b[k]['result']['choice']]}
+
     for a,b in itertools.combinations(records,2):
         for language in manifest['languages']:
             for domain in ['all']+manifest['domains']:
@@ -104,6 +126,15 @@ def main():
         for condition in manifest['conditions']:
             gs=[result['groups'][f'all/{lang}/{condition}'] for lang in manifest['languages']]
             lines.append(f"| {model} | {condition} | {sum(g['truncation_reported'] for g in gs)}/{sum(g['valid'] for g in gs)} | {sum(g['truncation_telemetry_missing'] for g in gs)} |")
+    lines += ['', '## Latency and current hosted usage value', '',
+              'All 504 requests/model; conditions have different lengths. Local operating cost is unmeasured. Hosted values use the dated 10 October pricing snapshot, before any free allowance.', '',
+              '| Model | Valid / requests | Median / p95 | Input tokens | Listed usage USD |',
+              '| --- | ---: | ---: | ---: | ---: |']
+    for model, result in out['models'].items():
+        r = result['runtime']
+        gs = [g for key, g in result['groups'].items() if key.startswith('all/')]
+        cost = str(sum(D(g['listed_usage_usd']) for g in gs)) if model in MODELS else 'Unmeasured'
+        lines.append(f"| {model} | {r['valid']}/{r['requests']} | {r['median_seconds']*1000:.0f} / {r['p95_seconds']*1000:.0f} ms | {sum(g['input_tokens'] for g in gs):,} | {cost} |")
     output=Path(args.output);output.mkdir(parents=True,exist_ok=True)
     (output/'summary.json').write_text(json.dumps(out,indent=2)+'\n')
     (output/'results.md').write_text('\n'.join(lines)+'\n')

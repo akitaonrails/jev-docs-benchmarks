@@ -1,7 +1,16 @@
 # Technical and cost-benefit ranking
 
-Updated **10 October 2026**. Rankings apply to our frozen, synthetic, explicit-policy
-text workload, with no fine-tuning. They are not universal model rankings.
+Updated **10 October 2026**. The detailed tables below cover **v1's** frozen,
+synthetic, explicit-policy text workload, with no fine-tuning. They are not universal
+model rankings.
+
+**V2 follow-up:** the [broader English / PT-BR analysis](../benchmark/reports/comparison-v2/analysis.md)
+includes a separate technical and cost-benefit table. Jev scored 97.6% compact accuracy
+in both languages; Clef 97.6% / 94.0%, hosted Flash 91.7% / 83.3%, and local Flash
+89.3% / 85.7%. The same broad paid-cost decision order holds. Compact unit costs are
+$0.01916 / 1,000 Jev decisions, $0.00999 Flash, and $0.06309 Clef. Do not combine the
+two datasets into an overall accuracy ranking. Hosted/local Flash disagree on 19 v2
+labels, so the exact agreement described below is specific to v1.
 
 **Recommendation:** Jev is the strongest paid default when wrong decisions have a
 meaningful cost. Clef-flash is now the cheapest hosted option at current list prices.

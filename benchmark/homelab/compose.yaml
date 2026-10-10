@@ -1,0 +1,35 @@
+name: decision-models
+services:
+  systemone:
+    build:
+      context: .
+      args:
+        ROCM_BASE: ${ROCM_BASE:-localhost:3007/akitaonrails/frank-yomik-worker-rocm:latest}
+    image: decision-models-systemone:local
+    container_name: decision-models-systemone
+    restart: "no"
+    environment:
+      HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION:-11.5.1}
+      PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH:-gfx1151}
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+    group_add:
+      - "${VIDEO_GID:?Set VIDEO_GID to the host video group ID}"
+      - "${RENDER_GID:?Set RENDER_GID to the host render group ID}"
+    security_opt:
+      - label:disable
+    volumes:
+      - decision_models_hf:/models:ro
+    ports:
+      - "${BENCH_BIND_IP:-127.0.0.1}:11436:8000"
+    mem_limit: 40g
+    memswap_limit: 48g
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+volumes:
+  decision_models_hf:
+    external: true
