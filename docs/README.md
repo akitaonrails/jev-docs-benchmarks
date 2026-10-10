@@ -28,3 +28,7 @@ The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../
 The [v2 protocol](../benchmark/expansion-v2/README.md) adds 84 new scenario families in matched English and Brazilian Portuguese, with compact, worked-example, and distractor conditions. It is evaluated separately from v1.
 
 [Completed bilingual analysis and ranking](../benchmark/reports/comparison-v2/analysis.md) and [full task/language tables](../benchmark/reports/comparison-v2/results.md) cover all 3,024 v2 classifications, including truncation and hosted/local disagreements.
+
+## Additional models
+
+[Further open-model shortlist and homelab lifecycle](next-models.md) checks current releases, popularity, licenses, external benchmark evidence and priorities for the next round.

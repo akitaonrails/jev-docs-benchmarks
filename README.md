@@ -25,6 +25,7 @@ that one model is universally best. See [methodology and limitations](#methodolo
 - **Research:** [business summary](docs/business-summary.md), [mechanics and prior art](docs/research.md),
   [alternatives](docs/alternatives.md), [use cases](docs/use-cases.md),
   [Paulo Câmara article analysis](docs/paulo-camara-article.md).
+- **Next candidates:** [open-model shortlist and homelab lifecycle](docs/next-models.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
 
 ## Completed v2: broader tasks and English / PT-BR

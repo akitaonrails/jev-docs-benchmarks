@@ -168,7 +168,10 @@ curl --fail http://192.168.0.90:11436/v1/models
 Health should show CUDA availability (PyTorch uses that API name for ROCm too), the AMD
 device and the runtime versions. Selectors are `laya`, `laya-typed`, `clef-flash`.
 Discovery initially shows unloaded models; the first inference loads each lazily.
-Models remain resident until the container stops. Inference is serialized; provision
+Models remain resident until the container stops. There is no per-model unload API
+or idle timeout in this server. `docker stop decision-models-systemone` releases all
+three; `docker start decision-models-systemone` brings back an empty server that
+loads models on first use. The persistent weights volume is retained. Inference is serialized; provision
 memory for the resident set and other workloads, not just one model's weight size.
 
 From the client checkout:

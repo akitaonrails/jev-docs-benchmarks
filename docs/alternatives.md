@@ -32,7 +32,7 @@ The novelty is therefore less about inventing classification and more about pack
 
 Sources: [Jev model reference](https://docs.typesafe.ai/models), [Jev primitives](https://docs.typesafe.ai/primitives), [Clef Workers AI reference](https://developers.cloudflare.com/workers-ai/models/clef/), [Clef-flash Workers AI reference](https://developers.cloudflare.com/workers-ai/models/clef-flash/), [Clef model card](https://huggingface.co/Cloudflare/clef), [Laya](https://github.com/NandhaKishorM/laya).
 
-The prices are not a complete cost comparison. Jev and Workers AI are managed services; local Clef or Laya requires hardware, scaling, monitoring, and model updates. On the published input rates alone, Jev is about 2.1 times cheaper than Clef-flash and 5.7 times cheaper than Clef. Cloudflare includes a daily free allocation for Workers AI, which can dominate price at very low volume. [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/).
+The prices are not a complete cost comparison. Jev and Workers AI are managed services; local Clef or Laya requires hardware, scaling, monitoring, and model updates. At the refreshed 10 October input rates, Flash is about 9.5% cheaper per token than Jev, while Clef costs about 5.7 times as much as Jev. Tokenization and workload length also affect total cost. Cloudflare includes a daily free allocation for Workers AI, which can dominate price at very low volume. [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/).
 
 ## What Clef changes
 
@@ -87,7 +87,7 @@ Cloudflare reports median inference latency of 209 ms for Clef, 39 ms for Clef-f
 
 | Situation | First candidate | Why |
 | --- | --- | --- |
-| Short, high-volume English text; minimal operations | **Jev** | Lowest listed hosted price and the simplest managed route |
+| Short, high-volume English text; minimal operations | **Jev** | Strong measured quality and low observed latency; Flash has the lower current input price |
 | General zero-shot decisions where accuracy matters more than the lowest token price | **Clef-flash**, then Clef | Stronger breadth in Cloudflare's published run; validate both because the larger model did not win every task |
 | Decisions over screenshots, photos, or document images | **Clef / Clef-flash** | The only options here with native vision input |
 | Private, offline, or low-resource recurring classification | **Laya**, fine-tuned | Much smaller model and local control; requires task data and calibration |
@@ -116,3 +116,5 @@ Jev was early and polished, but the public evidence now supports calling this a 
 The useful question is no longer “is Jev novel?” It is: **for one measured decision, which combination of model quality, price, latency, privacy, context, and maintenance beats the current rule, classifier, or constrained LLM?** No vendor benchmark can answer that without the project's own labeled cases.
 
 For current workload costs and conditional recommendations, see [technical and cost-benefit ranking](cost-benefit-ranking.md).
+
+The [10 October broader shortlist](next-models.md) covers additional families and distinguishes current releases from serving wrappers and noncommercial weights.
