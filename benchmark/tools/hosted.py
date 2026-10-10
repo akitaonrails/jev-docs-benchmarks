@@ -14,6 +14,9 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 MODELS={'jev':('jev-1.13.0',0.042),'clef':('clef',0.24),'clef-flash':('clef-flash',0.09)}
 
+# Local entrants remain distinct from hosted Clef-flash; no API price is assigned.
+LOCAL_MODELS={'laya':('laya',None),'laya-typed':('laya-typed',None),'clef-flash-local':('clef-flash',None)}
+
 def digest(obj):
     return hashlib.sha256(json.dumps(obj,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
@@ -29,7 +32,7 @@ def load_cases():
 def payload(case,model):
     # Never serialize the entire fixture. Gold, rationale and identifiers stay local.
     req=case['request']
-    return {'state':req['state'],'questions':req['questions'],'model':MODELS[model][0]}
+    return {'state':req['state'],'questions':req['questions'],'model':{**MODELS,**LOCAL_MODELS}[model][0]}
 
 def normalized(body, case):
     if not isinstance(body,dict): raise ValueError('Response is not an object')

@@ -1,0 +1,70 @@
+{
+  "started_at": "2026-10-10T03:54:11.196828+00:00",
+  "config": {
+    "dataset_sha256": "30a833c0517a906198e764055996d99b417475d3b6146bb46a97150c7c8d5b72",
+    "models": [
+      "laya",
+      "laya-typed",
+      "clef-flash-local"
+    ],
+    "limit": 2,
+    "case_ids": [
+      "support_severity-01-original",
+      "uncertainty-00-noul"
+    ],
+    "seed": 20261009,
+    "max_attempts": 1,
+    "timeout_seconds": 180,
+    "base_url": "http://192.168.0.90:11436",
+    "pins": {
+      "laya": {
+        "repo": "convaiinnovations/laya",
+        "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148"
+      },
+      "laya-typed": {
+        "repo": "convaiinnovations/laya-typed-decisions",
+        "revision": "e929ae5cf69bc34259cd2f95c9e91145b818b1f0"
+      },
+      "clef-flash": {
+        "repo": "Cloudflare/clef-flash",
+        "revision": "fde727a287004204b7518dcc983fe64379776712"
+      }
+    },
+    "runner_sha256": "d447ad4e7f0507ccaab526095339642aa5c30ec877e85b6c36ccb47096dccb75",
+    "shared_runner_sha256": "07f0917c877a84a5aed415c4b54fa66bd96df910d1acf6becc040c84b95c2fce"
+  },
+  "environment": {
+    "healthz": {
+      "status": "ok",
+      "cuda_available": true,
+      "device_name": "AMD Radeon Graphics",
+      "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+      "hip": "7.2.53211-e1a6bc5663",
+      "loaded": [
+        "clef-flash",
+        "laya",
+        "laya-typed"
+      ]
+    },
+    "v1/models": {
+      "laya": {
+        "repo": "convaiinnovations/laya",
+        "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+        "loaded": true,
+        "device": "cuda:0"
+      },
+      "laya-typed": {
+        "repo": "convaiinnovations/laya-typed-decisions",
+        "revision": "e929ae5cf69bc34259cd2f95c9e91145b818b1f0",
+        "loaded": true,
+        "device": "cuda:0"
+      },
+      "clef-flash": {
+        "repo": "Cloudflare/clef-flash",
+        "revision": "fde727a287004204b7518dcc983fe64379776712",
+        "loaded": true,
+        "device": "cuda:0"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Jev research
 
-Research snapshot: **3 October 2026**. Jev and the open decision-model ecosystem are changing quickly; models, prices, and documented limits may change. This is a reading of public primary sources and published experiments, not a benchmark run by this repository.
+Research snapshot: **3 October 2026**. Jev and the open decision-model ecosystem are changing quickly; models, prices, and documented limits may change. The original research sections review public primary sources and published experiments. Subsequent measurements from this repository are linked below.
 
 1. [Business summary](business-summary.md) — the short introduction and decision.
 2. [Research and conclusions](research.md) — product mechanics, prior art, claims, and evidence.
@@ -12,6 +12,8 @@ The recommended test, if a real bottleneck appears, is to compare a pinned Jev v
 
 ## Our hosted benchmark
 
-The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Local GPU runs remain deferred. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
+The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Workstation RTX 5090 runs remain deferred; AMD homelab runs completed on 10 October. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
 
 [Pricing verification and test cost](../benchmark/reports/hosted-v1/pricing.md) (9 October) reconciles both providers’ official rates, archived usage, free allowance and billing uncertainties.
+
+[Hosted versus local comparison](../benchmark/reports/comparison-v1/analysis.md) adds measured Laya, Laya-typed and pinned local Clef-flash results, with [six-model tables](../benchmark/reports/comparison-v1/results.md).

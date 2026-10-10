@@ -1,0 +1,13 @@
+{
+  "packages": {
+    "torch": "2.9.1+rocm7.2.1.lw.gitff65f5bc",
+    "transformers": "5.16.1",
+    "laya": "0.4.1",
+    "huggingface-hub": "1.30.0",
+    "safetensors": "0.8.0"
+  },
+  "torch_runtime": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "hip": "7.2.53211-e1a6bc5663",
+  "device": "_CudaDeviceProperties(name='AMD Radeon Graphics', major=11, minor=5, gcnArchName='gfx1151', total_memory=65536MB, multi_processor_count=20, uuid=58580000-0000-0000-0000-000000000000, pci_bus_id=189, pci_device_id=0, pci_domain_id=0, L2_cache_size=2MB)",
+  "python": "3.12.3"
+}

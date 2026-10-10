@@ -1,7 +1,7 @@
 # Decision-model benchmark
 
 A frozen synthetic benchmark for Jev and Cloudflare Clef/Clef-flash, with local
-models deferred until the GPU is free. [Protocol](PROTOCOL.md) defines the scope,
+Laya/Laya-typed/Clef-flash on the AMD homelab. [Protocol](PROTOCOL.md) defines the scope,
 metrics and limitations before inference. [Scenarios](datasets/scenarios.py) are the
 readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation artifact.
 
@@ -11,6 +11,13 @@ readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation ar
 
 [Verified pricing and cost reconciliation](reports/hosted-v1/pricing.md) distinguishes
 published-rate usage value from actual charges and accounts for the daily free allowance.
+
+## Completed homelab comparison
+
+[Hosted versus local findings](reports/comparison-v1/analysis.md) · [Six-model tables](reports/comparison-v1/results.md) · [Local evidence](reports/homelab-v1/analysis.md).
+All 1,632 local main requests completed on 10 October. Laya and Laya-typed each scored
+38.5% across classification variants; pinned local Clef-flash scored 89.0% and matched
+every hosted Clef-flash classification label. Workstation RTX 5090 testing remains deferred.
 
 ## Dataset
 
@@ -107,12 +114,34 @@ If future work tunes against these results, use a fresh held-out dataset and kee
 related variants and policy pairs together. Post-run gold corrections must be an
 explicit erratum and separate rescoring, never a silent fixture change.
 
-## Deferred local runs
+## Homelab runs
+
+The LAN adapter uses the isolated ROCm SystemOne service at `192.168.0.90:11436`.
+See [local protocol](LOCAL-PROTOCOL.md). No workstation GPU or API credentials are used.
+The service must already be provisioned; this client never installs or loads host packages.
+It checks discovery and response snapshot metadata against `models.json`.
+
+```sh
+# Six preliminary calls, saved separately.
+benchmark/tools/homelab.sh --smoke --output /results/homelab-smoke-new --execute
+# All 544 frozen cases × three models. Use a new directory for a new experiment.
+benchmark/tools/homelab.sh --output /results/homelab-new --execute
+# Archive and score offline, with no further inference.
+benchmark/tools/offline.sh /work/tools/archive.py /work/results/homelab-new /reports/homelab-new
+benchmark/tools/offline.sh /work/tools/score.py /work/reports/homelab-new --output /reports/homelab-new
+benchmark/tools/offline.sh /work/tools/compare.py /work/reports/hosted-v1 /work/reports/homelab-new --output /reports/comparison-new
+```
+
+`laya`, `laya-typed` and `clef-flash-local` are distinct entrant IDs. All server metadata
+is retained in raw archives. Local electricity and hardware costs are unmeasured;
+we do not assign a hosted token rate or claim zero operating cost.
+
+## Deferred workstation RTX 5090 runs
 
 [models.json](models.json) pins Laya English, Laya typed-decisions and Clef-flash
 checkpoints. Treat the two Laya checkpoints as separate entrants, without automatic
-routing. The local worker is preliminary plumbing and still needs smoke testing and
-integration with the scorer before claiming comparable measurements.
+routing. The original CUDA stdin worker remains preliminary plumbing; use the homelab adapter
+above for the validated HTTP workflow.
 
 Laya should have a modest memory footprint. Clef-flash's 9B BF16 backbone implies
 roughly 18 GB in weights plus head/runtime/activations; actual RTX 5090 fit is untested.

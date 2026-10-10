@@ -13,3 +13,16 @@ Cloudflare's October 2026 release of **Clef** makes the category easier to judge
 Independent evidence is mixed. On one 2,000-email phishing dataset, Jev's direct verdict was faster and cheaper but less accurate than Claude Haiku 4.5 (62.6% versus 81.3%). Asking for several specific signals improved the workflow, yet a simple rule was already strong on that dataset. This is a task-specific result, not a general rank of the models. [Reproducible phishing study and controls](https://github.com/anisselbd/jev-phishing-bench).
 
 **Business rule:** buy or build a decision service when the cost of repeated judgments is visible, its error rate is acceptable on your own labels, and it improves the complete workflow against a simple baseline. Use Jev for cheap managed text decisions, consider Clef when vision or its broader published performance matters, and consider fine-tuned Laya when local control matters. The project review found a few candidate decisions, but no README demonstrates that this threshold has been reached. See [project fit](use-cases.md).
+
+
+## Measured follow-up: 10 October 2026
+
+Our [frozen hosted/local benchmark](../benchmark/reports/comparison-v1/analysis.md)
+now provides direct evidence: Jev and hosted Clef scored about 95% across the synthetic
+classification variants, hosted and local Clef-flash about 89%, and both stock Laya
+checkpoints 38.5%. Local Clef-flash matched all 520 hosted classification labels.
+Laya was fast (38 ms median on the AMD homelab) but unreliable on the explicit policies,
+particularly with misleading reviewer commentary. A common API does not make these
+checkpoints interchangeable. These are untuned synthetic-suite results, not production
+error rates; the detailed report includes original-only scores, disputed-gold sensitivity,
+uncertainty probes and environment differences.

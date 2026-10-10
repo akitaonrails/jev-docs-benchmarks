@@ -1,4 +1,4 @@
-"""Offline scoring of frozen cases and saved hosted responses; no model calls."""
+"""Offline scoring of frozen cases and saved hosted or local responses; no model calls."""
 import argparse
 from collections import Counter, defaultdict
 import itertools
@@ -9,7 +9,7 @@ from pathlib import Path
 import random
 import statistics
 
-from hosted import load_cases, MODELS, payload, digest
+from hosted import load_cases, MODELS, LOCAL_MODELS, payload, digest
 
 ABSTAIN={'unknown','review','investigate','clarify','pending'}
 
@@ -123,9 +123,22 @@ def score(rows,manifest,responses,models):
             'retried_requests':sum(len(r['attempts'])>1 for r in records.values()),
             'median_valid_wall_seconds':quantile(lat,.5),'p95_valid_wall_seconds':quantile(lat,.95),
             'reported_input_tokens':sum(known),'valid_responses_missing_usage':len(valid)-len(known),
-            'estimated_reported_usage_cost_usd':sum(known)*MODELS[model][1]/1e6,
-            'cost_note':'Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.',
+            'estimated_reported_usage_cost_usd':sum(known)*MODELS[model][1]/1e6 if model in MODELS else None,
+            'cost_note': 'Local compute cost unmeasured; no hosted token rate applies.' if model in LOCAL_MODELS else 'Published input rate times reported successful-response input tokens; before free allowances; excludes unknown failed-attempt charges, discounts and billing adjustments.',
             'served_models':sorted({str(r['result']['served_model']) for r in valid})}
+        if model in LOCAL_MODELS:
+            usages=[r['result']['usage'] for r in valid]
+            servers=[r['response'].get('server',{}) for r in valid]
+            prediction_times=[s['predict_s'] for s in servers if isinstance(s.get('predict_s'),(int,float))]
+            result['operations']['local']={
+                'truncation_reported_count':sum(u.get('truncated') is True for u in usages),
+                'truncation_telemetry_missing_count':sum('truncated' not in u for u in usages),
+                'state_tokens_dropped':sum(u.get('state_tokens_dropped',0) for u in usages) if any('state_tokens_dropped' in u for u in usages) else None,
+                'truncated_question_count':sum(len(u.get('truncated_questions',[])) for u in usages) if any('truncated_questions' in u for u in usages) else None,
+                'cold_requests':sum(s.get('cold') is True for s in servers),
+                'server_prediction_median_seconds':quantile(prediction_times,.5),
+                'server_prediction_p95_seconds':quantile(prediction_times,.95),
+                'revisions':sorted({s.get('revision','unknown') for s in servers})}
         result['uncertainty']={}
         for kind in ['choice','noul']:
             probes=[c for c in rows if c['kind']=='probability' and c['variant']==kind]
@@ -151,14 +164,15 @@ def pct(x): return f'{x*100:.1f}%' if x is not None else 'N/A'
 def num(x):return f'{x:.3f}' if x is not None else 'N/A'
 
 def markdown(out):
-    models=out['models'];lines=['# Hosted decision benchmark v1 results','',
-      'Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling, no local models, and no production-generalization claim.','',
+    models=out['models'];lines=['# Decision benchmark v1 results','',
+      'Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling or production-generalization claim.','',
       '| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | List-price usage value |',
       '| --- | ---: | ---: | --- | --- | --- | ---: |']
     for m,r in models.items():
         ops=r['operations'];ci=r['originals']['bootstrap_95_accuracy']
-        lines.append(f"| {m} | {pct(r['originals']['accuracy'])} | {pct(r['all']['accuracy'])} | {pct(ci[0])}–{pct(ci[1])} | {ops['valid']}/{ops['planned']} | {num(ops['median_valid_wall_seconds'])} / {num(ops['p95_valid_wall_seconds'])} | ${ops['estimated_reported_usage_cost_usd']:.5f} |")
-    lines+=['','Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Cost is successful reported input usage × published rate, before free allowances, not an invoice; smoke-test calls are separate.','',
+        cost = f"${ops['estimated_reported_usage_cost_usd']:.5f}" if ops['estimated_reported_usage_cost_usd'] is not None else 'Unmeasured local compute'
+        lines.append(f"| {m} | {pct(r['originals']['accuracy'])} | {pct(r['all']['accuracy'])} | {pct(ci[0])}–{pct(ci[1])} | {ops['valid']}/{ops['planned']} | {num(ops['median_valid_wall_seconds'])} / {num(ops['p95_valid_wall_seconds'])} | {cost} |")
+    lines+=['','Missing/invalid responses count wrong in accuracy. Probability metrics use valid responses only. Latency includes network and retries. Hosted cost is successful reported input usage × published rate, before free allowances, not an invoice; smoke-test calls are separate. Local compute cost is unmeasured.','',
       'Three rubric ambiguities were flagged after inference began. Frozen scores above retain them; the separate sensitivity analysis removes all three families for every model. See `datasets/errata.json`.','',
       'Original-case baselines: '+', '.join(f'{k}: {pct(v)}' for k,v in out['baselines'].items())+'. The majority baseline uses gold label frequencies and is an oracle diagnostic.','',
       '## Per-use-case accuracy (all four variants)','','| Use case | '+' | '.join(models)+' |','| --- | '+' | '.join('---:' for _ in models)+' |']
@@ -186,7 +200,9 @@ def main():
     raw=run/'responses.jsonl'
     text=raw.read_text() if raw.exists() else gzip.decompress((run/'responses.jsonl.gz').read_bytes()).decode()
     responses=[json.loads(l) for l in text.splitlines()]
-    if meta['config']['limit']:rows=rows[:meta['config']['limit']]
+    if 'case_ids' in meta['config']:
+        selected=set(meta['config']['case_ids']);rows=[r for r in rows if r['id'] in selected]
+    elif meta['config']['limit']:rows=rows[:meta['config']['limit']]
     out=score(rows,manifest,responses,meta['config']['models'])
     path=Path(a.output);path.mkdir(parents=True,exist_ok=True)
     (path/'summary.json').write_text(json.dumps(out,indent=2)+'\n');(path/'results.md').write_text(markdown(out))
