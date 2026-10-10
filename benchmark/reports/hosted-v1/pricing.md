@@ -5,7 +5,16 @@ $0.065970726 of successful usage at published token rates (about 6.60 US cents).
 Actual account charges have not been verified.** Cloudflare's free allocation can
 make its portion zero; Jev credits and two interrupted attempts remain unreconciled.
 
-## Confirmed public rates
+## Subsequent price observation: 10 October
+
+Clef-flash now lists **$0.038/M input tokens**, versus the $0.09/M observed below.
+The precise billing effective time is unknown. This document preserves the original
+rate snapshot; it does not establish an invoice or today's cheapest provider.
+See the [current cost-benefit ranking](../../../docs/cost-benefit-ranking.md) and
+[updated rate snapshot](../../pricing/2026-10-10.json). Cloudflare's model pages now
+explicitly confirm free output tokens for both Clef variants.
+
+## Confirmed public rates (9 October snapshot)
 
 | Service | Model requested | USD / million input tokens | Output treatment |
 | --- | --- | ---: | --- |

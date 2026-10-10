@@ -2,7 +2,7 @@
 
 Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling, no local models, and no production-generalization claim.
 
-| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | List-price usage value |
+| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | 9 Oct list-price usage value |
 | --- | ---: | ---: | --- | --- | --- | ---: |
 | jev | 96.2% | 95.2% | 92.3%–99.2% | 544/544 | 0.253 / 0.303 | $0.01127 |
 | clef | 94.6% | 95.0% | 90.0%–98.5% | 544/544 | 0.606 / 2.076 | $0.03969 |

@@ -166,7 +166,7 @@ def num(x):return f'{x:.3f}' if x is not None else 'N/A'
 def markdown(out):
     models=out['models'];lines=['# Decision benchmark v1 results','',
       'Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling or production-generalization claim.','',
-      '| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | List-price usage value |',
+      '| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | 9 Oct list-price usage value |',
       '| --- | ---: | ---: | --- | --- | --- | ---: |']
     for m,r in models.items():
         ops=r['operations'];ci=r['originals']['bootstrap_95_accuracy']

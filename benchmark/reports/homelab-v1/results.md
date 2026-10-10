@@ -2,7 +2,7 @@
 
 Synthetic, explicit-policy stress suite. 130 authored scenario families, four variants each (520 classifications), plus 24 probability probes per model. Variants are correlated. No independent human labeling or production-generalization claim.
 
-| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | List-price usage value |
+| Model | Originals | All variants | Original 95% bootstrap interval | Valid/planned | Median / p95 wall seconds | 9 Oct list-price usage value |
 | --- | ---: | ---: | --- | --- | --- | ---: |
 | laya | 43.8% | 38.5% | 35.4%–52.3% | 544/544 | 0.038 / 0.041 | Unmeasured local compute |
 | laya-typed | 43.8% | 38.5% | 35.4%–52.3% | 544/544 | 0.038 / 0.041 | Unmeasured local compute |

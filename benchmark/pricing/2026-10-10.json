@@ -1,0 +1,17 @@
+{
+  "verified_on": "2026-10-10",
+  "currency": "USD",
+  "effective_change_time": "unknown",
+  "input_usd_per_million": {"jev": "0.042", "clef": "0.24", "clef-flash": "0.038"},
+  "output_usd_per_million": {"jev": "0", "clef": "0", "clef-flash": "0"},
+  "cloudflare_neurons_per_million_input": {"clef": "21818", "clef-flash": "3455"},
+  "cloudflare_daily_free_neurons": 10000,
+  "cloudflare_usd_per_1000_neurons": "0.011",
+  "sources": {
+    "jev": "https://docs.typesafe.ai/models",
+    "clef": "https://developers.cloudflare.com/workers-ai/models/clef/",
+    "clef-flash": "https://developers.cloudflare.com/workers-ai/models/clef-flash/",
+    "cloudflare_billing": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+  },
+  "note": "Clef-flash now lists $0.038/M, versus $0.09/M in the 9 October audit. Current valuation is not proof of historical billing. Published neuron/token equivalents have rounding differences."
+}

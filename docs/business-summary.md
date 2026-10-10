@@ -8,7 +8,7 @@ The task is established. Earlier zero-shot classifiers accepted arbitrary candid
 
 The **193.6× faster / 444.6× cheaper** headline describes selected TypeSafe workflows against LLM baselines. TypeSafe says these are likely near the high end of real-world gains. Its **zero hallucinations** number measures guaranteed output shape, not whether the selected answer is correct. Its workflow reference answers average two other models rather than human-verified ground truth. These facts support a useful speed claim on certain comparisons, not universal superiority. [Launch methodology](https://typesafe.ai/blog/introducing-system-one-models-and-jev), [workflow evals](https://evals.typesafe.ai/).
 
-Cloudflare's October 2026 release of **Clef** makes the category easier to judge. Clef and Clef-flash offer a Jev-compatible API, Apache-2.0 weights, disclosed Qwen-based architectures, and image input. Cloudflare reports stronger results than Jev on many tasks in its internal run of the open Decision Index, while Jev still wins some tasks and has the lowest listed hosted input price. **Laya** covers the small local end: its 322M–421M encoders are inexpensive and fine-tunable, but its own documentation says the base models are weak zero-shot decision engines. See the [full alternatives comparison](alternatives.md).
+Cloudflare's October 2026 release of **Clef** makes the category easier to judge. Clef and Clef-flash offer a Jev-compatible API, Apache-2.0 weights, disclosed Qwen-based architectures, and image input. Cloudflare reports stronger results than Jev on many tasks in its internal run of the open Decision Index, while Jev still wins some tasks and had the lowest listed hosted input price at our original snapshot. **Laya** covers the small local end: its 322M–421M encoders are inexpensive and fine-tunable, but its own documentation says the base models are weak zero-shot decision engines. See the [full alternatives comparison](alternatives.md).
 
 Independent evidence is mixed. On one 2,000-email phishing dataset, Jev's direct verdict was faster and cheaper but less accurate than Claude Haiku 4.5 (62.6% versus 81.3%). Asking for several specific signals improved the workflow, yet a simple rule was already strong on that dataset. This is a task-specific result, not a general rank of the models. [Reproducible phishing study and controls](https://github.com/anisselbd/jev-phishing-bench).
 
@@ -26,3 +26,15 @@ particularly with misleading reviewer commentary. A common API does not make the
 checkpoints interchangeable. These are untuned synthetic-suite results, not production
 error rates; the detailed report includes original-only scores, disputed-gold sensitivity,
 uncertainty probes and environment differences.
+
+
+## Cost-benefit decision: current prices
+
+The [technical and cost-benefit ranking](cost-benefit-ranking.md) rechecks prices on
+10 October. Clef-flash now costs $0.038/M input tokens, down from the $0.09/M recorded
+in our earlier audit. For 1,000 classifications matching this suite's length mix,
+current list values are about **$0.01172 Flash, $0.02093 Jev, $0.07401 Clef**.
+Jev is the preferred paid default when errors matter; Flash wins pure API cost;
+full Clef is attractive within Cloudflare's available daily free allowance. Local
+Flash preserves measured classification behavior, but local operating costs are
+unmeasured. Stock Laya's weak accuracy makes its low latency insufficient here.

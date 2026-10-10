@@ -177,3 +177,5 @@ The broader answer to “are these all plug-and-play?” is: their interfaces ma
 easy to call, but the checkpoints differ substantially in following the supplied
 policy. The boundary must be measured on the actual workload. This benchmark gives
 concrete evidence of that difference without claiming universal model rankings.
+
+[Current technical and cost-benefit ranking](../../../docs/cost-benefit-ranking.md) adds classification-only unit economics, the 10 October Flash price change, and scenario-dependent recommendations.

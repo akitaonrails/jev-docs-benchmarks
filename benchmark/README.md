@@ -174,3 +174,5 @@ Docker storage. The original temporary credential file remains mode 0600.
 - [Clef-flash API and pricing](https://developers.cloudflare.com/workers-ai/models/clef-flash/)
 - [Clef-flash local model card](https://huggingface.co/Cloudflare/clef-flash)
 - [Laya](https://github.com/NandhaKishorM/laya)
+
+[Current technical and cost-benefit ranking](../docs/cost-benefit-ranking.md) adds classification-only unit economics, the 10 October Flash price change, and scenario-dependent recommendations.

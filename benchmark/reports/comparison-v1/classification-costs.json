@@ -1,0 +1,106 @@
+{
+  "prices": {
+    "verified_on": "2026-10-10",
+    "currency": "USD",
+    "effective_change_time": "unknown",
+    "input_usd_per_million": {
+      "jev": "0.042",
+      "clef": "0.24",
+      "clef-flash": "0.038"
+    },
+    "output_usd_per_million": {
+      "jev": "0",
+      "clef": "0",
+      "clef-flash": "0"
+    },
+    "cloudflare_neurons_per_million_input": {
+      "clef": "21818",
+      "clef-flash": "3455"
+    },
+    "cloudflare_daily_free_neurons": 10000,
+    "cloudflare_usd_per_1000_neurons": "0.011",
+    "sources": {
+      "jev": "https://docs.typesafe.ai/models",
+      "clef": "https://developers.cloudflare.com/workers-ai/models/clef/",
+      "clef-flash": "https://developers.cloudflare.com/workers-ai/models/clef-flash/",
+      "cloudflare_billing": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+    },
+    "note": "Clef-flash now lists $0.038/M, versus $0.09/M in the 9 October audit. Current valuation is not proof of historical billing. Published neuron/token equivalents have rounding differences."
+  },
+  "historical_input_usd_per_million": {
+    "jev": "0.042",
+    "clef": "0.24",
+    "clef-flash": "0.09"
+  },
+  "scope": "520 classification variants/model; smoke and probability probes excluded",
+  "models": {
+    "clef": {
+      "classifications": 520,
+      "correct": 494,
+      "input_tokens": 160351,
+      "historical_classification_list_usd": "0.03848424",
+      "current_classification_list_usd": "0.03848424",
+      "current_usd_per_1000_classifications": "0.07400815384615384615384615385",
+      "current_usd_per_1000_correct_labels": "0.07790331983805668016194331984",
+      "server_classification_seconds": null
+    },
+    "clef-flash": {
+      "classifications": 520,
+      "correct": 463,
+      "input_tokens": 160351,
+      "historical_classification_list_usd": "0.01443159",
+      "current_classification_list_usd": "0.006093338",
+      "current_usd_per_1000_classifications": "0.01171795769230769230769230769",
+      "current_usd_per_1000_correct_labels": "0.01316055723542116630669546436",
+      "server_classification_seconds": null
+    },
+    "jev": {
+      "classifications": 520,
+      "correct": 495,
+      "input_tokens": 259170,
+      "historical_classification_list_usd": "0.01088514",
+      "current_classification_list_usd": "0.01088514",
+      "current_usd_per_1000_classifications": "0.02093296153846153846153846154",
+      "current_usd_per_1000_correct_labels": "0.02199018181818181818181818182",
+      "server_classification_seconds": null
+    },
+    "clef-flash-local": {
+      "classifications": 520,
+      "correct": 463,
+      "input_tokens": 160351,
+      "historical_classification_list_usd": null,
+      "current_classification_list_usd": null,
+      "current_usd_per_1000_classifications": null,
+      "current_usd_per_1000_correct_labels": null,
+      "server_classification_seconds": "313.441"
+    },
+    "laya": {
+      "classifications": 520,
+      "correct": 200,
+      "input_tokens": 104154,
+      "historical_classification_list_usd": null,
+      "current_classification_list_usd": null,
+      "current_usd_per_1000_classifications": null,
+      "current_usd_per_1000_correct_labels": null,
+      "server_classification_seconds": "18.915"
+    },
+    "laya-typed": {
+      "classifications": 520,
+      "correct": 200,
+      "input_tokens": 104154,
+      "historical_classification_list_usd": null,
+      "current_classification_list_usd": null,
+      "current_usd_per_1000_classifications": null,
+      "current_usd_per_1000_correct_labels": null,
+      "server_classification_seconds": "18.931"
+    }
+  },
+  "source_archive_sha256": {
+    "hosted-v1": "8d9e3d60ec659635ca9eb3670092a374a9208184749fb8587ee5eb9d822d9526",
+    "homelab-v1": "c007583dc036950b18767150ceece642377ae8e241d5357e3c24957694076374"
+  },
+  "equal_error_cost_break_even_usd": {
+    "jev_versus_flash": "0.0001497438125",
+    "clef_versus_flash": "0.001044867806451612903225806452"
+  }
+}

@@ -17,3 +17,5 @@ The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../
 [Pricing verification and test cost](../benchmark/reports/hosted-v1/pricing.md) (9 October) reconciles both providers’ official rates, archived usage, free allowance and billing uncertainties.
 
 [Hosted versus local comparison](../benchmark/reports/comparison-v1/analysis.md) adds measured Laya, Laya-typed and pinned local Clef-flash results, with [six-model tables](../benchmark/reports/comparison-v1/results.md).
+
+[Technical and cost-benefit ranking](cost-benefit-ranking.md) combines measured quality, current pricing, free allowance scenarios and unmeasured local costs. Pricing rechecked 10 October; Clef-flash is now $0.038/M input tokens.
