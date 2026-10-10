@@ -34,3 +34,5 @@ The [v2 protocol](../benchmark/expansion-v2/README.md) adds 84 new scenario fami
 [Further open-model shortlist and homelab lifecycle](next-models.md) checks current releases, popularity, licenses, external benchmark evidence and priorities for the next round.
 
 [Model size and deployment tradeoffs](model-tradeoffs.md) qualifies the rankings by resource constraints, specialization and measured versus unmeasured efficiency.
+
+[Size versus score analysis](size-vs-quality.md) quantifies the observed association and checks same-family scaling evidence and counterexamples.

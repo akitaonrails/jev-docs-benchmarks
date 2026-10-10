@@ -216,3 +216,5 @@ coverage differs substantially.**
 ## Model size and intended deployment
 
 The technical ranking above is an accuracy ranking for these fixtures. The tested Laya checkpoints are compact 421M encoders, and their measured warm local requests were substantially faster than local Flash. That tradeoff may be useful for narrower tasks or constrained local devices if quality requirements are met. CPU performance, peak memory and energy remain unmeasured. See [model size and deployment tradeoffs](../../../docs/model-tradeoffs.md) for the resource-aware interpretation, specialized-checkpoint caveats and next-round measurement plan.
+
+[Size versus score analysis](../../../docs/size-vs-quality.md) quantifies the observed association and checks same-family scaling evidence and counterexamples.

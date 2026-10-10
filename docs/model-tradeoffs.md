@@ -48,3 +48,5 @@ Rank measured quality on the existing frozen cases, then provide deployment-spec
 ## Installation delegation status
 
 The next-wave installation request was queued through ai-memory to `default/homelab-docs` on 10 October, message `01a125d8-2eaa-7de2-ba47-d2f270ac0337`. It requests eight configurations: Eikos-4B, Jebadiah-4B-v2, Mapika Decider-4B, Kev-4B, fixed-Qwen Simple-Jev, Laya multilingual, and both English/multilingual GLiNER2.5-Decide. It requests Docker isolation, pinned provenance, native API contracts, sequential model residency and footprint evidence. PPLX/Rune require a capacity/runtime assessment first. A queued request is not confirmation of installation; benchmark adapter integration awaits the service contracts and smoke evidence.
+
+[Size versus score analysis](size-vs-quality.md) quantifies the observed association and checks same-family scaling evidence and counterexamples.
