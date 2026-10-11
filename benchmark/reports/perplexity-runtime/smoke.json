@@ -1,0 +1,86 @@
+[
+  {
+    "request": {
+      "state": "Please refund the duplicate payment.",
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Route this request.",
+          "criteria": {
+            "billing": "Payments and refunds",
+            "technical": "Software faults"
+          }
+        }
+      },
+      "model": "pplx-decider-v1.1-27b"
+    },
+    "response": {
+      "model": "autojev-qwen3.8-27b",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "probabilities": {
+            "billing": 0.9999613596089189,
+            "technical": 3.8640391081124464e-05
+          },
+          "choice": "billing",
+          "confidence": 0.9999227192178377
+        }
+      },
+      "usage": {
+        "input_tokens": 92,
+        "output_tokens": 0
+      }
+    },
+    "result": {
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.9999613596089189,
+        "technical": 3.8640391081124464e-05
+      },
+      "raw_probability_sum": 1.0,
+      "usage": {
+        "input_tokens": 92,
+        "output_tokens": 0
+      },
+      "served_model": "autojev-qwen3.8-27b"
+    }
+  },
+  {
+    "request": {
+      "state": "Please refund the duplicate payment.",
+      "questions": {
+        "decision": {
+          "type": "noul",
+          "instructions": "Does the customer request a refund?",
+          "criteria": {
+            "true": "The customer requests money back.",
+            "false": "The customer does not request money back."
+          }
+        }
+      },
+      "model": "pplx-decider-v1.1-27b"
+    },
+    "response": {
+      "model": "autojev-qwen3.8-27b",
+      "answers": {
+        "decision": {
+          "type": "noul",
+          "noul": 0.9993323566237735
+        }
+      },
+      "usage": {
+        "input_tokens": 100,
+        "output_tokens": 0
+      }
+    },
+    "result": {
+      "probability": 0.9993323566237735,
+      "usage": {
+        "input_tokens": 100,
+        "output_tokens": 0
+      },
+      "served_model": "autojev-qwen3.8-27b"
+    }
+  }
+]

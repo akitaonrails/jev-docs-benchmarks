@@ -10,7 +10,7 @@ from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 from hosted import ROOT, digest, load_cases, normalized
-from next_contract import REGISTRY, request_for, normalize_response
+from next_contract import REGISTRY, request_for, normalize_response, verify_health
 
 
 def call(base, route, request=None):
@@ -73,6 +73,18 @@ def run(args):
             time.sleep(2)
     else:
         raise RuntimeError('Service did not become ready')
+    if config.get('expected_health'):
+        status, health = call(base, '/healthz')
+        if status != 200:
+            raise RuntimeError('Health provenance unavailable')
+        verify_health(health, args.model)
+        (out/'health-before.json').write_text(json.dumps(health, indent=2)+'\n')
+    encodings = {}
+    if config.get('encoding_evidence'):
+        evidence = json.loads((ROOT/config['encoding_evidence']).read_text())
+        encodings = {r['request_sha256']: r['input_tokens'] for r in evidence['records']}
+        if any(digest(request_for(c, args.model)) not in encodings for c in rows):
+            raise RuntimeError('Missing lossless-encoding evidence')
     path = out/'responses.jsonl'
     prior = [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
     done = {r['case_id'] for r in prior}
@@ -90,6 +102,8 @@ def run(args):
             if status != 200:
                 raise ValueError(f'HTTP {status}')
             parsed = normalize_response(raw, case, args.model)
+            if encodings and parsed['usage'].get('input_tokens') != encodings[digest(req)]:
+                raise RuntimeError('Scored token usage differs from verified complete encoding')
         except (ValueError, KeyError, TypeError, OSError) as exc:
             error = f'{type(exc).__name__}: {exc}'
         elapsed = time.perf_counter()-started
@@ -103,6 +117,12 @@ def run(args):
             print(f'{args.model} {index+1}/{len(tasks)} {error or "ok"}', flush=True)
         if status is None or status >= 500:
             raise RuntimeError('Infrastructure failure; partial response retained')
+    if config.get('expected_health'):
+        status, health = call(base, '/healthz')
+        if status != 200:
+            raise RuntimeError('Final health provenance unavailable')
+        verify_health(health, args.model)
+        (out/'health-after.json').write_text(json.dumps(health, indent=2)+'\n')
     print(args.model, 'complete', len(tasks), flush=True)
 
 

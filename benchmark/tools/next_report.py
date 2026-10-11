@@ -10,7 +10,7 @@ from hosted import ROOT, load_cases
 from score import interval
 
 SIZES = {'laya':.421, 'laya-typed':.421, 'laya-multilingual':.322,
-         'julia-1':.1443, 'julia-1-cpu':.1443,
+         'julia-1':.1443, 'julia-1-cpu':.1443, 'pplx-decider-27b':27,
          'gliner2.5-decide':.340, 'gliner2.5-multi-decide':.287,
          'kev-0.8b':.8, 'kev-4b':4, 'kev-9b':9,
          'eikos-4b':4, 'jebadiah-4b-v2':4, 'decider-4b':4,
@@ -99,6 +99,8 @@ def main():
     comparisons=[(m,'jev') for m in ordered if m!='jev'] + [('kev-4b','kev-0.8b'),('kev-9b','kev-4b')]
     if 'openai-decisions' in ordered:
         comparisons += [('openai-decisions', m) for m in ['clef','clef-flash','jebadiah-4b-v2'] if m in ordered]
+    if 'pplx-decider-27b' in ordered:
+        comparisons += [('pplx-decider-27b', m) for m in ['clef','openai-decisions','jebadiah-4b-v2'] if m in ordered]
     if 'julia-1-cpu' in ordered and 'julia-1' in ordered:
         comparisons += [('julia-1-cpu','julia-1')]
     lines += ['', '## Paired compact differences, clustered by authored family', '',

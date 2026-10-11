@@ -6,6 +6,12 @@ from pathlib import Path
 REGISTRY = json.loads((Path(__file__).resolve().parents[1] / 'next-wave/models.json').read_text())
 
 
+def verify_health(health, model):
+    for key, value in REGISTRY[model].get('expected_health', {}).items():
+        if key not in health or type(health[key]) is not type(value) or health[key] != value:
+            raise RuntimeError(f'Server health provenance mismatch: {key}')
+
+
 def request_for(case, model):
     config = REGISTRY[model]
     req = case['request']

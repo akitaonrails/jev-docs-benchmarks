@@ -236,5 +236,31 @@
       "option_token_limit": 48,
       "cpu_threads": 4
     }
+  },
+  "pplx-decider-27b": {
+    "port": 11449,
+    "selector": "pplx-decider-v1.1-27b",
+    "interface": "systemone",
+    "image": "sha256:1ca2a7509863a7d1de08ad5ab5e002ca28cc0f878f648f4d971712dcb8916910",
+    "command": [
+      "env",
+      "AUTOJEV_CHECKPOINT=/models/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5",
+      "PYTHONPATH=/models/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5/source/src",
+      "python",
+      "/opt/pplx/run_pplx.py"
+    ],
+    "expected_health": {
+      "revision": "6195aa55a72ae21e503c8a60198f7b390d42adb5",
+      "precision": "bf16 (reference)",
+      "device": "cuda:0",
+      "weight_dtype": "bfloat16",
+      "readout_dtype": "bfloat16",
+      "attention_mode": "noncausal_full_attention",
+      "pooling": "last",
+      "temperature": 1.0087417621345625,
+      "max_length": 8192,
+      "max_options": 255
+    },
+    "encoding_evidence": "reports/perplexity-runtime/encoding.json"
   }
 }

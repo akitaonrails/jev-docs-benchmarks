@@ -60,6 +60,9 @@ def main():
                     report = BENCH/'reports'/folder/model
                     for name in ['container.json', 'resolved-deps.txt', 'warmup.json']:
                         (report/name).write_bytes((result/name).read_bytes())
+                    for name in ['health-before.json', 'health-after.json']:
+                        if (result/name).exists():
+                            (report/name).write_bytes((result/name).read_bytes())
         finally:
             ssh(REMOTE + 'stop ' + model)
             print('STOP', model, flush=True)

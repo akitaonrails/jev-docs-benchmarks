@@ -1,0 +1,36 @@
+{
+  "Image": "sha256:1ca2a7509863a7d1de08ad5ab5e002ca28cc0f878f648f4d971712dcb8916910",
+  "Mounts": [
+    {
+      "Type": "volume",
+      "Name": "decision_models_pplx",
+      "Source": "/var/lib/docker/volumes/decision_models_pplx/_data",
+      "Destination": "/models",
+      "Driver": "local",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": ""
+    }
+  ],
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-11T03:14:21.292442806Z",
+    "FinishedAt": "2026-10-11T03:15:07.557958539Z"
+  },
+  "command": [
+    "env",
+    "AUTOJEV_CHECKPOINT=/models/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5",
+    "PYTHONPATH=/models/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5/source/src",
+    "python",
+    "/opt/pplx/run_pplx.py"
+  ],
+  "memory_limit": 25769803776
+}
