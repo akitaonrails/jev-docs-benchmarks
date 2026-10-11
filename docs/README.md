@@ -41,8 +41,11 @@ all 1,048 scored requests completed. See the [17-configuration comparison](../be
 completed deployments: [19-configuration ranking](../benchmark/reports/julia-comparison-v2/ranking.md),
 [protocol](../benchmark/julia/README.md), and [availability](julia-availability.md).
 
-[Perplexity Decider 1.1 27B](perplexity-decider-availability.md) has public weights;
-installation was requested from the homelab agent and no score is assigned yet.
+[Perplexity Decider 1.1 27B results](../benchmark/reports/perplexity-comparison-v2/analysis.md)
+add the highest measured bilingual result, 99.4% compact, with substantial memory
+and latency costs. See the [20-configuration ranking](../benchmark/reports/perplexity-comparison-v2/ranking.md),
+[native ROCm protocol](../benchmark/perplexity/README.md), and
+[pricing recheck](../benchmark/perplexity/pricing-recheck.md).
 
 [Further open-model shortlist and homelab lifecycle](next-models.md) checks current releases, popularity, licenses, external benchmark evidence and priorities for the next round.
 

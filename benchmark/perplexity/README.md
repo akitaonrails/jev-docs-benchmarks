@@ -65,3 +65,11 @@ power, utilization, amortization and operations costs remain unmeasured.
 
 [Runtime evidence](../reports/perplexity-runtime/) ·
 [Published checkpoint](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b/tree/6195aa55a72ae21e503c8a60198f7b390d42adb5).
+
+## Completed run
+
+[Analysis and twenty-configuration ranking](../reports/perplexity-comparison-v2/analysis.md):
+1,048 valid scored requests, one attempt each; no lost inputs. Compact v2 is
+167/168 and v1 originals 129/130. Known-uncertainty probabilities remain a weakness.
+The service is stopped. Run `python benchmark/perplexity/analyze.py` after scoring
+for archive integrity, token-count matching and unchanged-baseline verification.

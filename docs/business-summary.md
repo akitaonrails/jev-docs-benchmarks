@@ -1,5 +1,29 @@
 # Business summary: should I care about Jev?
 
+## Perplexity update: 11 October 2026
+
+The [twenty-configuration comparison](../benchmark/reports/perplexity-comparison-v2/analysis.md)
+now has an open-weight quality leader: **Perplexity Decider 1.1 27B**, at **99.4%
+compact bilingual accuracy**, versus Jev 97.6% and Clef 95.8%. It scores **501/504**
+overall and all PT-BR cases correctly. The lead over Jev is three compact decisions;
+this is an observed ranking on a small synthetic suite, not general superiority.
+
+It requires about 49 GiB of BF16 weights plus working memory. The tested ROCm
+configuration measures **1,547/2,446 ms median/p95**, with fallback kernels and a
+custom loader disclosed. Consider it for local quality when memory and latency
+permit. Jebadiah 4B remains a smaller, faster candidate at 90.5% compact; Julia
+is much smaller and faster but scores 31.5%. No local dollar cost was measured.
+
+Jev retains the best measured hosted quality/list-price combination; Flash remains
+the cheapest tested hosted option by compact usage. [Official prices were rechecked](../benchmark/perplexity/pricing-recheck.md)
+and are unchanged.
+
+On original policies, Perplexity scores **129/130**, or **127/127** after the same
+pre-existing ambiguity exclusions applied to every model. Its Boolean uncertainty
+MAE is **0.3754**, however: classification strength does not imply reliable event
+probabilities. The compact lead over Jev has a family-bootstrap interval including
+zero. Earlier sections below preserve their historical scope.
+
 **Decision:** No portfolio-wide integration. A typed-decision model is worth a small experiment only where a project repeatedly asks a narrow question and can use a bounded answer immediately. FrankClaw's model routing and ai-memory's candidate ranking are the clearest candidates. Neither is presently a demonstrated bottleneck or a proven improvement.
 
 Jev is TypeSafe AI's hosted, text-only decision model. A request supplies a state and several questions; each returns a choice, ordinal score, or yes/no probability. Application code owns the policy and action. It can answer several questions over the same state without generating a prose response. This is useful for classification, ranking, and routing, especially at high volume. It cannot write a summary, inspect an image directly, prove a claim, or enforce a security boundary. [Product documentation](https://docs.typesafe.ai/introduction), [model limits](https://docs.typesafe.ai/models).

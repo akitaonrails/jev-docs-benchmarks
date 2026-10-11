@@ -8,6 +8,14 @@ Laya/Laya-typed/Clef-flash on the AMD homelab. [Protocol](PROTOCOL.md) defines t
 metrics and limitations before inference. [Scenarios](datasets/scenarios.py) are the
 readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation artifact.
 
+## Perplexity 27B extension
+
+[Latest twenty-configuration analysis](reports/perplexity-comparison-v2/analysis.md),
+[ranking](reports/perplexity-comparison-v2/ranking.md), and
+[frozen native ROCm protocol](perplexity/README.md). Compact accuracy is 99.4%.
+Offline reproduction: `benchmark/perplexity/score.sh`, then
+`python benchmark/perplexity/analyze.py`. Earlier extensions below retain their scope.
+
 ## Julia GPU/CPU extension
 
 [Completed 19-configuration analysis](reports/julia-comparison-v2/analysis.md),

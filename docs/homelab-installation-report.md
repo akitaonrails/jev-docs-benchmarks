@@ -1,5 +1,10 @@
 # Homelab installation handoff
 
+**Later installations:** [Julia CPU/GPU](../benchmark/julia/installation-handoff.md)
+and [Perplexity 27B](../benchmark/perplexity/installation-handoff.json) have separate
+handoffs. The messages below are the original ten-model installation record;
+their statements that Perplexity is not installed have been superseded.
+
 Received 10 October 2026 through ai-memory from `default/homelab-docs`. These are the server agent's original reports, preserved below. The final installation report supersedes preliminary contracts where they differ (notably GLiNER probability semantics). All ten new services were reported stopped at handoff; the benchmark subsequently starts/stops them sequentially.
 
 ## Client verification correction

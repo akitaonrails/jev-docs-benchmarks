@@ -1,5 +1,19 @@
 # Real use cases and fit in my projects
 
+## Measured follow-up: Perplexity 27B
+
+The [latest benchmark](../benchmark/reports/perplexity-comparison-v2/analysis.md)
+supports testing a local open checkpoint for supplied-rule classification: Perplexity
+scores 99.4% compact and all PT-BR cases correctly. This strengthens the case for
+a bounded local experiment in routing, evidence relevance or policy triage when
+data locality matters. It does not measure any of the actual projects below.
+
+Its roughly 49 GiB weights and 1.55-second observed median request time make it a
+substantial shared homelab workload. Smaller Jebadiah 4B remains a practical comparison
+point; deterministic parsing and exact policy rules still belong in ordinary code.
+Perplexity's remaining retrieval mistake confuses notification recipients with
+required approvers, so avoid treating semantic association as authorization evidence.
+
 Research snapshot: **3 October 2026**. Project assessments are based on the top-level READMEs present in `~/Projects`, not code review, traffic measurements, or local model experiments. “Candidate” means a bounded experiment could be justified if the current path is demonstrably slow, expensive, or inaccurate. It is not a recommendation to integrate immediately. See [the alternatives comparison](alternatives.md) for how Clef's vision support and Laya's local fine-tuning affect these cases.
 
 The project names below refer to READMEs inspected in the author’s local checkout;

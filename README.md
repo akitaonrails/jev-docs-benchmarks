@@ -16,12 +16,12 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **Latest results:** [Julia GPU/CPU comparison](benchmark/reports/julia-comparison-v2/analysis.md),
-  [19-configuration ranking](benchmark/reports/julia-comparison-v2/ranking.md),
-  [task/language tables](benchmark/reports/julia-comparison-v2/results.md), and
-  [hosted test cost](benchmark/reports/openai-comparison-v2/costs.md).
+- **Latest results:** [Perplexity 27B comparison](benchmark/reports/perplexity-comparison-v2/analysis.md),
+  [20-configuration ranking](benchmark/reports/perplexity-comparison-v2/ranking.md),
+  [task/language tables](benchmark/reports/perplexity-comparison-v2/results.md), and
+  [pricing recheck](benchmark/perplexity/pricing-recheck.md).
 - **Previous local expansion:** [16-configuration analysis](benchmark/reports/next-wave-comparison-v2/analysis.md).
-- **Upcoming local model:** [Perplexity Decider 1.1 27B installation request](docs/perplexity-decider-availability.md).
+- **Local deployment:** [Perplexity runtime and setup](benchmark/perplexity/README.md).
 - **First six models:** [initial English / PT-BR analysis](benchmark/reports/comparison-v2/analysis.md).
 - **Original policy suite:** [hosted versus local analysis](benchmark/reports/comparison-v1/analysis.md)
   and [complete six-model tables](benchmark/reports/comparison-v1/results.md).
@@ -35,16 +35,33 @@ that one model is universally best. See [methodology and limitations](#methodolo
   [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
 
+## Perplexity Decider 1.1 27B: an open model leads this suite
+
+**99.4% compact bilingual accuracy (167/168)** and **501/504 overall**. Perplexity
+scores every PT-BR case correctly and misses one English retrieval family across
+all three conditions. It also scores **129/130 original policy cases**, rising to
+127/127 after the same existing disputed-family exclusions used for every model. Jev scores 97.6% compact; Clef 95.8%; OpenAI and Jebadiah 90.5%.
+The small observed lead over Jev does not establish general superiority.
+
+This local BF16 deployment needs roughly 49 GiB of weights plus runtime memory,
+and measures **1,547/2,446 ms median/p95** on AMD ROCm with fallback kernels.
+It is the strongest measured local quality candidate here; Jev remains the leading
+hosted quality/list-price choice. Local total cost is unmeasured. Its Boolean
+probabilities still fail known-random-outcome probes, so high classification
+accuracy does not establish general probability reliability.
+[Full analysis and limitations](benchmark/reports/perplexity-comparison-v2/analysis.md),
+[reproduction](benchmark/perplexity/README.md).
+
 ## Julia-1: GPU and CPU results
 
-**2,096 new scored requests, all valid and untruncated.** The comparison now has
+**2,096 new scored requests, all valid and untruncated.** At this earlier stage the comparison had
 19 bilingual configurations and 17 original-policy configurations. Julia's 144.3M
 checkpoint scores **31.5% compact bilingual accuracy** on both GPU and CPU, close
 to the suite's **31.0% uniform-random baseline**. GPU median/p95 is **12/25 ms**;
 four-thread CPU is **71/197 ms**. Low resource requirements and speed are useful,
 but these results do not support autonomous difficult policy decisions.
 
-Jev (**97.6%**) and Clef (**95.8%**) still lead, followed by the OpenAI/Jebadiah
+Before the Perplexity addition, Jev (**97.6%**) and Clef (**95.8%**) led, followed by the OpenAI/Jebadiah
 compact tie (**90.5%**). No new hosted charges; local compute cost is unmeasured.
 [Analysis, cost-benefit and limitations](benchmark/reports/julia-comparison-v2/analysis.md),
 [reproduction protocol](benchmark/julia/README.md).
@@ -75,12 +92,14 @@ Exact-threshold rules and the critical data-loss support ticket still expose err
 [v1 policy tables](benchmark/reports/openai-comparison-v1/results.md),
 [native adapter and reproduction](benchmark/openai-decisions/README.md).
 
-## Expanded comparison: ten additional local configurations
+## Earlier expansion: ten additional local configurations
 
 **9,392 new scored responses, all valid, zero retries.** Together with the first
-runs, the repository now contains 16 bilingual configurations and 14 policy-suite
+runs, that stage contained 16 bilingual configurations and 14 policy-suite
 configurations. The new inference ran sequentially on the AMD homelab in about
 55 minutes; all benchmark containers are stopped afterward.
+
+The observations in this table describe that earlier sixteen-configuration stage.
 
 | Configuration | Compact bilingual accuracy | Main observation |
 | --- | ---: | --- |

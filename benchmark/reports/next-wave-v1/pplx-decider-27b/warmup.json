@@ -1,0 +1,18 @@
+{
+  "model": "autojev-qwen3.8-27b",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "probabilities": {
+        "billing": 0.9999636809610918,
+        "technical": 3.6319038908164534e-05
+      },
+      "choice": "billing",
+      "confidence": 0.9999273619221836
+    }
+  },
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 0
+  }
+}

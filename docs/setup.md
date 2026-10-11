@@ -283,7 +283,8 @@ ssh 192.168.0.90 'cd /var/opt/docker/ai/decision-models-next && sudo docker comp
 ```
 
 Do not start the whole Compose stack. Do not stop unrelated server GPU workloads.
-PPLX/Rune are not installed; they require further capacity/runtime work. GLiDE remains
+Perplexity is now installed; see the dedicated reproduction section below. Rune
+still requires capacity/runtime work. GLiDE remains
 a hosted candidate. Default context limits, Simple-Jev's prompt policy and GLiNER's
 native classification mapping are part of the frozen entrant configuration.
 
@@ -320,3 +321,34 @@ containing an earlier attempt; preserve the published archives. Containers can a
 be stopped with `sudo docker compose stop julia-1 julia-1-cpu` from the server's
 Compose directory. Stopping retains the weights. The [completed comparison](../benchmark/reports/julia-comparison-v2/analysis.md)
 records both deployments separately.
+
+## Perplexity Decider 1.1 27B reproduction
+
+[Protocol, verification and compatibility limits](../benchmark/perplexity/README.md).
+The installed homelab service is `pplx-decider-27b`, port 11449, in the same
+`/var/opt/docker/ai/decision-models-next` Compose project. Its
+[captured setup](../benchmark/perplexity/server/) uses read-only volume
+`decision_models_pplx`. It needs roughly 52 GB of GPU-addressable memory, including
+runtime overhead. Check available VRAM before starting; do not evict unrelated work.
+
+This deployment uses the release's native API with ROCm-compatible dependencies,
+reference PyTorch fallback kernels and a strict direct-to-GPU weight loader.
+The Dockerfile depends on the homelab's existing ROCm base; it is not a standalone
+portable image build. Preserve the pinned source, readout and noncausal attention.
+A generic Ollama chat export is a different serving configuration.
+
+```sh
+# Unscored verification; includes all manifest hashes and all input encodings:
+python benchmark/perplexity/preflight.py
+# Starts the model, runs both frozen suites serially, archives, then stops it:
+python benchmark/next-wave/run.py --models pplx-decider-27b --datasets v2 v1 --execute
+# Offline reporting; no server or credentials required:
+benchmark/perplexity/score.sh
+python benchmark/perplexity/analyze.py
+```
+
+The lifecycle command is `sudo docker compose up -d pplx-decider-27b`; stop with
+`sudo docker compose stop pplx-decider-27b` from that server directory. Wait for
+`/healthz` status `ok`. The service rejects concurrent work with HTTP 529 and
+oversized inputs with HTTP 422. Use a single client request at a time. Retain
+published archives when reproducing; use fresh output paths or a separate checkout.

@@ -7,7 +7,7 @@ for model in $common; do set -- "$@" "/work/reports/next-wave-v1/$model"; done
 "$bench_dir/tools/offline.sh" /work/tools/compare.py "$@" --output /reports/perplexity-comparison-v1
 set -- /work/reports/hosted-v2 /work/reports/homelab-v2 /work/reports/openai-decisions-v2
 for model in $common gliner2.5-decide gliner2.5-multi-decide; do set -- "$@" "/work/reports/next-wave-v2/$model"; done
-"$bench_dir/tools/offline.sh" /work/tools/score_v2.py "$@" --pricing /work/pricing/2026-10-11.json --output /reports/perplexity-comparison-v2
+"$bench_dir/tools/offline.sh" /work/tools/score_v2.py "$@" --pricing /work/pricing/2026-10-11-perplexity.json --output /reports/perplexity-comparison-v2
 "$bench_dir/tools/offline.sh" /work/tools/next_report.py \
   --v1-summary /work/reports/perplexity-comparison-v1/summary.json \
   --v2-summary /work/reports/perplexity-comparison-v2/summary.json \

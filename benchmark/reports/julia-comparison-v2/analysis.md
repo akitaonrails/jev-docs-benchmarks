@@ -133,6 +133,6 @@ attributed to BF16 alone. We have not independently reproduced the publisher's o
 benchmark or determined why this checkpoint struggles with our request distribution.
 
 These are AI-authored synthetic stress cases without independent human adjudication.
-Narrow task-specific deployment deserves its own labeled evaluation. No new scored
-inference was done for Perplexity; its [installation request](../../../docs/perplexity-decider-availability.md)
-is pending separately.
+Narrow task-specific deployment deserves its own labeled evaluation. Perplexity was pending when this report was written. The later
+[Perplexity comparison](../perplexity-comparison-v2/analysis.md) contains the current
+twenty-configuration ranking. This report preserves the Julia run's dated scope.

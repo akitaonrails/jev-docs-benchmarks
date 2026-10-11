@@ -1,5 +1,22 @@
 # Does a larger decision model score better?
 
+## Perplexity update: 11 October 2026
+
+The [twenty-configuration comparison](../benchmark/reports/perplexity-comparison-v2/analysis.md)
+adds nominal 27B Perplexity at **99.4% compact**, ahead of the other tested entrants.
+Across **sixteen known-size configurations**, after excluding duplicate Flash and
+Julia deployments, Spearman is **0.946** and Pearson(log10 size, accuracy) **0.959**.
+Jev and OpenAI remain excluded because their verified sizes are unavailable.
+
+The positive association becomes slightly stronger (previous Spearman 0.935), but
+this is not a controlled scaling experiment. Perplexity and Clef are both nominal
+27B and score differently; 4B Jebadiah exceeds the tested 9B models on compact cases.
+Training, architecture, calibration, runtime and task distribution remain confounded.
+The new result shows that a larger open model can reach the top of this selected
+suite; it does not imply every size increase buys proportional improvement.
+
+Earlier sections below preserve the progression of the evidence.
+
 Checked 10 October 2026. **Our results show a positive association, but do not establish that size alone causes better decisions.** Same-family external results support scaling on unfamiliar tasks while also providing counterexamples on familiar tasks.
 
 **OpenAI follow-up:** the [17-configuration ranking](../benchmark/reports/openai-comparison-v2/ranking.md)

@@ -6,10 +6,11 @@ ranking on our fixtures. No new model was downloaded, installed or run for this 
 
 **Subsequent setup:** the homelab agent installed ten configurations after this review.
 See the [installation handoff](homelab-installation-report.md) and
-[frozen next-wave protocol](../benchmark/next-wave/README.md). Heavy-model candidates
-remain assessments, not installed entrants.
+[frozen next-wave protocol](../benchmark/next-wave/README.md). Julia CPU/GPU and
+Perplexity 27B have since been added; see the [latest measured comparison](../benchmark/reports/perplexity-comparison-v2/analysis.md).
+Other heavy-model candidates remain assessments.
 
-## Current homelab deployment
+## Initial homelab deployment
 
 The benchmark added **one Docker container**, `decision-models-systemone`, using
 `decision-models-systemone:local`, exposing `192.168.0.90:11436`. Its FastAPI/PyTorch
@@ -67,7 +68,7 @@ it is not raw accuracy and is not comparable to our percent-correct tables.
 | **Eikos** | MIT decision fine-tunes, 4B and 27B; trained in English and Portuguese. | **High: Eikos-4B** directly addresses our bilingual supplied-rule cases. |
 | **Surogate** | The serving/training engine; **Rune 26B-A4B v3** is its decision checkpoint. | Heavy-model phase, with runtime/format checks first. |
 | **Decider** | Here, **Mapika Decider**, distinct from Strands and Perplexity; a family including a 4B release. | **High: Mapika/decider-4b v2.1**. |
-| **PPLX** | **Perplexity pplx-decider-v1.1-27b**, Apache-2.0 weights. | **High for quality comparison**, conditional on memory/runtime fit. |
+| **PPLX** | **Perplexity pplx-decider-v1.1-27b**, Apache-2.0 weights. | **Installed** on ROCm; [protocol and status](perplexity-decider-availability.md). |
 | **Simple-Jev** | Featherless's open inference server over an existing compatible model; no new classifier head is required. | **High as a baseline**, with one fixed Qwen checkpoint and prompt policy. |
 | **Jebadiah** | Frontier Infra's Apache-2.0 4B/9B v2 and 27B decision models. | **High: 4B v2**, then 9B v2 to test scaling. |
 
@@ -164,8 +165,8 @@ Its native checkpoint uses a separate decision head and noncausal full-attention
 behavior, so an ordinary causal chat loader does not reproduce it. The card calls
 for roughly 49 GiB for weights plus working memory. Hub metadata returned
 `private=false`, `gated=false` during inspection, despite stale private-repository
-wording in its instructions. Anonymous weight access is now confirmed. ROCm compatibility still
-needs verification; see the [actual installation request](perplexity-decider-availability.md). [Model card](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b).
+wording in its instructions. Anonymous weight access is now confirmed. A native-API ROCm deployment now passes smoke and full input-encoding checks;
+see [installation and compatibility details](perplexity-decider-availability.md). [Model card](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b).
 
 **Kev-27B** and **full local Clef-27B** are also relevant. We already measured full
 Clef through Cloudflare, but have not compared its local deployment. These belong
@@ -173,9 +174,11 @@ in a dedicated capacity check, not alongside every resident 9B model.
 [Kev family](https://github.com/jaredpalmer/kev),
 [Clef weights](https://huggingface.co/Cloudflare/clef).
 
-Our benchmark container currently has a **40 GiB host-memory limit**, which is not
-the same measurement as its GPU-addressable budget. Weight loading and inference
-must fit both applicable limits; we have not measured this for 27B models. The homelab
+Several earlier benchmark containers have a **40 GiB host-memory limit**, separate
+from the GPU-addressable budget. Perplexity uses a **24 GiB host cap** and a strict
+direct-to-GPU loader after the standard loader exceeded that cap. See its
+[deployment evidence](../benchmark/perplexity/README.md). Weight loading and
+inference must fit both applicable limits. The homelab
 also shares physical memory with other services. “64 GiB GPU-addressable” must not
 be interpreted as 64 GiB of free, dedicated VRAM. Fit, peak memory, quantization and
 hardware availability need to be measured before scheduling 27B runs. A quantized model is a separately reported
@@ -220,8 +223,8 @@ Start with **Eikos-4B, Jebadiah-4B-v2, Mapika Decider-4B, Kev-4B, Simple-Jev ove
 fixed Qwen-4B, Laya multilingual, and the English/multilingual GLiNER2.5-Decide pair**.
 These eight configurations include the specifically requested families, a stock-model
 readout baseline, and the missing multilingual encoders. Then add Kev/Jebadiah 9B,
-Strands v21, Von, CLM and the Apache Nimble release. Prioritize PPLX among the heavy
-models, with Rune, Kev-27B and local full Clef following a memory/runtime check.
+Strands v21, Von, CLM and the Apache Nimble release. PPLX has since been installed for testing. Rune, Kev-27B and local full Clef
+still require separate memory/runtime checks.
 Treat GLiDE as an additional hosted competitor until downloadable weights are verified.
 
 Use the frozen v1/v2 fixtures unchanged first. Add a separately frozen representation

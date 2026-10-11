@@ -1,0 +1,131 @@
+{
+  "Known-size entrants, deduplicated deployments": {
+    "models": [
+      "pplx-decider-27b",
+      "clef",
+      "jebadiah-4b-v2",
+      "kev-9b",
+      "clef-flash",
+      "decider-4b",
+      "kev-4b",
+      "eikos-4b",
+      "simple-jev",
+      "kev-0.8b",
+      "gliner2.5-decide",
+      "laya",
+      "laya-typed",
+      "laya-multilingual",
+      "gliner2.5-multi-decide",
+      "julia-1"
+    ],
+    "nominal_billions": [
+      27,
+      27,
+      4,
+      9,
+      9,
+      4,
+      4,
+      4,
+      4,
+      0.8,
+      0.34,
+      0.421,
+      0.421,
+      0.322,
+      0.287,
+      0.1443
+    ],
+    "compact_accuracy": [
+      0.9940476190476191,
+      0.9583333333333334,
+      0.9047619047619048,
+      0.8809523809523809,
+      0.875,
+      0.875,
+      0.875,
+      0.8273809523809523,
+      0.7440476190476191,
+      0.6309523809523809,
+      0.5238095238095238,
+      0.42857142857142855,
+      0.42857142857142855,
+      0.36904761904761907,
+      0.3392857142857143,
+      0.31547619047619047
+    ],
+    "spearman": 0.9460323297592803,
+    "pearson_log_size": 0.9591759767540464
+  },
+  "SystemOne only, deduplicated deployments": {
+    "models": [
+      "pplx-decider-27b",
+      "clef",
+      "jebadiah-4b-v2",
+      "kev-9b",
+      "clef-flash",
+      "decider-4b",
+      "kev-4b",
+      "eikos-4b",
+      "simple-jev",
+      "kev-0.8b",
+      "laya",
+      "laya-typed",
+      "laya-multilingual",
+      "julia-1"
+    ],
+    "nominal_billions": [
+      27,
+      27,
+      4,
+      9,
+      9,
+      4,
+      4,
+      4,
+      4,
+      0.8,
+      0.421,
+      0.421,
+      0.322,
+      0.1443
+    ],
+    "compact_accuracy": [
+      0.9940476190476191,
+      0.9583333333333334,
+      0.9047619047619048,
+      0.8809523809523809,
+      0.875,
+      0.875,
+      0.875,
+      0.8273809523809523,
+      0.7440476190476191,
+      0.6309523809523809,
+      0.42857142857142855,
+      0.42857142857142855,
+      0.36904761904761907,
+      0.31547619047619047
+    ],
+    "spearman": 0.9321669298924873,
+    "pearson_log_size": 0.9590437383498353
+  },
+  "Kev size series": {
+    "models": [
+      "kev-0.8b",
+      "kev-4b",
+      "kev-9b"
+    ],
+    "nominal_billions": [
+      0.8,
+      4,
+      9
+    ],
+    "compact_accuracy": [
+      0.6309523809523809,
+      0.875,
+      0.8809523809523809
+    ],
+    "spearman": 1.0,
+    "pearson_log_size": 0.9509469121164662
+  }
+}

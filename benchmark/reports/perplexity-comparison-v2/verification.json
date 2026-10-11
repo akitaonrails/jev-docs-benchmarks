@@ -1,0 +1,75 @@
+{
+  "v1": {
+    "records": 544,
+    "unique_case_ids": 544,
+    "all_valid_single_attempt": true,
+    "all_token_counts_match_complete_encoding": true,
+    "previous_models_unchanged": true,
+    "archive_sha256_verified": true,
+    "served_models": [
+      "autojev-qwen3.8-27b"
+    ],
+    "original_correct": 129,
+    "all_variants_correct": 516,
+    "sensitivity_correct": {
+      "all": 508,
+      "originals": 127
+    },
+    "policy_pairs": [
+      {
+        "a": "incident_escalation-01",
+        "b": "incident_escalation-02",
+        "both_correct": true,
+        "changed": true
+      },
+      {
+        "a": "incident_escalation-03",
+        "b": "incident_escalation-04",
+        "both_correct": true,
+        "changed": true
+      },
+      {
+        "a": "incident_escalation-07",
+        "b": "incident_escalation-08",
+        "both_correct": true,
+        "changed": true
+      },
+      {
+        "a": "forecast_triage-01",
+        "b": "forecast_triage-02",
+        "both_correct": true,
+        "changed": true
+      },
+      {
+        "a": "forecast_triage-03",
+        "b": "forecast_triage-04",
+        "both_correct": true,
+        "changed": true
+      }
+    ],
+    "uncertainty_mae": {
+      "choice": 0.11400469864483946,
+      "noul": 0.3754453636703186
+    }
+  },
+  "v2": {
+    "records": 504,
+    "unique_case_ids": 504,
+    "all_valid_single_attempt": true,
+    "all_token_counts_match_complete_encoding": true,
+    "previous_models_unchanged": true,
+    "archive_sha256_verified": true,
+    "served_models": [
+      "autojev-qwen3.8-27b"
+    ],
+    "compact_correct": 167,
+    "compact_brier": 0.012406710766977684,
+    "compact_high_confidence_count": 161,
+    "compact_high_confidence_errors": 0,
+    "condition_correct": {
+      "compact": 167,
+      "examples": 167,
+      "distractors": 167
+    }
+  }
+}

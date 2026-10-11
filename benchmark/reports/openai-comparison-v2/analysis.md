@@ -167,5 +167,7 @@ smoke request contributes to accuracy.
   by aggregate accuracy alone.
 
 Julia-1 was pending when this OpenAI report was written. Its subsequent
-[completed GPU/CPU comparison](../julia-comparison-v2/analysis.md) contains the latest
-19-configuration ranking. This report preserves the OpenAI run's dated scope.
+[completed GPU/CPU comparison](../julia-comparison-v2/analysis.md) contains the subsequent
+19-configuration ranking. The [Perplexity addition](../perplexity-comparison-v2/analysis.md)
+now provides the latest twenty-configuration comparison. This report preserves
+the OpenAI run's dated scope.

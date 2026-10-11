@@ -1,0 +1,13 @@
+{
+  "image": "sha256:1ca2a7509863a7d1de08ad5ab5e002ca28cc0f878f648f4d971712dcb8916910",
+  "command": [
+    "env",
+    "AUTOJEV_CHECKPOINT=/models/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5",
+    "PYTHONPATH=/models/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5/source/src",
+    "python",
+    "/opt/pplx/run_pplx.py"
+  ],
+  "running_benchmark_containers": [
+    "dm-pplx-decider-27b"
+  ]
+}

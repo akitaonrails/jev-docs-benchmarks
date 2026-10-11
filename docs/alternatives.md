@@ -1,5 +1,11 @@
 # Jev alternatives: Clef, Laya, and the emerging ecosystem
 
+**Later measured alternative:** [Perplexity Decider 1.1 27B](../benchmark/reports/perplexity-comparison-v2/analysis.md)
+now leads the tested bilingual suite at 99.4% compact, using public weights locally.
+Its memory and ROCm latency costs are substantial. The original Jev/Laya/Clef
+research below retains its scope; use the linked twenty-configuration comparison
+for current measured rankings.
+
 Research snapshot: **3 October 2026**. This comparison uses the vendors' documentation, model cards, source repositories, and the open Decision Index suite. Decision Index numbers below are the publishers' results, not our own rerun. Our separate [measured benchmark](../benchmark/reports/comparison-v1/analysis.md) was completed on 9–10 October; the price row and short price descriptions below were refreshed on 10 October.
 
 ## Short conclusion

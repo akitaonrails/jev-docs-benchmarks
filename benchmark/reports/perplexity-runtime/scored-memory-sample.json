@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-10-11T03:32:44.446016+00:00",
+  "docker_stats": {
+    "BlockIO": "39.1GB / 29.3MB",
+    "CPUPerc": "199.15%",
+    "Container": "dm-pplx-decider-27b",
+    "ID": "2add4bd91ee2",
+    "MemPerc": "87.29%",
+    "MemUsage": "20.95GiB / 24GiB",
+    "Name": "dm-pplx-decider-27b",
+    "NetIO": "56.8kB / 31.7kB",
+    "PIDs": "116"
+  },
+  "system_vram_used_bytes": [
+    59514986496
+  ],
+  "note": "Point sample during scoring, not peak memory or isolated model VRAM."
+}

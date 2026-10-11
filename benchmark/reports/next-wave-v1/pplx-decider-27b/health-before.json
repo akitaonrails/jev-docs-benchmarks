@@ -1,0 +1,29 @@
+{
+  "status": "ok",
+  "model": "autojev-qwen3.8-27b",
+  "aliases": [
+    "autojev",
+    "autojev-qwen3.8-27b",
+    "jev-1.13.0",
+    "jev-latest",
+    "jev-preview",
+    "pplx-decider-v1.1-27b"
+  ],
+  "repo": "perplexity-ai/pplx-decider-v1.1-27b",
+  "revision": "6195aa55a72ae21e503c8a60198f7b390d42adb5",
+  "precision": "bf16 (reference)",
+  "attention_mode": "noncausal_full_attention",
+  "pooling": "last",
+  "temperature": 1.0087417621345625,
+  "max_length": 8192,
+  "max_options": 255,
+  "linear_attention_kernels": "transformers torch path (no flash-linear-attention)",
+  "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "hip": "7.2.53211-e1a6bc5663",
+  "gpu_mem_allocated_gb": 48.63,
+  "load_s": 29.5,
+  "device": "cuda:0",
+  "weight_dtype": "bfloat16",
+  "readout_dtype": "bfloat16",
+  "step": 2446
+}
