@@ -1,5 +1,28 @@
 # Technical and cost-benefit ranking
 
+## OpenAI Decisions: 11 October UTC update
+
+The [17-configuration comparison](../benchmark/reports/openai-comparison-v2/analysis.md)
+adds native OpenAI Decisions (`gpt-6-luna`). Compact bilingual accuracy is **90.5%**,
+tied with Jebadiah 4B; Jev remains **97.6%**, Clef **95.8%**. OpenAI improves to
+**93.1%** across all three input conditions, ahead of the tested local configurations.
+
+| Hosted entrant | Compact accuracy | Listed USD / 1,000 compact calls | Observed median / p95, all v2 |
+| --- | ---: | ---: | ---: |
+| Jev | 97.6% | $0.01916 | 255 / 304 ms |
+| Clef | 95.8% | $0.06309 | 302 / 683 ms |
+| OpenAI Decisions | 90.5% | $0.02331 | 222 / 274 ms |
+| Clef-flash | 87.5% | $0.00999 | 394 / 804 ms |
+
+Jev retains the best-supported paid quality/price balance on these cases. OpenAI
+has the lowest observed hosted latency and fits an existing OpenAI integration,
+but its threshold-policy errors require attention. Timing runs are on different
+dates, so the latency ordering is descriptive. Flash still minimizes listed API
+spend. Cloudflare allowances can change the incremental bill; local total costs
+remain unmeasured. See [usage reconciliation](../benchmark/reports/openai-comparison-v2/costs.md).
+
+Earlier sections below preserve their dated scope and figures.
+
 ## Expanded local comparison: 10 October update
 
 The [expanded analysis](../benchmark/reports/next-wave-comparison-v2/analysis.md)

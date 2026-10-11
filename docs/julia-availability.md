@@ -26,3 +26,11 @@ paired Jev run.
 
 Sources: [model card and Python API](https://huggingface.co/SupersonicLabs/Julia-1),
 [publisher's runtime documentation](https://huggingface.co/SupersonicLabs/Julia-1/blob/main/julia/router/README.md).
+
+## Installation request
+
+The user authorized delegation to the homelab agent. The
+[request and exact message ID](../benchmark/openai-decisions/julia-install-request.md)
+were sent to `default/homelab-docs`. It requests a pinned Docker service, native
+choice/Boolean smoke checks, explicit device/precision metadata and strict
+encoding checks on both frozen suites. The agent acknowledged receipt; installation and readiness checks are in progress.

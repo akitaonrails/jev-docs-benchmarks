@@ -1,0 +1,108 @@
+{
+  "pricing": {
+    "verified_on": "2026-10-11",
+    "currency": "USD",
+    "effective_change_time": "unknown",
+    "input_usd_per_million": {
+      "jev": "0.042",
+      "clef": "0.24",
+      "clef-flash": "0.038",
+      "openai-decisions": "0.10"
+    },
+    "output_usd_per_million": {
+      "jev": "0",
+      "clef": "0",
+      "clef-flash": "0",
+      "openai-decisions": "0"
+    },
+    "cloudflare_neurons_per_million_input": {
+      "clef": "21818",
+      "clef-flash": "3455"
+    },
+    "cloudflare_daily_free_neurons": 10000,
+    "cloudflare_usd_per_1000_neurons": "0.011",
+    "sources": {
+      "jev": "https://docs.typesafe.ai/models",
+      "clef": "https://developers.cloudflare.com/workers-ai/models/clef/",
+      "clef-flash": "https://developers.cloudflare.com/workers-ai/models/clef-flash/",
+      "cloudflare_billing": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "openai-decisions": "https://developers.openai.com/api/docs/guides/decisions"
+    },
+    "note": "OpenAI Decisions rate verified 11 October UTC (10 October Sao Paulo). Other rates carried forward from the 10 October audit, not freshly rechecked. OpenAI standard global endpoint: input only; regional and long-context multipliers may apply outside this short text suite. Values are list-price estimates, not invoices. Cloudflare neuron equivalents have rounding differences.",
+    "source_verified_on": {
+      "openai-decisions": "2026-10-11",
+      "jev": "2026-10-10",
+      "clef": "2026-10-10",
+      "clef-flash": "2026-10-10",
+      "cloudflare_billing": "2026-10-10"
+    }
+  },
+  "actual_invoice_verified": false,
+  "runs": {
+    "v1": {
+      "requests": 544,
+      "http_attempts": 544,
+      "known_input_tokens": 151230,
+      "records_without_usage": 0,
+      "prior_attempts_without_usage": 0,
+      "known_list_price_usd": "0.015123",
+      "raw_sha256": "3d5e0f937f9a591ebf6f0256f8192fca59a0590a0ca3faf2025ac4455aebe086"
+    },
+    "v2": {
+      "requests": 504,
+      "http_attempts": 504,
+      "known_input_tokens": 195963,
+      "records_without_usage": 0,
+      "prior_attempts_without_usage": 0,
+      "known_list_price_usd": "0.0195963",
+      "raw_sha256": "09a0edc729e40496e7103407a2962c18f5c6c3d5b2b8b1a555a7115e3532ffd7"
+    }
+  },
+  "compact_v2": {
+    "jev": {
+      "n": 168,
+      "correct": 164,
+      "input_tokens": 76623,
+      "list_price_usd": "0.003218166",
+      "usd_per_1000": "0.019155750",
+      "usd_per_1000_correct": "0.01962296341463414634146341463"
+    },
+    "clef": {
+      "n": 168,
+      "correct": 161,
+      "input_tokens": 44161,
+      "list_price_usd": "0.01059864",
+      "usd_per_1000": "0.06308714285714285714285714286",
+      "usd_per_1000_correct": "0.06583006211180124223602484472"
+    },
+    "clef-flash": {
+      "n": 168,
+      "correct": 147,
+      "input_tokens": 44161,
+      "list_price_usd": "0.001678118",
+      "usd_per_1000": "0.009988797619047619047619047619",
+      "usd_per_1000_correct": "0.01141576870748299319727891156"
+    },
+    "openai-decisions": {
+      "n": 168,
+      "correct": 152,
+      "input_tokens": 39169,
+      "list_price_usd": "0.0039169",
+      "usd_per_1000": "0.02331488095238095238095238095",
+      "usd_per_1000_correct": "0.02576907894736842105263157895"
+    }
+  },
+  "successful_smoke": {
+    "requests": 1,
+    "questions": 2,
+    "input_tokens": 274,
+    "list_price_usd": "0.0000274"
+  },
+  "initial_access_probe": {
+    "status": 429,
+    "error_code": "credit_balance_exhausted",
+    "reported_usage": null,
+    "note": "Rejected before funding; no metered usage was returned."
+  },
+  "new_known_list_price_usd": "0.0347467"
+}

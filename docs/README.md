@@ -32,8 +32,10 @@ The [v2 protocol](../benchmark/expansion-v2/README.md) adds 84 new scenario fami
 ## Additional models
 
 [OpenAI Decisions integration](../benchmark/openai-decisions/README.md) records the
-native adapter, pricing and execution protocol. The initial access probe returned
-exhausted API credit; funding resolved it and the benchmark is in progress.
+native adapter, pricing and execution protocol. After the account was funded,
+all 1,048 scored requests completed. See the [17-configuration comparison](../benchmark/reports/openai-comparison-v2/analysis.md),
+[ranking](../benchmark/reports/openai-comparison-v2/ranking.md) and
+[$0.03475 usage reconciliation](../benchmark/reports/openai-comparison-v2/costs.md).
 
 [Julia-1 availability](julia-availability.md) confirms downloadable weights and a
 compatible local interface; no Julia inference has been run here.

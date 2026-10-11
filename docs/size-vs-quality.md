@@ -2,6 +2,12 @@
 
 Checked 10 October 2026. **Our results show a positive association, but do not establish that size alone causes better decisions.** Same-family external results support scaling on unfamiliar tasks while also providing counterexamples on familiar tasks.
 
+**OpenAI follow-up:** the [17-configuration ranking](../benchmark/reports/openai-comparison-v2/ranking.md)
+adds a 90.5% compact result for `gpt-6-luna` Decisions, but its verified parameter
+count is unavailable in the cited API material. It is excluded from correlations,
+like Jev. The expanded known-size Spearman remains **0.920**; this addition provides
+no new size-versus-quality evidence. Julia-1 is not measured yet.
+
 ## Initial six-entrant run: a strong-looking correlation from a very small sample
 
 Use v2 compact cases only: 84 English and 84 matched Portuguese cases per entrant. Count hosted Clef-flash once, rather than treating its local deployment as another independent model. Exclude Jev from the size calculation because we have no verified parameter count.

@@ -10,8 +10,12 @@ The first independent access probe returned HTTP 429,
 `insufficient_quota` / `credit_balance_exhausted`. The account was then funded;
 the repeated independent probe returned HTTP 200 with valid choice and predicate
 answers. Both are retained in [runtime evidence](../reports/openai-decisions-runtime/).
-No scored calls had been made when this protocol was frozen. Codex subscription
-access is separate from Platform API credentials and billing.
+The adapter/protocol was frozen in commit `e090f82` before scored inference.
+Both suites have now completed: **544 v1 + 504 v2 requests, all valid, no retries**.
+See the [analysis](../reports/openai-comparison-v2/analysis.md),
+[ranking](../reports/openai-comparison-v2/ranking.md), and
+[cost reconciliation](../reports/openai-comparison-v2/costs.md).
+Codex subscription access is separate from Platform API credentials and billing.
 
 ## Mapping fixed before inference
 
@@ -45,7 +49,8 @@ archives; they are not rerun or rescored with changed labels.
 Use the existing `jev-benchmark-runner` image and export a funded `OPENAI_API_KEY`.
 No host Python packages or local model installations are needed. The host shell
 must have the key exported; no credential values belong in commands or reports.
-From the repository root:
+Use a fresh checkout/results directory for a new run; the standard report destinations
+below are overwritten by scoring. From the repository root:
 
 ```sh
 # Independent access/contract check; use a fresh output file after the failed probe.

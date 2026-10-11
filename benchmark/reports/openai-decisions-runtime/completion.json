@@ -1,0 +1,18 @@
+{
+  "protocol_commit": "e090f82",
+  "scored_requests": 1048,
+  "valid": 1048,
+  "errors": 0,
+  "attempts": 1048,
+  "first_timestamp": "2026-10-11T02:42:33.436021+00:00",
+  "last_timestamp": "2026-10-11T02:46:42.276153+00:00",
+  "served_models": [
+    "gpt-6-luna"
+  ],
+  "known_new_list_price_usd": "0.0347467",
+  "includes_successful_smoke": true,
+  "invoice_verified": false,
+  "gpu_used": false,
+  "previous_v1_entrants_unchanged": 14,
+  "previous_v2_entrants_unchanged": 16
+}

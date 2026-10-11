@@ -1,7 +1,7 @@
 # Jev and open decision-model benchmarks
 
 **Measure how reliably decision models apply supplied rules, how their probabilities
-behave, and what those decisions cost.** Compare TypeSafe Jev with hosted and local
+behave, and what those decisions cost.** Compare TypeSafe Jev and OpenAI Decisions with hosted and local
 Clef/Clef-flash, Laya, Kev, Eikos, Jebadiah, Mapika Decider, Simple-Jev and GLiNER,
 using frozen inputs, inspectable expected answers, raw
 response archives, and reproducible scoring.
@@ -16,12 +16,12 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **New integrations:** [OpenAI Decisions protocol and access status](benchmark/openai-decisions/README.md)
-  (access verified; benchmark run in progress) and
-  [Julia-1 availability](docs/julia-availability.md) (downloadable CPU-capable model, not yet tested).
-- **Latest results:** [expanded open-model analysis](benchmark/reports/next-wave-comparison-v2/analysis.md),
-  [ranking and size comparison](benchmark/reports/next-wave-comparison-v2/ranking.md),
-  and [task/language tables](benchmark/reports/next-wave-comparison-v2/results.md).
+- **Latest results:** [OpenAI Decisions comparison](benchmark/reports/openai-comparison-v2/analysis.md),
+  [17-configuration ranking](benchmark/reports/openai-comparison-v2/ranking.md),
+  [task/language tables](benchmark/reports/openai-comparison-v2/results.md), and
+  [test cost](benchmark/reports/openai-comparison-v2/costs.md).
+- **Previous local expansion:** [16-configuration analysis](benchmark/reports/next-wave-comparison-v2/analysis.md).
+- **Upcoming local model:** [Julia-1 availability and installation status](docs/julia-availability.md).
 - **First six models:** [initial English / PT-BR analysis](benchmark/reports/comparison-v2/analysis.md).
 - **Original policy suite:** [hosted versus local analysis](benchmark/reports/comparison-v1/analysis.md)
   and [complete six-model tables](benchmark/reports/comparison-v1/results.md).
@@ -34,6 +34,32 @@ that one model is universally best. See [methodology and limitations](#methodolo
 - **Open-model coverage:** [researched shortlist](docs/next-models.md) and
   [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
+
+## OpenAI Decisions: native API comparison
+
+**1,048 new scored requests, all valid, no retries.** The comparison now contains
+17 bilingual configurations and 15 original-policy configurations. OpenAI uses
+`gpt-6-luna` through the native Decisions endpoint, with the same frozen rules,
+option descriptions and evidence. The new usage cost is **$0.03475**, including
+the successful independent smoke test; the $20 account deposit is prepaid credit.
+
+| Model | Compact EN + PT-BR | All three v2 conditions | Listed USD / 1,000 compact calls |
+| --- | ---: | ---: | ---: |
+| Jev | 97.6% | 98.2% | $0.01916 |
+| Clef | 95.8% | 96.4% | $0.06309 |
+| **OpenAI Decisions** | **90.5%** | **93.1%** | **$0.02331** |
+| Jebadiah 4B v2, local | 90.5% | 86.5% | Local cost unmeasured |
+| Clef-flash, hosted | 87.5% | 87.1% | $0.00999 |
+
+OpenAI has the lowest observed hosted v2 median/p95 latency (**222/274 ms**), but
+the timed runs occurred on different dates. Jev retains the stronger measured
+quality/price balance. OpenAI's predicate probabilities preserve known random-event
+uncertainty well, while its choice probabilities remain biased on those probes.
+Exact-threshold rules and the critical data-loss support ticket still expose errors.
+
+[Full analysis and limitations](benchmark/reports/openai-comparison-v2/analysis.md),
+[v1 policy tables](benchmark/reports/openai-comparison-v1/results.md),
+[native adapter and reproduction](benchmark/openai-decisions/README.md).
 
 ## Expanded comparison: ten additional local configurations
 

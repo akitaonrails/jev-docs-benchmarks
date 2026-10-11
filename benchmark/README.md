@@ -8,6 +8,15 @@ Laya/Laya-typed/Clef-flash on the AMD homelab. [Protocol](PROTOCOL.md) defines t
 metrics and limitations before inference. [Scenarios](datasets/scenarios.py) are the
 readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation artifact.
 
+## OpenAI Decisions extension
+
+The [native endpoint protocol](openai-decisions/README.md) preserves the frozen
+state, instructions and option descriptions and maps Noul probes to predicates.
+See the [updated comparison](reports/openai-comparison-v2/analysis.md),
+[ranking](reports/openai-comparison-v2/ranking.md), and
+[usage reconciliation](reports/openai-comparison-v2/costs.md).
+Docker scripts run the API client and score against all existing archives.
+
 ## First hosted run
 
 [Findings and interpretation](reports/hosted-v1/analysis.md) · [Full tables](reports/hosted-v1/results.md) · [Machine-readable metrics](reports/hosted-v1/summary.json). All 1,632 planned requests completed. Jev and Clef tied at 97.2% across variants after the explicitly disclosed gold-ambiguity exclusions; probability probes exposed different weaknesses by primitive.

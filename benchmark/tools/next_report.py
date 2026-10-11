@@ -95,6 +95,8 @@ def main():
     families=sorted({c['family'] for c in compact_cases})
     pairs={}
     comparisons=[(m,'jev') for m in ordered if m!='jev'] + [('kev-4b','kev-0.8b'),('kev-9b','kev-4b')]
+    if 'openai-decisions' in ordered:
+        comparisons += [('openai-decisions', m) for m in ['clef','clef-flash','jebadiah-4b-v2'] if m in ordered]
     lines += ['', '## Paired compact differences, clustered by authored family', '',
               'English and Portuguese observations are kept together when bootstrapping the 84 families. Intervals are exploratory and not adjusted for multiple comparisons.', '',
               '| Comparison | Difference (points) | Family bootstrap 95% (points) |', '| --- | ---: | --- |']

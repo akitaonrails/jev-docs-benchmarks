@@ -66,3 +66,17 @@ Simple-Jev configuration trails the stronger decision models on v2 while matchin
 Jebadiah on v1 originals. Multilingual Laya is fast but remains weak on this
 supplied-rule workload. This broadens the candidate shortlist; it does not create
 a portfolio-wide need for a classifier or establish local dollar savings.
+
+## OpenAI Decisions follow-up
+
+The [new native API comparison](../benchmark/reports/openai-comparison-v2/analysis.md)
+places OpenAI at **90.5% compact bilingual accuracy**, tied with local Jebadiah 4B,
+below Jev (97.6%) and Clef (95.8%). It is stronger with examples and distractors,
+reaching 93.1% overall, and has the lowest observed hosted median latency (222 ms).
+Its measured compact list cost is $0.02331/1,000 calls, versus Jev's $0.01916.
+The current quality/price recommendation remains Jev; an OpenAI integration may
+still be useful for specific tasks. Exact thresholds and Boolean conditions remain
+visible failure modes. Subscription access to Codex does not fund these API calls.
+
+[Julia-1](julia-availability.md) is available as a much smaller local model; its
+Docker installation has been delegated to the homelab agent. It is not ranked yet.

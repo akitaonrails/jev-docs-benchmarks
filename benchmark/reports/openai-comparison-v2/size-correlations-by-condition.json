@@ -1,0 +1,44 @@
+{
+  "compact": {
+    "Known-size entrants, deduplicated Flash": {
+      "spearman": 0.9197627746947248,
+      "pearson_log_size": 0.9479632456867362
+    },
+    "SystemOne only, deduplicated Flash": {
+      "spearman": 0.8921772611349805,
+      "pearson_log_size": 0.9430208452230452
+    },
+    "Kev size series": {
+      "spearman": 1.0,
+      "pearson_log_size": 0.9509469121164662
+    }
+  },
+  "examples": {
+    "Known-size entrants, deduplicated Flash": {
+      "spearman": 0.9562255979500007,
+      "pearson_log_size": 0.9701515535345753
+    },
+    "SystemOne only, deduplicated Flash": {
+      "spearman": 0.9513637385782155,
+      "pearson_log_size": 0.9631965591107187
+    },
+    "Kev size series": {
+      "spearman": 1.0,
+      "pearson_log_size": 0.9993276662597749
+    }
+  },
+  "distractors": {
+    "Known-size entrants, deduplicated Flash": {
+      "spearman": 0.9134465684343787,
+      "pearson_log_size": 0.9592309803634567
+    },
+    "SystemOne only, deduplicated Flash": {
+      "spearman": 0.9114138317912648,
+      "pearson_log_size": 0.9698899839187272
+    },
+    "Kev size series": {
+      "spearman": 1.0,
+      "pearson_log_size": 0.9946547880847434
+    }
+  }
+}

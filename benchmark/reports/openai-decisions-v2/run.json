@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-10-11T02:42:33.220221+00:00",
+  "config": {
+    "dataset_sha256": "a89ae706767f5d7f79e4ea2898e39065e6e95d3d7fe3e5c71517514bceb7420a",
+    "models": [
+      "openai-decisions"
+    ],
+    "limit": 0,
+    "seed": 20261009,
+    "max_attempts": 3,
+    "timeout_seconds": 45,
+    "dataset_directory": "/work/expansion-v2",
+    "estimated_cost_cap_usd": 5.0,
+    "runner_sha256": "53dc5e91400fd4f47a6ca60718291c06d3fd1d1c0b0c6b129f35a50546de9877",
+    "openai_adapter_sha256": "2ec3462c430f21070508b31fd0a00ed2069f90b35aa27daba219bfc7f398b30c"
+  }
+}
