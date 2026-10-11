@@ -1,5 +1,11 @@
 # Technical and cost-benefit ranking
 
+**Julia update:** the [19-configuration analysis](../benchmark/reports/julia-comparison-v2/analysis.md)
+adds GPU and four-thread CPU results. Both score 31.5% compact. GPU median/p95
+is 12/25 ms; CPU 71/197 ms. The 144.3M checkpoint is small and fast, but these
+policy errors keep the existing quality recommendations unchanged. Local total
+cost remains unmeasured.
+
 ## OpenAI Decisions: 11 October UTC update
 
 The [17-configuration comparison](../benchmark/reports/openai-comparison-v2/analysis.md)

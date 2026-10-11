@@ -164,8 +164,8 @@ Its native checkpoint uses a separate decision head and noncausal full-attention
 behavior, so an ordinary causal chat loader does not reproduce it. The card calls
 for roughly 49 GiB for weights plus working memory. Hub metadata returned
 `private=false`, `gated=false` during inspection, despite stale private-repository
-wording in its instructions. Actual artifact access and ROCm compatibility still
-need verification. [Model card](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b).
+wording in its instructions. Anonymous weight access is now confirmed. ROCm compatibility still
+needs verification; see the [actual installation request](perplexity-decider-availability.md). [Model card](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b).
 
 **Kev-27B** and **full local Clef-27B** are also relevant. We already measured full
 Clef through Cloudflare, but have not compared its local deployment. These belong

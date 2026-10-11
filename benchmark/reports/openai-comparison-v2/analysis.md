@@ -166,8 +166,6 @@ smoke request contributes to accuracy.
   sensitivity analysis still applies. High-stakes error costs are not captured
   by aggregate accuracy alone.
 
-Julia-1 is a separate upcoming local entrant. Its
-[installation request](../../openai-decisions/julia-install-request.md) was sent
-and acknowledged; it has no measured ranking yet. The earlier
-[16-configuration analysis](../next-wave-comparison-v2/analysis.md) remains a dated
-snapshot, with the detailed small-model and deployment tradeoffs.
+Julia-1 was pending when this OpenAI report was written. Its subsequent
+[completed GPU/CPU comparison](../julia-comparison-v2/analysis.md) contains the latest
+19-configuration ranking. This report preserves the OpenAI run's dated scope.

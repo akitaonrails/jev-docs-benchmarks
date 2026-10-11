@@ -293,3 +293,30 @@ See the [native Decisions protocol and Docker commands](../benchmark/openai-deci
 It uses `OPENAI_API_KEY` with Platform API billing, separately from Codex subscription
 access. A funded API account is required before running the smoke check and frozen suites. No additional host
 packages or GPU are needed. Earlier model archives are reused when scoring.
+
+## Julia GPU and CPU reproduction
+
+See the [frozen Julia protocol](../benchmark/julia/README.md) and
+[captured server setup](../benchmark/julia/server/). The existing homelab services
+are `julia-1` (11447) and `julia-1-cpu` (11448), in
+`/var/opt/docker/ai/decision-models-next`. They share read-only weights and a pinned
+image. CPU has no GPU device mounts and uses four threads. GPU keeps FP32 weights
+with native BF16 autocast. The captured Compose JSON is valid Compose input;
+it references the homelab's external model volume and local image prerequisites.
+The Dockerfile's ROCm base is homelab-specific, so a different build is a new deployment.
+
+```sh
+# Offline recomputation; no server or provider required:
+benchmark/julia/score.sh
+python benchmark/julia/analyze.py
+# Existing homelab deployment; these start services and consume compute:
+python benchmark/julia/preflight.py
+python benchmark/next-wave/run.py --models julia-1 julia-1-cpu --datasets v2 v1 --execute
+```
+
+Run orchestration checks for competing benchmark containers, starts one service,
+archives results and stops it in a finally block. Do not run against output directories
+containing an earlier attempt; preserve the published archives. Containers can also
+be stopped with `sudo docker compose stop julia-1 julia-1-cpu` from the server's
+Compose directory. Stopping retains the weights. The [completed comparison](../benchmark/reports/julia-comparison-v2/analysis.md)
+records both deployments separately.

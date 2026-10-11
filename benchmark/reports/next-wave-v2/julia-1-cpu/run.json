@@ -1,0 +1,56 @@
+{
+  "started_at": "2026-10-11T02:53:37.686754+00:00",
+  "config": {
+    "models": [
+      "julia-1-cpu"
+    ],
+    "limit": 0,
+    "dataset_sha256": "a89ae706767f5d7f79e4ea2898e39065e6e95d3d7fe3e5c71517514bceb7420a",
+    "dataset_directory": "/work/expansion-v2",
+    "registry": {
+      "port": 11448,
+      "selector": "julia-1",
+      "interface": "systemone",
+      "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+      "command": [
+        "uvicorn",
+        "julia_app:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ],
+      "expected_server": {
+        "revision": "a85b127321d580d65176c89ced8273f305745d85",
+        "device": "cpu",
+        "weight_dtype": "float32",
+        "precision": "fp32",
+        "max_length": 8192,
+        "head_length": 512,
+        "strict_encoding": true,
+        "option_token_limit": 48,
+        "cpu_threads": 4
+      }
+    },
+    "runner_sha256": "fbacb4d5851fa7613fe9e4c712da27b5b42af62ca55f9e180ec79d035d500bfa",
+    "contract_sha256": "3dab45dc4478d68af860d776d0f5284cba1bea257a58e328b853ef8591ae3c24",
+    "shared_runner_sha256": "53dc5e91400fd4f47a6ca60718291c06d3fd1d1c0b0c6b129f35a50546de9877",
+    "max_attempts": 1,
+    "seed": 20261010,
+    "probability_semantics": "native-distribution"
+  },
+  "provenance": {
+    "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+    "command": [
+      "uvicorn",
+      "julia_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "running_benchmark_containers": [
+      "dm-julia-1-cpu"
+    ]
+  }
+}

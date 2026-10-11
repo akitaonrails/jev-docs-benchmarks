@@ -8,6 +8,14 @@ Laya/Laya-typed/Clef-flash on the AMD homelab. [Protocol](PROTOCOL.md) defines t
 metrics and limitations before inference. [Scenarios](datasets/scenarios.py) are the
 readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation artifact.
 
+## Julia GPU/CPU extension
+
+[Completed 19-configuration analysis](reports/julia-comparison-v2/analysis.md),
+[ranking](reports/julia-comparison-v2/ranking.md), and
+[frozen deployment protocol](julia/README.md). Both native deployments completed
+1,048 scored requests each. Offline reproduction: `benchmark/julia/score.sh`,
+then `python benchmark/julia/analyze.py`.
+
 ## OpenAI Decisions extension
 
 The [native endpoint protocol](openai-decisions/README.md) preserves the frozen

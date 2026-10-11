@@ -1,0 +1,42 @@
+{
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "probabilities": {
+        "billing": 0.999967900054846,
+        "technical": 3.2099945153886266e-05
+      },
+      "choice": "billing",
+      "max_probability": 0.999967900054846
+    }
+  },
+  "usage": {
+    "input_tokens": 26,
+    "per_question_tokens": {
+      "decision": 26
+    },
+    "output_tokens": 0,
+    "state_truncated": false,
+    "options_truncated": false
+  },
+  "server": {
+    "model": "julia-1",
+    "repo": "SupersonicLabs/Julia-1",
+    "revision": "a85b127321d580d65176c89ced8273f305745d85",
+    "ready": true,
+    "device": "cpu",
+    "weight_dtype": "float32",
+    "precision": "fp32",
+    "max_length": 8192,
+    "head_length": 512,
+    "strict_encoding": true,
+    "option_token_limit": 48,
+    "options_per_question": "2-20",
+    "cpu_threads": 4,
+    "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+    "hip": "7.2.53211-e1a6bc5663",
+    "load_s": 4.155,
+    "cold": false,
+    "predict_s": 0.017
+  }
+}

@@ -1,5 +1,11 @@
 # Model quality and deployment tradeoffs
 
+**Julia update:** the [19-configuration analysis](../benchmark/reports/julia-comparison-v2/analysis.md)
+adds GPU and four-thread CPU results. Both score 31.5% compact. GPU median/p95
+is 12/25 ms; CPU 71/197 ms. The 144.3M checkpoint is small and fast, but these
+policy errors keep the existing quality recommendations unchanged. Local total
+cost remains unmeasured.
+
 Updated 10 October 2026. Read alongside the [bilingual results](../benchmark/reports/comparison-v2/analysis.md) and [cost comparison](cost-benefit-ranking.md).
 
 ## What the ranking means

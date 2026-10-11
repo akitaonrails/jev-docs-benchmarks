@@ -16,12 +16,12 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **Latest results:** [OpenAI Decisions comparison](benchmark/reports/openai-comparison-v2/analysis.md),
-  [17-configuration ranking](benchmark/reports/openai-comparison-v2/ranking.md),
-  [task/language tables](benchmark/reports/openai-comparison-v2/results.md), and
-  [test cost](benchmark/reports/openai-comparison-v2/costs.md).
+- **Latest results:** [Julia GPU/CPU comparison](benchmark/reports/julia-comparison-v2/analysis.md),
+  [19-configuration ranking](benchmark/reports/julia-comparison-v2/ranking.md),
+  [task/language tables](benchmark/reports/julia-comparison-v2/results.md), and
+  [hosted test cost](benchmark/reports/openai-comparison-v2/costs.md).
 - **Previous local expansion:** [16-configuration analysis](benchmark/reports/next-wave-comparison-v2/analysis.md).
-- **Upcoming local model:** [Julia-1 availability and installation status](docs/julia-availability.md).
+- **Upcoming local model:** [Perplexity Decider 1.1 27B installation request](docs/perplexity-decider-availability.md).
 - **First six models:** [initial English / PT-BR analysis](benchmark/reports/comparison-v2/analysis.md).
 - **Original policy suite:** [hosted versus local analysis](benchmark/reports/comparison-v1/analysis.md)
   and [complete six-model tables](benchmark/reports/comparison-v1/results.md).
@@ -35,9 +35,23 @@ that one model is universally best. See [methodology and limitations](#methodolo
   [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
 
+## Julia-1: GPU and CPU results
+
+**2,096 new scored requests, all valid and untruncated.** The comparison now has
+19 bilingual configurations and 17 original-policy configurations. Julia's 144.3M
+checkpoint scores **31.5% compact bilingual accuracy** on both GPU and CPU, close
+to the suite's **31.0% uniform-random baseline**. GPU median/p95 is **12/25 ms**;
+four-thread CPU is **71/197 ms**. Low resource requirements and speed are useful,
+but these results do not support autonomous difficult policy decisions.
+
+Jev (**97.6%**) and Clef (**95.8%**) still lead, followed by the OpenAI/Jebadiah
+compact tie (**90.5%**). No new hosted charges; local compute cost is unmeasured.
+[Analysis, cost-benefit and limitations](benchmark/reports/julia-comparison-v2/analysis.md),
+[reproduction protocol](benchmark/julia/README.md).
+
 ## OpenAI Decisions: native API comparison
 
-**1,048 new scored requests, all valid, no retries.** The comparison now contains
+**1,048 new scored requests, all valid, no retries.** At this earlier stage the comparison contained
 17 bilingual configurations and 15 original-policy configurations. OpenAI uses
 `gpt-6-luna` through the native Decisions endpoint, with the same frozen rules,
 option descriptions and evidence. The new usage cost is **$0.03475**, including

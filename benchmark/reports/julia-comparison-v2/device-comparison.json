@@ -1,0 +1,20 @@
+{
+  "v1": {
+    "previous_model_summaries_unchanged": true,
+    "valid_single_attempt_requests_each": 544,
+    "identical_wire_request_hashes": true,
+    "choice_requests_including_uncertainty_probes": 532,
+    "choice_agreement": 517,
+    "per_option_mean_absolute_probability_difference": 0.015618146314556778,
+    "per_option_max_absolute_probability_difference": 0.2382296542236672
+  },
+  "v2": {
+    "previous_model_summaries_unchanged": true,
+    "valid_single_attempt_requests_each": 504,
+    "identical_wire_request_hashes": true,
+    "choice_requests_including_uncertainty_probes": 504,
+    "choice_agreement": 488,
+    "per_option_mean_absolute_probability_difference": 0.014057126053928058,
+    "per_option_max_absolute_probability_difference": 0.2840697784793974
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+  "command": [
+    "uvicorn",
+    "julia_app:app",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000"
+  ],
+  "running_benchmark_containers": [
+    "dm-julia-1-cpu"
+  ]
+}

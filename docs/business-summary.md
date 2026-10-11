@@ -78,5 +78,8 @@ The current quality/price recommendation remains Jev; an OpenAI integration may
 still be useful for specific tasks. Exact thresholds and Boolean conditions remain
 visible failure modes. Subscription access to Codex does not fund these API calls.
 
-[Julia-1](julia-availability.md) is available as a much smaller local model; its
-Docker installation has been delegated to the homelab agent. It is not ranked yet.
+[Julia-1 GPU/CPU results](../benchmark/reports/julia-comparison-v2/analysis.md) add
+two completed deployments of the 144.3M model: both score 31.5% compact, close to
+the 31.0% random baseline. GPU median latency is 12 ms; four-thread CPU is 71 ms.
+Speed and small storage do not offset these policy errors. The quality/price
+recommendations above remain unchanged; local compute cost is unmeasured.

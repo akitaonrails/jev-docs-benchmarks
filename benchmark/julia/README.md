@@ -67,3 +67,10 @@ and maintenance cost are unmeasured; no hosted per-token price is assigned.
 The image recipe refers to a homelab ROCm base image and is not an exact portable
 rebuild by itself. Use the captured image digest and resolved dependency versions
 for provenance, or build a compatible environment and label it a new deployment.
+
+## Completed results
+
+[Analysis and 19-configuration ranking](../reports/julia-comparison-v2/analysis.md):
+2,096 valid scored requests, all untruncated. Both configurations score 31.5%
+compact. Run `python benchmark/julia/analyze.py` after scoring for paired-device
+diagnostics and unchanged-baseline verification.

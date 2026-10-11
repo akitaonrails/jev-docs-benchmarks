@@ -6,7 +6,12 @@ Checked 10 October 2026. **Our results show a positive association, but do not e
 adds a 90.5% compact result for `gpt-6-luna` Decisions, but its verified parameter
 count is unavailable in the cited API material. It is excluded from correlations,
 like Jev. The expanded known-size Spearman remains **0.920**; this addition provides
-no new size-versus-quality evidence. Julia-1 is not measured yet.
+no new size-versus-quality evidence at that stage.
+
+**Julia follow-up:** [GPU/CPU testing](../benchmark/reports/julia-comparison-v2/analysis.md)
+adds the 144.3M checkpoint at 31.5% compact. Counting its GPU configuration once
+and excluding duplicate deployments yields n=15, Spearman **0.935**,
+Pearson(log10 size, accuracy) **0.957**. This remains descriptive, not causal.
 
 ## Initial six-entrant run: a strong-looking correlation from a very small sample
 

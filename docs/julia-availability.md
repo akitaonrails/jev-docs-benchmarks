@@ -1,6 +1,7 @@
 # Julia-1 availability
 
-Checked 2026-10-11 UTC / 2026-10-10 São Paulo. **Available for local testing; not yet tested here.**
+Checked 2026-10-11 UTC / 2026-10-10 São Paulo. **Tested on GPU and CPU: 1,048 valid requests each.**
+See the [completed analysis and ranking](../benchmark/reports/julia-comparison-v2/analysis.md).
 
 The project is **Julia-1 by Supersonic Labs** (`@supersonicai`). Its published
 checkpoint has **144.3M parameters**, derives from multilingual mmBERT-small,
@@ -17,8 +18,8 @@ For our benchmark, use an isolated Docker runtime, pin code and weights, preserv
 criteria including Boolean descriptions, and enable strict encoding. Inspect
 question/option token budgets before inference: overflow must not silently discard
 policy. Keep CPU latency separate from the existing homelab GPU measurements.
-This would extend our resource-constrained model comparison; no score or ranking
-is assigned until we run it.
+Both deployments scored 31.5% on compact bilingual cases. The
+[protocol](../benchmark/julia/README.md) records exact precision and setup.
 
 The published Portuguese evaluation is **pt-PT**, not evidence for our PT-BR cases.
 Its reported Jev comparisons use supplied reference values rather than a new
@@ -33,4 +34,5 @@ The user authorized delegation to the homelab agent. The
 [request and exact message ID](../benchmark/openai-decisions/julia-install-request.md)
 were sent to `default/homelab-docs`. It requests a pinned Docker service, native
 choice/Boolean smoke checks, explicit device/precision metadata and strict
-encoding checks on both frozen suites. The agent acknowledged receipt; installation and readiness checks are in progress.
+encoding checks on both frozen suites. Installation, independent readiness checks and both scored runs are complete.
+Both containers were stopped afterward; weights are retained.
