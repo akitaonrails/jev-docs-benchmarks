@@ -16,6 +16,9 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
+- **New integrations:** [OpenAI Decisions protocol and access status](benchmark/openai-decisions/README.md)
+  (access verified; benchmark run in progress) and
+  [Julia-1 availability](docs/julia-availability.md) (downloadable CPU-capable model, not yet tested).
 - **Latest results:** [expanded open-model analysis](benchmark/reports/next-wave-comparison-v2/analysis.md),
   [ranking and size comparison](benchmark/reports/next-wave-comparison-v2/ranking.md),
   and [task/language tables](benchmark/reports/next-wave-comparison-v2/results.md).

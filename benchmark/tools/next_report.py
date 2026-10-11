@@ -24,19 +24,22 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', default='/reports/next-wave-comparison-v2')
     parser.add_argument('--v1-output', default='/reports/next-wave-comparison-v1')
+    parser.add_argument('--v2-summary', default=str(ROOT/'reports/next-wave-comparison-v2/summary.json'))
+    parser.add_argument('--v1-summary', default=str(ROOT/'reports/next-wave-comparison-v1/summary.json'))
+    parser.add_argument('--extra-v2-archive', action='append', default=[])
+    parser.add_argument('--extra-v1-archive', action='append', default=[])
     args = parser.parse_args()
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
-    folder = ROOT/'reports/next-wave-comparison-v2'
-    v2 = json.loads((folder/'summary.json').read_text())['models']
-    v1 = json.loads((ROOT/'reports/next-wave-comparison-v1/summary.json').read_text())['models']
+    v2 = json.loads(Path(args.v2_summary).read_text())['models']
+    v1 = json.loads(Path(args.v1_summary).read_text())['models']
     def compact(m):
         g = v2[m]['groups']
         return sum(g[f'all/{lang}/compact']['correct'] for lang in ['en','pt-BR']) / 168
     ordered = sorted(v2, key=lambda m:(-compact(m),m))
     lines = ['# Expanded ranking and size analysis', '',
              'Descriptive ordering on 168 compact bilingual cases per entrant. Adjacent ranks are not significance claims. GLiNER is a native-interface mapping track; probability metrics are unavailable. Sizes are nominal model/backbone labels, not exact parameter audits.', '',
-             '| Model | Nominal B | Compact EN / PT-BR | Combined compact | All 504 | v1 originals | Warm median / p95 |',
+             '| Model | Nominal B | Compact EN / PT-BR | Combined compact | All 504 | v1 originals | Median / p95 |',
              '| --- | ---: | ---: | ---: | ---: | ---: | ---: |']
     for model in ordered:
         g=v2[model]['groups']; r=v2[model]['runtime']
@@ -68,7 +71,7 @@ def main():
             ys=[sum(v2[m]['groups'][f'all/{lang}/{cond}']['correct'] for lang in ['en','pt-BR'])/168 for m in models]
             condition_stats[cond][name]={'spearman':correlation(ranks(xs),ranks(ys)),
                                        'pearson_log_size':correlation([math.log10(x) for x in xs],ys)}
-    lines += ['', 'Jev is excluded because its size is unverified. Related checkpoints and shared backbones are dependent observations. These coefficients describe the tested configurations, not a causal scaling law or a random sample of available models. Nominal size bins ignore small head/adapter and exact-backbone differences. MoE models were not run.', '',
+    lines += ['', 'Entrants without verified sizes (including Jev and OpenAI Decisions, when present) are excluded. Related checkpoints and shared backbones are dependent observations. These coefficients describe the tested configurations, not a causal scaling law or a random sample of available models. Nominal size bins ignore small head/adapter and exact-backbone differences.', '',
               '## Task strengths against hosted Jev', '',
               'Each cell has only 12 authored families. Counts describe exploratory task/language cells, not independent victories.', '',
               '| Entrant | Cells above Jev | Tied with Jev | Below Jev |', '| --- | ---: | ---: | ---: |']
@@ -81,6 +84,7 @@ def main():
     compact_cases = [c for c in cases if c['condition']=='compact']
     records = {}
     archives = [ROOT/'reports/hosted-v2', ROOT/'reports/homelab-v2'] + [p for p in (ROOT/'reports/next-wave-v2').iterdir() if (p/'archive.json').is_file()]
+    archives += [Path(p) for p in args.extra_v2_archive]
     for archive in archives:
         for line in gzip.decompress((archive/'responses.jsonl.gz').read_bytes()).splitlines():
             r=json.loads(line)
@@ -106,6 +110,7 @@ def main():
     v1_cases={c['id']:c for c in load_cases()[0]}
     errors=[]
     archives=[ROOT/'reports/hosted-v1', ROOT/'reports/homelab-v1'] + [p for p in (ROOT/'reports/next-wave-v1').iterdir() if (p/'archive.json').is_file()]
+    archives += [Path(p) for p in args.extra_v1_archive]
     for archive in archives:
         for line in gzip.decompress((archive/'responses.jsonl.gz').read_bytes()).splitlines():
             r=json.loads(line); c=v1_cases[r['case_id']]

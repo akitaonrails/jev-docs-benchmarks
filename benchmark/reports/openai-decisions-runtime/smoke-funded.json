@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-10-11T02:42:21.760191+00:00",
+  "request": {
+    "model": "gpt-6-luna",
+    "input": "The package contains exactly two red balls and no other objects.",
+    "questions": [
+      {
+        "name": "color",
+        "type": "choice",
+        "instructions": "What color are the balls?",
+        "choices": [
+          {
+            "value": "r",
+            "description": "Red"
+          },
+          {
+            "value": "b",
+            "description": "Blue"
+          }
+        ]
+      },
+      {
+        "name": "red",
+        "type": "predicate",
+        "instructions": "At least one ball is red."
+      }
+    ]
+  },
+  "status": 200,
+  "latency_seconds": 0.6552645801566541,
+  "response": {
+    "model": "gpt-6-luna",
+    "answers": [
+      {
+        "type": "choice",
+        "name": "color",
+        "choice": "r",
+        "probabilities": [
+          {
+            "value": "r",
+            "probability": 1.0
+          },
+          {
+            "value": "b",
+            "probability": 0.0
+          }
+        ],
+        "confidence": 1.0
+      },
+      {
+        "type": "predicate",
+        "name": "red",
+        "probability": 1.0
+      }
+    ],
+    "usage": {
+      "input_tokens": 274,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 274
+    }
+  },
+  "error": null
+}

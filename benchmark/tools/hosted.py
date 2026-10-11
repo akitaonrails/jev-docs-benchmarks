@@ -13,6 +13,7 @@ import time
 
 ROOT=Path(__file__).resolve().parents[1]
 MODELS={'jev':('jev-1.13.0',0.042),'clef':('clef',0.24),'clef-flash':('clef-flash',0.09)}
+MODELS['openai-decisions']=('gpt-6-luna',0.10)
 
 # Local entrants remain distinct from hosted Clef-flash; no API price is assigned.
 LOCAL_MODELS={'laya':('laya',None),'laya-typed':('laya-typed',None),'clef-flash-local':('clef-flash',None)}
@@ -31,6 +32,9 @@ def load_cases(dataset=None):
     return rows,manifest
 
 def payload(case,model):
+    if model=='openai-decisions':
+        from openai_decisions import request_for
+        return request_for(case)
     from next_contract import REGISTRY, request_for
     if model in REGISTRY:
         return request_for(case, model)
@@ -65,6 +69,7 @@ def normalized(body, case):
         'raw_probability_sum':total,'usage':body.get('usage',{}),'served_model':body.get('model')}
 
 def endpoint(model):
+    if model=='openai-decisions': return 'api.openai.com','/v1/decisions',os.environ['OPENAI_API_KEY']
     if model=='jev': return 'api.typesafe.ai','/v1/systemone',os.environ['JEV_API_KEY']
     account=os.environ['CLOUDFLARE_ACCOUNT_ID']
     if len(account)!=32 or any(c not in '0123456789abcdef' for c in account.lower()): raise ValueError('Invalid account ID')
@@ -72,7 +77,7 @@ def endpoint(model):
 
 def redact(value):
     text=json.dumps(value,ensure_ascii=False)
-    for name in ('JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID'):
+    for name in ('JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','OPENAI_API_KEY'):
         secret=os.environ.get(name)
         if secret: text=text.replace(secret,'[REDACTED]')
     return json.loads(text)
@@ -86,6 +91,8 @@ def run(args):
         'seed':20261009,'max_attempts':3,'timeout_seconds':45,
         'dataset_directory':str(Path(args.dataset).resolve()) if getattr(args,'dataset',None) else str(ROOT/'datasets'),
         'estimated_cost_cap_usd':args.cost_cap,'runner_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+    if 'openai-decisions' in args.models:
+        config['openai_adapter_sha256']=hashlib.sha256(Path(__file__).with_name('openai_decisions.py').read_bytes()).hexdigest()
     config_path=out/'run.json'
     if config_path.exists():
         old=json.loads(config_path.read_text())
@@ -118,6 +125,9 @@ def run(args):
                 try: raw=json.loads(data)
                 except (ValueError,UnicodeDecodeError): raw={'non_json_body':data[:2000].decode(errors='replace')}
                 attempts.append({'status':status,'seconds':time.perf_counter()-t})
+                api_error=raw.get('error',{}) if isinstance(raw,dict) else {}
+                if isinstance(api_error,dict) and (api_error.get('type')=='insufficient_quota' or api_error.get('code')=='credit_balance_exhausted'):
+                    error=f'HTTP {status}; API quota exhausted; provider stopped';stopped.add(model);break
                 if status in (401,403,404,402):
                     error=f'HTTP {status}; provider stopped';stopped.add(model);break
                 if status==429 or status>=500:
@@ -128,7 +138,12 @@ def run(args):
                         time.sleep(max(0,delay));continue
                     break
                 if not 200<=status<300: error=f'HTTP {status}';break
-                try: parsed=normalized(raw,case);error=None
+                try:
+                    if model=='openai-decisions':
+                        from openai_decisions import normalized as normalize_openai
+                        parsed=normalize_openai(raw,case)
+                    else: parsed=normalized(raw,case)
+                    error=None
                 except (ValueError,KeyError,TypeError,ZeroDivisionError) as e: error='Invalid response: '+str(e)
                 break
             except (OSError,http.client.HTTPException) as e:
@@ -145,10 +160,11 @@ def run(args):
             print(f'{index+1}/{len(tasks)} {model}: '+(error or 'ok'),flush=True)
     for conn in connections.values(): conn.close()
     print('Finished. Responses:',result_path,'Stopped providers:',','.join(stopped) or 'none')
+    if stopped: raise SystemExit('Provider stopped; this is not a completed benchmark')
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('--models',nargs='+',choices=MODELS,default=list(MODELS))
+    p.add_argument('--models',nargs='+',choices=MODELS,default=['jev','clef','clef-flash'])
     p.add_argument('--output',required=True)
     p.add_argument('--dataset',help='Frozen dataset directory; defaults to v1')
     p.add_argument('--limit',type=int,default=0)

@@ -25,6 +25,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('archives', nargs='+')
     parser.add_argument('--output', required=True)
+    parser.add_argument('--pricing', default=str(ROOT/'pricing/2026-10-10.json'))
     args = parser.parse_args()
     rows, manifest = load_cases(ROOT/'expansion-v2')
     lookup = {c['id']: c for c in rows}
@@ -47,7 +48,7 @@ def main():
             assert record['case_id'] not in target
             target[record['case_id']] = record
         for model in config['models']: assert len(records[model]) == len(rows)
-    prices = json.loads((ROOT/'pricing/2026-10-10.json').read_text())
+    prices = json.loads(Path(args.pricing).read_text())
     out = {'dataset': manifest, 'pricing': prices, 'models': {}, 'paired_models_compact': {}}
     correctness = {}
     for model, recs in records.items():
@@ -127,7 +128,7 @@ def main():
             gs=[result['groups'][f'all/{lang}/{condition}'] for lang in manifest['languages']]
             lines.append(f"| {model} | {condition} | {sum(g['truncation_reported'] for g in gs)}/{sum(g['valid'] for g in gs)} | {sum(g['truncation_telemetry_missing'] for g in gs)} |")
     lines += ['', '## Latency and current hosted usage value', '',
-              'All 504 requests/model; conditions have different lengths. Local operating cost is unmeasured. Hosted values use the dated 10 October pricing snapshot, before any free allowance.', '',
+              'All 504 requests/model; conditions have different lengths. Local operating cost is unmeasured. Hosted values use the dated pricing snapshot in summary.json, before any free allowance.', '',
               '| Model | Valid / requests | Median / p95 | Input tokens | Listed usage USD |',
               '| --- | ---: | ---: | ---: | ---: |']
     for model, result in out['models'].items():

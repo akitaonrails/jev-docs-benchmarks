@@ -1,0 +1,38 @@
+{
+  "verified_on": "2026-10-11",
+  "currency": "USD",
+  "effective_change_time": "unknown",
+  "input_usd_per_million": {
+    "jev": "0.042",
+    "clef": "0.24",
+    "clef-flash": "0.038",
+    "openai-decisions": "0.10"
+  },
+  "output_usd_per_million": {
+    "jev": "0",
+    "clef": "0",
+    "clef-flash": "0",
+    "openai-decisions": "0"
+  },
+  "cloudflare_neurons_per_million_input": {
+    "clef": "21818",
+    "clef-flash": "3455"
+  },
+  "cloudflare_daily_free_neurons": 10000,
+  "cloudflare_usd_per_1000_neurons": "0.011",
+  "sources": {
+    "jev": "https://docs.typesafe.ai/models",
+    "clef": "https://developers.cloudflare.com/workers-ai/models/clef/",
+    "clef-flash": "https://developers.cloudflare.com/workers-ai/models/clef-flash/",
+    "cloudflare_billing": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+    "openai-decisions": "https://developers.openai.com/api/docs/guides/decisions"
+  },
+  "note": "OpenAI Decisions rate verified 11 October UTC (10 October Sao Paulo). Other rates carried forward from the 10 October audit, not freshly rechecked. OpenAI standard global endpoint: input only; regional and long-context multipliers may apply outside this short text suite. Values are list-price estimates, not invoices. Cloudflare neuron equivalents have rounding differences.",
+  "source_verified_on": {
+    "openai-decisions": "2026-10-11",
+    "jev": "2026-10-10",
+    "clef": "2026-10-10",
+    "clef-flash": "2026-10-10",
+    "cloudflare_billing": "2026-10-10"
+  }
+}

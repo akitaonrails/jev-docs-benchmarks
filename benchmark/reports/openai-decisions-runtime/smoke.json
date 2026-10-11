@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-10-11T02:40:16.760589+00:00",
+  "request": {
+    "model": "gpt-6-luna",
+    "input": "The package contains exactly two red balls and no other objects.",
+    "questions": [
+      {
+        "name": "color",
+        "type": "choice",
+        "instructions": "What color are the balls?",
+        "choices": [
+          {
+            "value": "r",
+            "description": "Red"
+          },
+          {
+            "value": "b",
+            "description": "Blue"
+          }
+        ]
+      },
+      {
+        "name": "red",
+        "type": "predicate",
+        "instructions": "At least one ball is red."
+      }
+    ]
+  },
+  "status": 429,
+  "latency_seconds": 1.4800342349335551,
+  "response": {
+    "error": {
+      "message": "You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+      "type": "insufficient_quota",
+      "param": null,
+      "code": "credit_balance_exhausted"
+    }
+  }
+}

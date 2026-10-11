@@ -286,3 +286,10 @@ Do not start the whole Compose stack. Do not stop unrelated server GPU workloads
 PPLX/Rune are not installed; they require further capacity/runtime work. GLiDE remains
 a hosted candidate. Default context limits, Simple-Jev's prompt policy and GLiNER's
 native classification mapping are part of the frozen entrant configuration.
+
+## OpenAI Decisions extension
+
+See the [native Decisions protocol and Docker commands](../benchmark/openai-decisions/README.md).
+It uses `OPENAI_API_KEY` with Platform API billing, separately from Codex subscription
+access. A funded API account is required before running the smoke check and frozen suites. No additional host
+packages or GPU are needed. Earlier model archives are reused when scoring.
