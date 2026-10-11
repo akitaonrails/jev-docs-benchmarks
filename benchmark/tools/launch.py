@@ -5,7 +5,7 @@ import shlex
 import subprocess
 import sys
 
-allowed={'OPENAI_API_KEY','JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID'}
+allowed={'OPENROUTER_API_KEY','OPENAI_API_KEY','JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID'}
 env=os.environ.copy()
 env["BENCH_UID"]=str(os.getuid())
 env["BENCH_GID"]=str(os.getgid())

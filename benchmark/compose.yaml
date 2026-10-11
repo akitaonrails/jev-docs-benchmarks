@@ -47,6 +47,7 @@ services:
       - .:/work:ro
       - ./results:/results
     environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       JEV_API_KEY: ${JEV_API_KEY:-}
       CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}

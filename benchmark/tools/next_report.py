@@ -9,7 +9,7 @@ from statistics import correlation
 from hosted import ROOT, load_cases
 from score import interval
 
-SIZES = {'laya':.421, 'laya-typed':.421, 'laya-multilingual':.322,
+SIZES = {'microsoft-decision-1':9, 'laya':.421, 'laya-typed':.421, 'laya-multilingual':.322,
          'julia-1':.1443, 'julia-1-cpu':.1443, 'pplx-decider-27b':27,
          'gliner2.5-decide':.340, 'gliner2.5-multi-decide':.287,
          'kev-0.8b':.8, 'kev-4b':4, 'kev-9b':9,

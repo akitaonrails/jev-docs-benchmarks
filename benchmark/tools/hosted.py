@@ -14,6 +14,7 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 MODELS={'jev':('jev-1.13.0',0.042),'clef':('clef',0.24),'clef-flash':('clef-flash',0.09)}
 MODELS['openai-decisions']=('gpt-6-luna',0.10)
+MODELS['microsoft-decision-1']=('microsoft/microsoft-decision-1',0.042)
 
 # Local entrants remain distinct from hosted Clef-flash; no API price is assigned.
 LOCAL_MODELS={'laya':('laya',None),'laya-typed':('laya-typed',None),'clef-flash-local':('clef-flash',None)}
@@ -69,6 +70,7 @@ def normalized(body, case):
         'raw_probability_sum':total,'usage':body.get('usage',{}),'served_model':body.get('model')}
 
 def endpoint(model):
+    if model=='microsoft-decision-1': return 'openrouter.ai','/api/alpha/decisions',os.environ['OPENROUTER_API_KEY']
     if model=='openai-decisions': return 'api.openai.com','/v1/decisions',os.environ['OPENAI_API_KEY']
     if model=='jev': return 'api.typesafe.ai','/v1/systemone',os.environ['JEV_API_KEY']
     account=os.environ['CLOUDFLARE_ACCOUNT_ID']
@@ -77,7 +79,7 @@ def endpoint(model):
 
 def redact(value):
     text=json.dumps(value,ensure_ascii=False)
-    for name in ('JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','OPENAI_API_KEY'):
+    for name in ('JEV_API_KEY','CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','OPENAI_API_KEY','OPENROUTER_API_KEY'):
         secret=os.environ.get(name)
         if secret: text=text.replace(secret,'[REDACTED]')
     return json.loads(text)
