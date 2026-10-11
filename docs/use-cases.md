@@ -1,8 +1,23 @@
 # Real use cases and fit in my projects
 
+## Microsoft follow-up: cheap routing still needs a domain test
+
+The [new hosted comparison](../benchmark/reports/microsoft-comparison-v2/analysis.md)
+makes Microsoft Decision-1 a practical candidate for an existing OpenRouter account:
+97.6% compact accuracy at $0.00645 per 1,000 calls on this input mix. Compact PT-BR
+scores 84/84, but longer Portuguese inputs introduce errors. This is a useful
+language result to investigate, not a general language guarantee.
+
+For your support/incident flows, keep exact thresholds in code. Microsoft wrongly
+escalates uncertain intervals and sometimes treats irrelevant missing data as
+necessary. For retrieval, it still mistakes approval notifications for evidence
+about required approvers. Use a project-specific labeled set before integration;
+no new project code or production workload was evaluated. Existing portfolio-fit
+conclusions remain: a measurable bottleneck must justify the extra dependency.
+
 ## Measured follow-up: Perplexity 27B
 
-The [latest benchmark](../benchmark/reports/perplexity-comparison-v2/analysis.md)
+The [Perplexity benchmark](../benchmark/reports/perplexity-comparison-v2/analysis.md)
 supports testing a local open checkpoint for supplied-rule classification: Perplexity
 scores 99.4% compact and all PT-BR cases correctly. This strengthens the case for
 a bounded local experiment in routing, evidence relevance or policy triage when

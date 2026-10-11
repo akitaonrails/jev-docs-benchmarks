@@ -1,0 +1,16 @@
+{
+  "started_at": "2026-10-11T15:21:12.292703+00:00",
+  "config": {
+    "dataset_sha256": "a89ae706767f5d7f79e4ea2898e39065e6e95d3d7fe3e5c71517514bceb7420a",
+    "models": [
+      "microsoft-decision-1"
+    ],
+    "limit": 0,
+    "seed": 20261009,
+    "max_attempts": 3,
+    "timeout_seconds": 45,
+    "dataset_directory": "/work/expansion-v2",
+    "estimated_cost_cap_usd": 1.0,
+    "runner_sha256": "daf0b85e96918583f35f7ae5208ee017356e40879d51963daba0efbbafffecff"
+  }
+}

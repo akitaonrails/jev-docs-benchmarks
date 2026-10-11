@@ -1,5 +1,14 @@
 # Benchmark developer guide
 
+## Microsoft Decision-1 extension
+
+[Latest 21-configuration analysis](reports/microsoft-comparison-v2/analysis.md),
+[ranking](reports/microsoft-comparison-v2/ranking.md),
+[cost reconciliation](reports/microsoft-comparison-v2/costs.md), and
+[protocol/setup](microsoft/README.md). All 1,048 responses are valid; ten v2 rate-limit
+attempts recover on retry. Microsoft ties Jev at 97.6% compact with the lowest
+measured paid API cost for this input mix. Earlier sections preserve prior stages.
+
 See the root [README](../README.md) for goals and results, and [setup guide](../docs/setup.md)
 for the tested client/server workflow. This page provides implementation details.
 
@@ -10,7 +19,7 @@ readable source; [cases.jsonl](datasets/cases.jsonl) is the frozen evaluation ar
 
 ## Perplexity 27B extension
 
-[Latest twenty-configuration analysis](reports/perplexity-comparison-v2/analysis.md),
+[Previous twenty-configuration analysis](reports/perplexity-comparison-v2/analysis.md),
 [ranking](reports/perplexity-comparison-v2/ranking.md), and
 [frozen native ROCm protocol](perplexity/README.md). Compact accuracy is 99.4%.
 Offline reproduction: `benchmark/perplexity/score.sh`, then

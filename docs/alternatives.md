@@ -1,5 +1,18 @@
 # Jev alternatives: Clef, Laya, and the emerging ecosystem
 
+## Microsoft Decision-1: now measured through OpenRouter
+
+The [21-configuration analysis](../benchmark/reports/microsoft-comparison-v2/analysis.md)
+adds a hosted Qwen3.5-9B-derived entrant: **97.6% compact**, tied with Jev, and
+**493/504** across all conditions. At $0.042/M input with free output, its observed
+compact usage costs **$0.00645/1,000 calls**, below the other tested hosted services.
+Its lower reported token count matters more than comparing headline rates alone.
+
+Access uses OpenRouter's native `/api/alpha/decisions` endpoint. No public local
+weights were identified. [Availability and primary sources](microsoft-availability.md),
+[reproduction](../benchmark/microsoft/README.md). The earlier research below keeps
+its original dates and scope; consult the latest analysis for current recommendations.
+
 **Later measured alternative:** [Perplexity Decider 1.1 27B](../benchmark/reports/perplexity-comparison-v2/analysis.md)
 now leads the tested bilingual suite at 99.4% compact, using public weights locally.
 Its memory and ROCm latency costs are substantial. The original Jev/Laya/Clef

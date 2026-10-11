@@ -1,0 +1,44 @@
+{
+  "compact": {
+    "Known-size entrants, deduplicated deployments": {
+      "spearman": 0.9432416707605622,
+      "pearson_log_size": 0.9596973154791518
+    },
+    "SystemOne only, deduplicated deployments": {
+      "spearman": 0.9276288734119166,
+      "pearson_log_size": 0.9586547714070808
+    },
+    "Kev size series": {
+      "spearman": 1.0,
+      "pearson_log_size": 0.9509469121164662
+    }
+  },
+  "examples": {
+    "Known-size entrants, deduplicated deployments": {
+      "spearman": 0.9664423538169928,
+      "pearson_log_size": 0.9735005727001605
+    },
+    "SystemOne only, deduplicated deployments": {
+      "spearman": 0.9617707733228463,
+      "pearson_log_size": 0.9695418069065815
+    },
+    "Kev size series": {
+      "spearman": 1.0,
+      "pearson_log_size": 0.9993276662597749
+    }
+  },
+  "distractors": {
+    "Known-size entrants, deduplicated deployments": {
+      "spearman": 0.9359390917048087,
+      "pearson_log_size": 0.9643762160675312
+    },
+    "SystemOne only, deduplicated deployments": {
+      "spearman": 0.9352858580788111,
+      "pearson_log_size": 0.968212693479303
+    },
+    "Kev size series": {
+      "spearman": 1.0,
+      "pearson_log_size": 0.9946547880847434
+    }
+  }
+}

@@ -1,5 +1,19 @@
 # Model quality and deployment tradeoffs
 
+## Microsoft update: 11 October 2026
+
+Microsoft's nominal **9B** hosted model ties Jev at **97.6% compact** and exceeds
+27B Clef's 95.8% on this suite. It is available through OpenRouter, with no local
+weights identified. Reported compact cost is **$0.00645/1,000 calls** and observed
+median/p95 **422/551 ms**. It changes the paid hosted shortlist; Perplexity 27B
+still leads local quality and Jebadiah 4B remains a smaller candidate.
+
+These results reinforce that nominal size does not determine quality. Tiny Laya
+and Julia deployments serve a different resource envelope; this supplied-policy
+benchmark still does not establish their suitability for narrower, tuned tasks.
+[Latest analysis](../benchmark/reports/microsoft-comparison-v2/analysis.md),
+[access](microsoft-availability.md). Earlier sections preserve dated observations.
+
 ## Perplexity update: 11 October 2026
 
 The [twenty-configuration comparison](../benchmark/reports/perplexity-comparison-v2/analysis.md)

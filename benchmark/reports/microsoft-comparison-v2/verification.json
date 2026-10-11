@@ -1,0 +1,58 @@
+{
+  "v1": {
+    "records": 544,
+    "attempts": 544,
+    "retried_requests": 0,
+    "retry_statuses": [],
+    "previous_models_unchanged": true,
+    "archive_and_request_hashes_verified": true,
+    "input_tokens": 105269,
+    "reported_cost_usd": "0.004421298",
+    "all_usage_costs_match_rate": true,
+    "served_models": [
+      "microsoft/microsoft-decision-1-20261009"
+    ],
+    "providers": [
+      "Azure"
+    ],
+    "original_correct": 124,
+    "all_variants_correct": 496,
+    "uncertainty_mae": {
+      "choice": 0.12533601697985847,
+      "noul": 0.3689773174743273
+    },
+    "sensitivity_correct": {
+      "all": 492,
+      "originals": 123
+    }
+  },
+  "v2": {
+    "records": 504,
+    "attempts": 514,
+    "retried_requests": 10,
+    "retry_statuses": [
+      429
+    ],
+    "previous_models_unchanged": true,
+    "archive_and_request_hashes_verified": true,
+    "input_tokens": 159801,
+    "reported_cost_usd": "0.006711642",
+    "all_usage_costs_match_rate": true,
+    "served_models": [
+      "microsoft/microsoft-decision-1-20261009"
+    ],
+    "providers": [
+      "Azure"
+    ],
+    "compact_correct": 164,
+    "compact_brier": 0.030758323579594012,
+    "condition_correct": {
+      "compact": 164,
+      "examples": 165,
+      "distractors": 164
+    },
+    "compact_cost_per_1000_usd": "0.006447250"
+  },
+  "total_scored_cost_usd": "0.011132940",
+  "total_with_observed_smoke_usd": "0.011135376"
+}

@@ -15,13 +15,13 @@ The recommended test, if a real bottleneck appears, is to compare a pinned Jev v
 [Repository overview](../README.md) explains the goals and evidence layout.
 [Setup and reproduction guide](setup.md) covers Docker, hosted credentials, pinned model downloads, and the actual AMD homelab deployment.
 
-The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Workstation RTX 5090 runs remain deferred; AMD homelab runs completed on 10 October. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
+The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Workstation RTX 5090 runs remain deferred; AMD homelab runs completed on 10–11 October. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
 
 [Pricing verification and test cost](../benchmark/reports/hosted-v1/pricing.md) (9 October) reconciles both providers’ official rates, archived usage, free allowance and billing uncertainties.
 
 [Hosted versus local comparison](../benchmark/reports/comparison-v1/analysis.md) adds measured Laya, Laya-typed and pinned local Clef-flash results, with [six-model tables](../benchmark/reports/comparison-v1/results.md).
 
-[Technical and cost-benefit ranking](cost-benefit-ranking.md) combines measured quality, current pricing, free allowance scenarios and unmeasured local costs. Pricing rechecked 10 October; Clef-flash is now $0.038/M input tokens.
+[Technical and cost-benefit ranking](cost-benefit-ranking.md) combines measured quality, current pricing, free allowance scenarios and unmeasured local costs. Pricing rechecked 11 October; Clef-flash is now $0.038/M input tokens.
 
 ## Bilingual expansion
 
@@ -54,3 +54,9 @@ and latency costs. See the [20-configuration ranking](../benchmark/reports/perpl
 [Size versus score analysis](size-vs-quality.md) quantifies the observed association and checks same-family scaling evidence and counterexamples.
 
 [Expanded open-model comparison](../benchmark/reports/next-wave-comparison-v2/analysis.md) adds ten configurations, with [rankings and size analysis](../benchmark/reports/next-wave-comparison-v2/ranking.md). Earlier six-model reports remain historical snapshots.
+
+## Microsoft Decision-1
+
+[Access and pricing](microsoft-availability.md), [reproduction](../benchmark/microsoft/README.md),
+[latest analysis](../benchmark/reports/microsoft-comparison-v2/analysis.md) and
+[21-configuration ranking](../benchmark/reports/microsoft-comparison-v2/ranking.md).

@@ -1,7 +1,7 @@
 # Jev and open decision-model benchmarks
 
 **Measure how reliably decision models apply supplied rules, how their probabilities
-behave, and what those decisions cost.** Compare TypeSafe Jev and OpenAI Decisions with hosted and local
+behave, and what those decisions cost.** Compare TypeSafe Jev, Microsoft Decision-1 and OpenAI Decisions with hosted and local
 Clef/Clef-flash, Laya, Kev, Eikos, Jebadiah, Mapika Decider, Simple-Jev and GLiNER,
 using frozen inputs, inspectable expected answers, raw
 response archives, and reproducible scoring.
@@ -16,10 +16,12 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **Latest results:** [Perplexity 27B comparison](benchmark/reports/perplexity-comparison-v2/analysis.md),
-  [20-configuration ranking](benchmark/reports/perplexity-comparison-v2/ranking.md),
-  [task/language tables](benchmark/reports/perplexity-comparison-v2/results.md), and
-  [pricing recheck](benchmark/perplexity/pricing-recheck.md).
+- **Latest results:** [Microsoft/OpenRouter comparison](benchmark/reports/microsoft-comparison-v2/analysis.md),
+  [21-configuration ranking](benchmark/reports/microsoft-comparison-v2/ranking.md),
+  [task/language tables](benchmark/reports/microsoft-comparison-v2/results.md), and
+  [actual reported usage and price comparison](benchmark/reports/microsoft-comparison-v2/costs.md).
+- **Latest hosted setup:** [Microsoft access and reproduction](benchmark/microsoft/README.md).
+- **Previous quality leader addition:** [Perplexity 27B comparison](benchmark/reports/perplexity-comparison-v2/analysis.md).
 - **Previous local expansion:** [16-configuration analysis](benchmark/reports/next-wave-comparison-v2/analysis.md).
 - **Local deployment:** [Perplexity runtime and setup](benchmark/perplexity/README.md).
 - **First six models:** [initial English / PT-BR analysis](benchmark/reports/comparison-v2/analysis.md).
@@ -34,6 +36,38 @@ that one model is universally best. See [methodology and limitations](#methodolo
 - **Open-model coverage:** [researched shortlist](docs/next-models.md) and
   [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
+
+## Microsoft Decision-1: tied hosted quality, lowest measured API cost
+
+**1,048 new valid responses.** Microsoft ties Jev at **97.6% compact bilingual
+accuracy**, behind local Perplexity's **99.4%**. It scores **80/84 English**, **84/84
+PT-BR**, **493/504 across all conditions**, and **124/130 original policy cases**.
+
+| Entrant | Compact bilingual | USD / 1,000 compact calls |
+| --- | ---: | ---: |
+| Perplexity Decider 27B, local | 99.4% | Local cost unmeasured |
+| **Microsoft Decision-1, OpenRouter** | **97.6%** | **$0.00645** |
+| Jev | 97.6% | $0.01916 |
+| Clef | 95.8% | $0.06309 |
+| OpenAI Decisions | 90.5% | $0.02331 |
+| Jebadiah 4B v2, local | 90.5% | Local cost unmeasured |
+| Clef-flash | 87.5% | $0.00999 |
+
+Microsoft becomes the first paid hosted candidate to evaluate for this workload:
+about **66% cheaper than Jev** by reported compact usage. Jev remains faster
+(255/304 ms median/p95 versus 422/551) and slightly stronger across all conditions.
+The compact tie does not imply identical errors. Microsoft still mishandles some
+threshold rules and known-random probability probes. Perplexity retains the highest
+local quality point estimate; small model resource constraints remain relevant.
+
+Successful usage including the smoke totals **$0.011135376**. Ten v2 HTTP 429
+attempts recover on retry; any separate retry charge and account fees are unverified.
+Cloudflare allowances and unmeasured local costs qualify the price comparison.
+[Analysis](benchmark/reports/microsoft-comparison-v2/analysis.md),
+[costs](benchmark/reports/microsoft-comparison-v2/costs.md),
+[setup](benchmark/microsoft/README.md).
+
+**The following sections retain the results and recommendations of earlier stages.**
 
 ## Perplexity Decider 1.1 27B: an open model leads this suite
 
@@ -179,8 +213,8 @@ Clef is itself open-weight: open/proprietary and local/hosted are separate compa
 
 ## Pricing is dated, not an invoice
 
-Rates rechecked **10 October 2026**: Jev $0.042/M input tokens, Clef $0.24/M,
-Clef-flash **$0.038/M**. Flash's earlier observed rate was $0.09/M; the dated original
+Rates rechecked **11 October 2026**: Jev $0.042/M input tokens, Clef $0.24/M,
+Clef-flash **$0.038/M**, Microsoft/OpenRouter **$0.042/M**, OpenAI Decisions **$0.10/M**. Flash's earlier observed rate was $0.09/M; the dated original
 valuation is retained. For v1's classification-only input mix, current list values per
 1,000 decisions are approximately **$0.02093 Jev, $0.07401 Clef, $0.01172 Flash**.
 [Sources, arithmetic and error-cost trade-offs](docs/cost-benefit-ranking.md).

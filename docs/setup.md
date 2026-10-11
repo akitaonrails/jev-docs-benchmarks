@@ -352,3 +352,18 @@ The lifecycle command is `sudo docker compose up -d pplx-decider-27b`; stop with
 `/healthz` status `ok`. The service rejects concurrent work with HTTP 529 and
 oversized inputs with HTTP 422. Use a single client request at a time. Retain
 published archives when reproducing; use fresh output paths or a separate checkout.
+
+## Microsoft Decision-1 through OpenRouter
+
+Use the [Microsoft reproduction guide](../benchmark/microsoft/README.md). A funded
+OpenRouter key is sufficient; no Azure deployment or homelab installation is required.
+Store `OPENROUTER_API_KEY` as a literal export in `~/.config/zsh/secrets` or the
+launcher's environment. The launcher parses selected exports without executing the
+secrets file, and passes this key only to the hosted container.
+
+The endpoint is `/api/alpha/decisions`, with selector
+`microsoft/microsoft-decision-1`; chat/completions is not used. The normal text-model
+catalog can omit decision models: query `output_modalities=decisions` instead.
+Input price observed 11 October 2026 is $0.042/M with free output. Check the
+[OpenRouter model page](https://openrouter.ai/microsoft/microsoft-decision-1)
+before running. Local model services are not involved.

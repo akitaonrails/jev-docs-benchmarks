@@ -22,6 +22,8 @@ python benchmark/tools/launch.py /work/tools/hosted.py --models microsoft-decisi
 benchmark/tools/offline.sh /work/tools/archive.py /work/results/microsoft-v1 /reports/microsoft-v1
 benchmark/tools/offline.sh /work/tools/archive.py /work/results/microsoft-v2 /reports/microsoft-v2
 sh benchmark/microsoft/score.sh
+benchmark/tools/offline.sh /work/microsoft/analyze.py
+benchmark/tools/offline.sh /work/microsoft/costs.py
 ```
 
 The cap reserves estimated input costs; it is not a provider billing limit.
@@ -36,3 +38,8 @@ Sources: [OpenRouter model and price](https://openrouter.ai/microsoft/microsoft-
 [Microsoft announcement](https://commandline.microsoft.com/microsoft-decision-1-model-foundry/).
 Nominal backbone is Qwen3.5-9B, context 32,768, input $0.042/M and output $0.
 Reported usage cost excludes any account credit purchase fees or taxes.
+
+Protocol commit: `1e10c05`. Offline verification includes unchanged prior-model
+metrics, complete case sets, archive and request hashes, credential redaction,
+and per-response cost reconciliation. Hosted responses do not expose truncation
+telemetry; successful short requests are not proof of provider internals.

@@ -1,0 +1,42 @@
+[
+  {
+    "model": "jev",
+    "correct": 164,
+    "input_tokens": 76623,
+    "compact_cost_usd": "0.003218166",
+    "per_1000_calls_usd": "0.019155750",
+    "per_1000_correct_usd": "0.01962296341463414634146341463"
+  },
+  {
+    "model": "clef",
+    "correct": 161,
+    "input_tokens": 44161,
+    "compact_cost_usd": "0.01059864",
+    "per_1000_calls_usd": "0.06308714285714285714285714286",
+    "per_1000_correct_usd": "0.06583006211180124223602484472"
+  },
+  {
+    "model": "clef-flash",
+    "correct": 147,
+    "input_tokens": 44161,
+    "compact_cost_usd": "0.001678118",
+    "per_1000_calls_usd": "0.009988797619047619047619047619",
+    "per_1000_correct_usd": "0.01141576870748299319727891156"
+  },
+  {
+    "model": "openai-decisions",
+    "correct": 152,
+    "input_tokens": 39169,
+    "compact_cost_usd": "0.0039169",
+    "per_1000_calls_usd": "0.02331488095238095238095238095",
+    "per_1000_correct_usd": "0.02576907894736842105263157895"
+  },
+  {
+    "model": "microsoft-decision-1",
+    "correct": 164,
+    "input_tokens": 25789,
+    "compact_cost_usd": "0.001083138",
+    "per_1000_calls_usd": "0.006447250",
+    "per_1000_correct_usd": "0.006604500"
+  }
+]

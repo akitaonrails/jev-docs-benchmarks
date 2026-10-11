@@ -101,6 +101,8 @@ def main():
         comparisons += [('openai-decisions', m) for m in ['clef','clef-flash','jebadiah-4b-v2'] if m in ordered]
     if 'pplx-decider-27b' in ordered:
         comparisons += [('pplx-decider-27b', m) for m in ['clef','openai-decisions','jebadiah-4b-v2'] if m in ordered]
+    if 'microsoft-decision-1' in ordered:
+        comparisons += [('microsoft-decision-1', m) for m in ['pplx-decider-27b','clef','openai-decisions','clef-flash','kev-9b'] if m in ordered]
     if 'julia-1-cpu' in ordered and 'julia-1' in ordered:
         comparisons += [('julia-1-cpu','julia-1')]
     lines += ['', '## Paired compact differences, clustered by authored family', '',

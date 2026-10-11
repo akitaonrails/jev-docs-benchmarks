@@ -1,5 +1,17 @@
 # Does a larger decision model score better?
 
+## Microsoft update: 11 October 2026
+
+Adding nominal **9B Microsoft Decision-1 at 97.6% compact** gives **n=17**, Spearman
+**0.943**, Pearson(log10 size, accuracy) **0.960**, excluding duplicate Flash/Julia
+deployments and unknown-size Jev/OpenAI. Microsoft exceeds 27B Clef's 95.8% and
+other tested 9B models, while 27B Perplexity remains first at 99.4%.
+
+This is a strong association across selected models, not a causal size rule.
+Training, serving, token accounting and task fit remain confounded.
+[Recomputed coefficients and ranking](../benchmark/reports/microsoft-comparison-v2/ranking.md).
+Earlier sections record prior stages and sample sizes.
+
 ## Perplexity update: 11 October 2026
 
 The [twenty-configuration comparison](../benchmark/reports/perplexity-comparison-v2/analysis.md)

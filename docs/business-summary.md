@@ -1,5 +1,25 @@
 # Business summary: should I care about Jev?
 
+## Microsoft update: 11 October 2026
+
+The [21-configuration comparison](../benchmark/reports/microsoft-comparison-v2/analysis.md)
+adds Microsoft Decision-1 through OpenRouter. It ties Jev at **97.6% compact bilingual
+accuracy**, behind local Perplexity's 99.4%, and scores **493/504** overall. Compact
+English is **80/84**, PT-BR **84/84**. Original-policy accuracy is **124/130**.
+
+At **$0.00645 per 1,000 compact calls**, it is the cheapest measured hosted workload
+and the first paid candidate to evaluate for this input mix. Jev costs $0.01916,
+but is faster (255/304 ms median/p95 versus Microsoft's 422/551) and scores two
+more labels across v2. Cloudflare free allowances can change incremental costs;
+local total costs remain unmeasured. Microsoft still fails some Boolean thresholds
+and known-random probability probes. [Cost reconciliation](../benchmark/reports/microsoft-comparison-v2/costs.md),
+[access/setup](microsoft-availability.md).
+
+All 1,048 responses are valid; ten bilingual HTTP 429 attempts recover on retry.
+Reported successful usage including the smoke is **$0.011135376**, excluding any
+unverified retry charges or account fees. Earlier dated sections below describe
+previous comparison stages; their recommendations are superseded by this update.
+
 ## Perplexity update: 11 October 2026
 
 The [twenty-configuration comparison](../benchmark/reports/perplexity-comparison-v2/analysis.md)
