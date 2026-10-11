@@ -1,0 +1,19 @@
+{
+  "status": "ok",
+  "model": "julia-1",
+  "repo": "SupersonicLabs/Julia-1",
+  "revision": "a85b127321d580d65176c89ced8273f305745d85",
+  "ready": true,
+  "device": "cpu",
+  "weight_dtype": "float32",
+  "precision": "fp32",
+  "max_length": 8192,
+  "head_length": 512,
+  "strict_encoding": true,
+  "option_token_limit": 48,
+  "options_per_question": "2-20",
+  "cpu_threads": 4,
+  "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "hip": "7.2.53211-e1a6bc5663",
+  "load_s": 4.171
+}

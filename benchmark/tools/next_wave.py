@@ -10,7 +10,7 @@ from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 from hosted import ROOT, digest, load_cases, normalized
-from next_contract import REGISTRY, request_for, normalize_gliner
+from next_contract import REGISTRY, request_for, normalize_response
 
 
 def call(base, route, request=None):
@@ -66,7 +66,7 @@ def run(args):
                 continue
             if status != 200:
                 raise ValueError(f'Warm-up HTTP {status}: {raw}')
-            (normalize_gliner if config['interface']=='gliner' else normalized)(raw, smoke)
+            normalize_response(raw, smoke, args.model)
             (out/'warmup.json').write_text(json.dumps(raw, indent=2)+'\n')
             break
         except OSError:
@@ -89,7 +89,7 @@ def run(args):
             status, raw = call(base, route, req)
             if status != 200:
                 raise ValueError(f'HTTP {status}')
-            parsed = (normalize_gliner if config['interface']=='gliner' else normalized)(raw, case)
+            parsed = normalize_response(raw, case, args.model)
         except (ValueError, KeyError, TypeError, OSError) as exc:
             error = f'{type(exc).__name__}: {exc}'
         elapsed = time.perf_counter()-started

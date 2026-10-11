@@ -1,0 +1,129 @@
+{
+  "services": {
+    "julia-1": {
+      "command": [
+        "env",
+        "JULIA_DEVICE=cuda",
+        "PYTHONPATH=/models/hf/hub/models--SupersonicLabs--Julia-1/snapshots/a85b127321d580d65176c89ced8273f305745d85",
+        "uvicorn",
+        "julia_app:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ],
+      "container_name": "dm-julia-1",
+      "devices": [
+        {
+          "source": "/dev/kfd",
+          "target": "/dev/kfd",
+          "permissions": "rwm"
+        },
+        {
+          "source": "/dev/dri",
+          "target": "/dev/dri",
+          "permissions": "rwm"
+        }
+      ],
+      "entrypoint": null,
+      "environment": {
+        "HF_HOME": "/models/hf",
+        "HF_HUB_OFFLINE": "1",
+        "HSA_OVERRIDE_GFX_VERSION": "11.5.1",
+        "PYTORCH_ROCM_ARCH": "gfx1151"
+      },
+      "group_add": [
+        "485",
+        "488"
+      ],
+      "image": "decision-models-julia:local",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      },
+      "mem_limit": "42949672960",
+      "memswap_limit": "51539607552",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "192.168.0.90",
+          "target": 8000,
+          "published": "11447",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "no",
+      "security_opt": [
+        "label:disable"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "decision_models_julia1",
+          "target": "/models",
+          "read_only": true,
+          "volume": {}
+        }
+      ]
+    },
+    "julia-1-cpu": {
+      "command": null,
+      "container_name": "dm-julia-1-cpu",
+      "entrypoint": null,
+      "environment": {
+        "HF_HOME": "/models/hf",
+        "HF_HUB_OFFLINE": "1",
+        "JULIA_CPU_THREADS": "4",
+        "JULIA_DEVICE": "cpu",
+        "PYTHONPATH": "/models/hf/hub/models--SupersonicLabs--Julia-1/snapshots/a85b127321d580d65176c89ced8273f305745d85"
+      },
+      "image": "decision-models-julia:local",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      },
+      "mem_limit": "8589934592",
+      "memswap_limit": "8589934592",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "192.168.0.90",
+          "target": 8000,
+          "published": "11448",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "no",
+      "security_opt": [
+        "label:disable"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "decision_models_julia1",
+          "target": "/models",
+          "read_only": true,
+          "volume": {}
+        }
+      ]
+    }
+  },
+  "volumes": {
+    "decision_models_julia1": {
+      "name": "decision_models_julia1",
+      "external": true
+    }
+  }
+}

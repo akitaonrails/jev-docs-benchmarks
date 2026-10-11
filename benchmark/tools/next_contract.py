@@ -33,3 +33,25 @@ def normalize_gliner(body, case):
         raise ValueError('Invalid GLiNER confidence')
     return {'choice': label, 'native_confidence': confidence, 'probabilities': None,
             'usage': {}, 'served_model': body.get('server', {}).get('repo')}
+
+
+def normalize_response(body, case, model):
+    from hosted import normalized
+    config = REGISTRY[model]
+    if config['interface'] == 'gliner':
+        return normalize_gliner(body, case)
+    expected = config.get('expected_server')
+    if expected:
+        server = body.get('server', {})
+        for key, value in expected.items():
+            actual = server.get(key)
+            if key not in server or type(actual) is not type(value) or actual != value:
+                raise RuntimeError(f'Server provenance mismatch: {key}')
+        usage = dict(body['usage'])
+        if usage.get('state_truncated') is not False or usage.get('options_truncated') is not False:
+            raise RuntimeError('Strict Julia encoding not confirmed lossless')
+        # Normalize explicit native telemetry for the common scoring schema.
+        usage['truncated'] = False
+        body = {**body, 'usage': usage,
+                'model': body.get('model') or f"{server['repo']}@{server['revision']}"}
+    return normalized(body, case)

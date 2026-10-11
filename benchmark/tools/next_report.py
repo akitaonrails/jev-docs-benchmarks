@@ -10,6 +10,7 @@ from hosted import ROOT, load_cases
 from score import interval
 
 SIZES = {'laya':.421, 'laya-typed':.421, 'laya-multilingual':.322,
+         'julia-1':.1443, 'julia-1-cpu':.1443,
          'gliner2.5-decide':.340, 'gliner2.5-multi-decide':.287,
          'kev-0.8b':.8, 'kev-4b':4, 'kev-9b':9,
          'eikos-4b':4, 'jebadiah-4b-v2':4, 'decider-4b':4,
@@ -47,8 +48,9 @@ def main():
         all_correct=sum(g[f'all/{lang}/{cond}']['correct'] for lang in ['en','pt-BR'] for cond in ['compact','examples','distractors'])
         v1text=f"{v1[model]['originals']['accuracy']:.1%}" if model in v1 else 'Not run'
         lines.append(f"| {model} | {SIZES.get(model,'Unknown')} | {en:.1%} / {pt:.1%} | {compact(model):.1%} | {all_correct}/504 | {v1text} | {r['median_seconds']*1000:.0f} / {r['p95_seconds']*1000:.0f} ms |")
-    sets = {'Known-size entrants, deduplicated Flash': [m for m in ordered if m in SIZES and m!='clef-flash-local'],
-            'SystemOne only, deduplicated Flash': [m for m in ordered if m in SIZES and m!='clef-flash-local' and not m.startswith('gliner')],
+    duplicate_deployments = {'clef-flash-local', 'julia-1-cpu'}
+    sets = {'Known-size entrants, deduplicated deployments': [m for m in ordered if m in SIZES and m not in duplicate_deployments],
+            'SystemOne only, deduplicated deployments': [m for m in ordered if m in SIZES and m not in duplicate_deployments and not m.startswith('gliner')],
             'Kev size series': ['kev-0.8b','kev-4b','kev-9b']}
     stats={}
     lines += ['', '## Size correlations', '', '| Selection | n | Spearman | Pearson(log10 size, accuracy) |', '| --- | ---: | ---: | ---: |']
@@ -97,6 +99,8 @@ def main():
     comparisons=[(m,'jev') for m in ordered if m!='jev'] + [('kev-4b','kev-0.8b'),('kev-9b','kev-4b')]
     if 'openai-decisions' in ordered:
         comparisons += [('openai-decisions', m) for m in ['clef','clef-flash','jebadiah-4b-v2'] if m in ordered]
+    if 'julia-1-cpu' in ordered and 'julia-1' in ordered:
+        comparisons += [('julia-1-cpu','julia-1')]
     lines += ['', '## Paired compact differences, clustered by authored family', '',
               'English and Portuguese observations are kept together when bootstrapping the 84 families. Intervals are exploratory and not adjusted for multiple comparisons.', '',
               '| Comparison | Difference (points) | Family bootstrap 95% (points) |', '| --- | ---: | --- |']
@@ -116,6 +120,7 @@ def main():
     for archive in archives:
         for line in gzip.decompress((archive/'responses.jsonl.gz').read_bytes()).splitlines():
             r=json.loads(line); c=v1_cases[r['case_id']]
+            if r['model'] not in v1:continue
             if c['kind']!='classification':continue
             prediction=r['result']['choice'] if r['result'] else None
             if prediction!=c['gold']:

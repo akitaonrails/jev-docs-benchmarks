@@ -183,5 +183,58 @@
       "--port",
       "8000"
     ]
+  },
+  "julia-1": {
+    "port": 11447,
+    "selector": "julia-1",
+    "interface": "systemone",
+    "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+    "command": [
+      "env",
+      "JULIA_DEVICE=cuda",
+      "PYTHONPATH=/models/hf/hub/models--SupersonicLabs--Julia-1/snapshots/a85b127321d580d65176c89ced8273f305745d85",
+      "uvicorn",
+      "julia_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "expected_server": {
+      "revision": "a85b127321d580d65176c89ced8273f305745d85",
+      "device": "cuda:0",
+      "weight_dtype": "float32",
+      "precision": "fp32 weights, bf16 autocast forward (native julia CUDA path)",
+      "max_length": 8192,
+      "head_length": 512,
+      "strict_encoding": true,
+      "option_token_limit": 48,
+      "cpu_threads": null
+    }
+  },
+  "julia-1-cpu": {
+    "port": 11448,
+    "selector": "julia-1",
+    "interface": "systemone",
+    "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+    "command": [
+      "uvicorn",
+      "julia_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "expected_server": {
+      "revision": "a85b127321d580d65176c89ced8273f305745d85",
+      "device": "cpu",
+      "weight_dtype": "float32",
+      "precision": "fp32",
+      "max_length": 8192,
+      "head_length": 512,
+      "strict_encoding": true,
+      "option_token_limit": 48,
+      "cpu_threads": 4
+    }
   }
 }

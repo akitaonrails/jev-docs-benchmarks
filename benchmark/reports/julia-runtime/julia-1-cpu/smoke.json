@@ -1,0 +1,152 @@
+[
+  {
+    "kind": "choice",
+    "request": {
+      "state": "Please refund the duplicate payment.",
+      "questions": {
+        "decision": {
+          "type": "choice",
+          "instructions": "Route this request.",
+          "criteria": {
+            "billing": "Payments and refunds",
+            "technical": "Software faults"
+          }
+        }
+      },
+      "model": "julia-1"
+    },
+    "response": {
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "probabilities": {
+            "billing": 0.9998554108506035,
+            "technical": 0.00014458914939647176
+          },
+          "choice": "billing",
+          "max_probability": 0.9998554108506035
+        }
+      },
+      "usage": {
+        "input_tokens": 24,
+        "per_question_tokens": {
+          "decision": 24
+        },
+        "output_tokens": 0,
+        "state_truncated": false,
+        "options_truncated": false
+      },
+      "server": {
+        "model": "julia-1",
+        "repo": "SupersonicLabs/Julia-1",
+        "revision": "a85b127321d580d65176c89ced8273f305745d85",
+        "ready": true,
+        "device": "cpu",
+        "weight_dtype": "float32",
+        "precision": "fp32",
+        "max_length": 8192,
+        "head_length": 512,
+        "strict_encoding": true,
+        "option_token_limit": 48,
+        "options_per_question": "2-20",
+        "cpu_threads": 4,
+        "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+        "hip": "7.2.53211-e1a6bc5663",
+        "load_s": 4.171,
+        "cold": true,
+        "predict_s": 0.027
+      }
+    },
+    "result": {
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.9998554108506035,
+        "technical": 0.00014458914939647176
+      },
+      "raw_probability_sum": 1.0,
+      "usage": {
+        "input_tokens": 24,
+        "per_question_tokens": {
+          "decision": 24
+        },
+        "output_tokens": 0,
+        "state_truncated": false,
+        "options_truncated": false,
+        "truncated": false
+      },
+      "served_model": "SupersonicLabs/Julia-1@a85b127321d580d65176c89ced8273f305745d85"
+    }
+  },
+  {
+    "kind": "noul",
+    "request": {
+      "state": "Please refund the duplicate payment.",
+      "questions": {
+        "decision": {
+          "type": "noul",
+          "instructions": "Does the customer request a refund?",
+          "criteria": {
+            "true": "The customer requests money back.",
+            "false": "The customer does not request money back."
+          }
+        }
+      },
+      "model": "julia-1"
+    },
+    "response": {
+      "answers": {
+        "decision": {
+          "type": "noul",
+          "probabilities": {
+            "false": 0.030441167635425752,
+            "true": 0.9695588323645743
+          },
+          "noul": 0.9695588323645743
+        }
+      },
+      "usage": {
+        "input_tokens": 37,
+        "per_question_tokens": {
+          "decision": 37
+        },
+        "output_tokens": 0,
+        "state_truncated": false,
+        "options_truncated": false
+      },
+      "server": {
+        "model": "julia-1",
+        "repo": "SupersonicLabs/Julia-1",
+        "revision": "a85b127321d580d65176c89ced8273f305745d85",
+        "ready": true,
+        "device": "cpu",
+        "weight_dtype": "float32",
+        "precision": "fp32",
+        "max_length": 8192,
+        "head_length": 512,
+        "strict_encoding": true,
+        "option_token_limit": 48,
+        "options_per_question": "2-20",
+        "cpu_threads": 4,
+        "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+        "hip": "7.2.53211-e1a6bc5663",
+        "load_s": 4.171,
+        "cold": false,
+        "predict_s": 0.018
+      }
+    },
+    "result": {
+      "probability": 0.9695588323645743,
+      "usage": {
+        "input_tokens": 37,
+        "per_question_tokens": {
+          "decision": 37
+        },
+        "output_tokens": 0,
+        "state_truncated": false,
+        "options_truncated": false,
+        "truncated": false
+      },
+      "served_model": "SupersonicLabs/Julia-1@a85b127321d580d65176c89ced8273f305745d85"
+    }
+  }
+]

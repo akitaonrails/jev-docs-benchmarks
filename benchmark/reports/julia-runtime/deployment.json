@@ -1,0 +1,81 @@
+[
+  {
+    "name": "julia-1",
+    "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+    "command": [
+      "env",
+      "JULIA_DEVICE=cuda",
+      "PYTHONPATH=/models/hf/hub/models--SupersonicLabs--Julia-1/snapshots/a85b127321d580d65176c89ced8273f305745d85",
+      "uvicorn",
+      "julia_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "environment": {
+      "HF_HOME": "/models/hf",
+      "HF_HUB_OFFLINE": "1"
+    },
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_julia1",
+        "Source": "/var/lib/docker/volumes/decision_models_julia1/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ],
+    "memory_limit": 42949672960,
+    "running": false
+  },
+  {
+    "name": "julia-1-cpu",
+    "image": "sha256:1751b99122637ea0e6a291fd889324b1ec4f8439ba85fb3e8c7b73644289ac29",
+    "command": [
+      "uvicorn",
+      "julia_app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "environment": {
+      "PYTHONPATH": "/models/hf/hub/models--SupersonicLabs--Julia-1/snapshots/a85b127321d580d65176c89ced8273f305745d85",
+      "HF_HOME": "/models/hf",
+      "HF_HUB_OFFLINE": "1",
+      "JULIA_DEVICE": "cpu",
+      "JULIA_CPU_THREADS": "4"
+    },
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "decision_models_julia1",
+        "Source": "/var/lib/docker/volumes/decision_models_julia1/_data",
+        "Destination": "/models",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      }
+    ],
+    "devices": null,
+    "memory_limit": 8589934592,
+    "running": false
+  }
+]
