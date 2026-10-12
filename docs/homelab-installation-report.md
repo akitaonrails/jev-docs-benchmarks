@@ -1,5 +1,11 @@
 # Homelab installation handoff
 
+**12 October addition:** [Decision 3.0 flagship and Edge](../benchmark/decision3/README.md)
+are installed on ports 11450/11451. Both completed their benchmark suites and are
+stopped. Their [captured recipes](../benchmark/decision3/server/compose.json) and
+[verification](../benchmark/reports/decision3-comparison-v2/verification.json) supplement
+the historical installation reports below.
+
 **Later installations:** [Julia CPU/GPU](../benchmark/julia/installation-handoff.md)
 and [Perplexity 27B](../benchmark/perplexity/installation-handoff.json) have separate
 handoffs. The messages below are the original ten-model installation record;

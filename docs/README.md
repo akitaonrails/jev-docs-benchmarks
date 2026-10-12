@@ -1,5 +1,11 @@
 # Research and benchmark documentation
 
+## Latest Decision 3.0 comparison
+
+[Analysis](../benchmark/reports/decision3-comparison-v2/analysis.md),
+[23-configuration ranking](../benchmark/reports/decision3-comparison-v2/ranking.md),
+[protocol and installation](../benchmark/decision3/README.md). Only d3 and d3-edge were selected; no intermediate sizes.
+
 Research snapshot: **3 October 2026**. Jev and the open decision-model ecosystem are changing quickly; models, prices, and documented limits may change. The original research sections review public primary sources and published experiments. Subsequent measurements from this repository are linked below.
 
 1. [Business summary](business-summary.md) — the short introduction and decision.
@@ -58,5 +64,5 @@ and latency costs. See the [20-configuration ranking](../benchmark/reports/perpl
 ## Microsoft Decision-1
 
 [Access and pricing](microsoft-availability.md), [reproduction](../benchmark/microsoft/README.md),
-[latest analysis](../benchmark/reports/microsoft-comparison-v2/analysis.md) and
+[Microsoft analysis](../benchmark/reports/microsoft-comparison-v2/analysis.md) and
 [21-configuration ranking](../benchmark/reports/microsoft-comparison-v2/ranking.md).

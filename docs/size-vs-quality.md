@@ -1,5 +1,23 @@
 # Does a larger decision model score better?
 
+## Decision 3.0 update: 12 October 2026
+
+With d3 (nominal 27B) at **99.4% compact** and d3-edge (0.6B) at **60.7%**, the
+known-size sample grows to **n=19** after deduplicating Flash and Julia deployments.
+Spearman is **0.958** and Pearson(log10 size, accuracy) **0.958**. The flagship
+matches all Perplexity classification labels across both suites; Edge is close to
+Kev 0.8B on compact accuracy, with an uncertain paired difference.
+
+This family contrast is +38.7 points [29.8, 47.6] for the flagship on these paired
+cases. It does not isolate parameter count from training or identify the best
+intermediate model. Only the requested largest and smallest variants were tested.
+Boolean uncertainty MAE is actually lower for Edge than d3, though both remain
+poor: the size association is specific to classification quality.
+[Recomputed ranking and coefficients](../benchmark/reports/decision3-comparison-v2/ranking.md),
+[analysis](../benchmark/reports/decision3-comparison-v2/analysis.md).
+
+Earlier sections retain previous sample sizes and dates.
+
 ## Microsoft update: 11 October 2026
 
 Adding nominal **9B Microsoft Decision-1 at 97.6% compact** gives **n=17**, Spearman

@@ -2,7 +2,7 @@
 
 **Measure how reliably decision models apply supplied rules, how their probabilities
 behave, and what those decisions cost.** Compare TypeSafe Jev, Microsoft Decision-1 and OpenAI Decisions with hosted and local
-Clef/Clef-flash, Laya, Kev, Eikos, Jebadiah, Mapika Decider, Simple-Jev and GLiNER,
+Clef/Clef-flash, Decision 3.0, Laya, Kev, Eikos, Jebadiah, Mapika Decider, Simple-Jev and GLiNER,
 using frozen inputs, inspectable expected answers, raw
 response archives, and reproducible scoring.
 
@@ -16,10 +16,12 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **Latest results:** [Microsoft/OpenRouter comparison](benchmark/reports/microsoft-comparison-v2/analysis.md),
-  [21-configuration ranking](benchmark/reports/microsoft-comparison-v2/ranking.md),
-  [task/language tables](benchmark/reports/microsoft-comparison-v2/results.md), and
-  [actual reported usage and price comparison](benchmark/reports/microsoft-comparison-v2/costs.md).
+- **Latest results:** [Decision 3.0 flagship/Edge comparison](benchmark/reports/decision3-comparison-v2/analysis.md),
+  [23-configuration ranking](benchmark/reports/decision3-comparison-v2/ranking.md),
+  [task/language tables](benchmark/reports/decision3-comparison-v2/results.md), and
+  [runtime verification](benchmark/reports/decision3-comparison-v2/verification.json).
+- **Latest local setup:** [Decision 3.0 protocol and installation](benchmark/decision3/README.md).
+- **Hosted price comparison:** [Microsoft and other hosted services](benchmark/reports/microsoft-comparison-v2/costs.md).
 - **Latest hosted setup:** [Microsoft access and reproduction](benchmark/microsoft/README.md).
 - **Previous quality leader addition:** [Perplexity 27B comparison](benchmark/reports/perplexity-comparison-v2/analysis.md).
 - **Previous local expansion:** [16-configuration analysis](benchmark/reports/next-wave-comparison-v2/analysis.md).
@@ -36,6 +38,30 @@ that one model is universally best. See [methodology and limitations](#methodolo
 - **Open-model coverage:** [researched shortlist](docs/next-models.md) and
   [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
+
+## Decision 3.0: flagship ties Perplexity; Edge is a smaller compromise
+
+**2,096 new valid responses**, one attempt each, with no input loss. Both containers
+are stopped. Only the requested extremes were tested: **d3 (nominal 27B)** and **d3-edge (0.6B)**.
+The flagship scores **167/168 compact (99.4%)** and **501/504 across all v2 conditions**,
+matching Perplexity's prediction on every case. It also matches all 520 v1 labels,
+with **129/130 originals** (127/127 after the common ambiguity exclusions). Both
+large models miss the same English retrieval family. These results cannot distinguish their classification quality.
+
+Edge scores **102/168 compact (60.7%)**, **287/504 overall**, and **85/130 v1 originals**. Its compact English
+result is 57/84, PT-BR 45/84; worked examples reduce its combined score. It uses
+roughly 1.24 GiB of allocated GPU tensors versus d3's 48.7 GiB. Observed v2
+median/p95 is **45/102 ms** for Edge and **1,420/2,135 ms** for d3. Small size is useful,
+but its errors require a narrower application-specific evaluation.
+
+No hosted inference cost was added; local operating cost is unmeasured. Microsoft
+remains the paid hosted cost-benefit candidate for this input mix, while d3 joins
+Perplexity at the top local quality tier. This test covers text, not the new models'
+image/video capabilities. [Analysis](benchmark/reports/decision3-comparison-v2/analysis.md),
+[full ranking](benchmark/reports/decision3-comparison-v2/ranking.md),
+[setup](benchmark/decision3/README.md).
+
+The following named updates retain their historical scope.
 
 ## Microsoft Decision-1: tied hosted quality, lowest measured API cost
 

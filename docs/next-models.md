@@ -1,5 +1,10 @@
 # Further open models to benchmark
 
+**12 October update:** Decision 3.0 is released. Only the user-selected flagship
+d3 and smallest d3-edge were installed and tested; the four intermediate sizes
+were excluded. [Availability](decision3-availability.md),
+[results](../benchmark/reports/decision3-comparison-v2/analysis.md).
+
 Checked **10 October 2026** against upstream repositories, model cards, GitHub/Hub
 metadata and the live Decision Index. This is a test shortlist, not a measured
 ranking on our fixtures. No new model was downloaded, installed or run for this review.
@@ -7,7 +12,7 @@ ranking on our fixtures. No new model was downloaded, installed or run for this 
 **Subsequent setup:** the homelab agent installed ten configurations after this review.
 See the [installation handoff](homelab-installation-report.md) and
 [frozen next-wave protocol](../benchmark/next-wave/README.md). Julia CPU/GPU and
-Perplexity 27B have since been added. Microsoft Decision-1 is also available through OpenRouter; see [access](microsoft-availability.md) and the [latest measured comparison](../benchmark/reports/microsoft-comparison-v2/analysis.md).
+Perplexity 27B have since been added. Microsoft Decision-1 is also available through OpenRouter; see [access](microsoft-availability.md) and the [latest measured comparison](../benchmark/reports/decision3-comparison-v2/analysis.md).
 Other heavy-model candidates remain assessments.
 
 ## Initial homelab deployment

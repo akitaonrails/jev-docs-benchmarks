@@ -1,0 +1,35 @@
+{
+  "status": "ready",
+  "model": "d3",
+  "max_input_tokens": 8192,
+  "modalities": [
+    "text",
+    "image",
+    "video"
+  ],
+  "authentication": false,
+  "repo": "vllm-sr/d3",
+  "revision": "093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+  "device": "cuda:0",
+  "weight_dtype": "bfloat16",
+  "readout_dtype": "float32",
+  "context": {
+    "max_input_tokens": 8192,
+    "overflow": "max_length_exceeded per question; nothing is truncated"
+  },
+  "attention_mode": "noncausal_full_attention",
+  "pooling": "last",
+  "temperature": 1.0,
+  "batch_size": 1,
+  "loader": "direct safetensors shards to cuda:0",
+  "runtime_verified": "MODEL_MANIFEST.json fast check; full hash checked at installation",
+  "load_seconds": 93.6,
+  "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "hip": "7.2.53211-e1a6bc5663",
+  "kernels": {
+    "torch_chunk_gated_delta_rule": "torch-reference",
+    "causal_conv1d_fn": "torch-reference",
+    "fla": "missing (ModuleNotFoundError)"
+  },
+  "gpu_memory_allocated_gib": 48.74
+}

@@ -9,7 +9,7 @@ from statistics import correlation
 from hosted import ROOT, load_cases
 from score import interval
 
-SIZES = {'microsoft-decision-1':9, 'laya':.421, 'laya-typed':.421, 'laya-multilingual':.322,
+SIZES = {'d3':27, 'd3-edge':.6, 'microsoft-decision-1':9, 'laya':.421, 'laya-typed':.421, 'laya-multilingual':.322,
          'julia-1':.1443, 'julia-1-cpu':.1443, 'pplx-decider-27b':27,
          'gliner2.5-decide':.340, 'gliner2.5-multi-decide':.287,
          'kev-0.8b':.8, 'kev-4b':4, 'kev-9b':9,
@@ -103,6 +103,11 @@ def main():
         comparisons += [('pplx-decider-27b', m) for m in ['clef','openai-decisions','jebadiah-4b-v2'] if m in ordered]
     if 'microsoft-decision-1' in ordered:
         comparisons += [('microsoft-decision-1', m) for m in ['pplx-decider-27b','clef','openai-decisions','clef-flash','kev-9b'] if m in ordered]
+    for entrant in ('d3', 'd3-edge'):
+        if entrant in ordered:
+            comparisons += [(entrant, m) for m in ['pplx-decider-27b','microsoft-decision-1','clef','kev-0.8b','julia-1'] if m in ordered]
+    if 'd3' in ordered and 'd3-edge' in ordered:
+        comparisons += [('d3','d3-edge')]
     if 'julia-1-cpu' in ordered and 'julia-1' in ordered:
         comparisons += [('julia-1-cpu','julia-1')]
     lines += ['', '## Paired compact differences, clustered by authored family', '',

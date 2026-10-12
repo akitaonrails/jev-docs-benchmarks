@@ -367,3 +367,12 @@ catalog can omit decision models: query `output_modalities=decisions` instead.
 Input price observed 11 October 2026 is $0.042/M with free output. Check the
 [OpenRouter model page](https://openrouter.ai/microsoft/microsoft-decision-1)
 before running. Local model services are not involved.
+
+## Decision 3.0 flagship and Edge
+
+The two selected models use the same homelab Docker lifecycle: d3 at port 11450,
+d3-edge at 11451. Follow the [pinned installation and reproduction guide](../benchmark/decision3/README.md).
+It includes the actual server recipe, model-volume downloads, independent manifest
+and token checks, sequential inference and offline comparison commands. Only these
+two sizes were selected. Full d3 nearly fills the GPU; the runner checks for another
+substantial GPU tenant before starting. No workstation packages or GPU are used.

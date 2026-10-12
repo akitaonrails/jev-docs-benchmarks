@@ -1,5 +1,19 @@
 # Real use cases and fit in my projects
 
+## Decision 3.0 follow-up: two local resource budgets
+
+The [d3/Edge comparison](../benchmark/reports/decision3-comparison-v2/analysis.md)
+adds a local flagship matching Perplexity's 99.4% compact result and an approximately
+0.6B model scoring 60.7%. Edge uses much less GPU memory, but its compact PT-BR
+score is 45/84 versus English 57/84. This does not support replacing the hosted
+candidates across your portfolio merely to gain local execution.
+
+For retrieval screening, d3 shares Perplexity's mistake: notification recipients
+are treated as evidence of required approvers. That is directly relevant to
+candidate ranking and evidence checking. The existing project assessments remain
+README-based; no production integration or new project workload was tested. The
+new models' image/video abilities could be relevant elsewhere, but are untested here.
+
 ## Microsoft follow-up: cheap routing still needs a domain test
 
 The [new hosted comparison](../benchmark/reports/microsoft-comparison-v2/analysis.md)

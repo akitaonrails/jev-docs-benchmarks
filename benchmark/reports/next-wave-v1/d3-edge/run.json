@@ -1,0 +1,67 @@
+{
+  "started_at": "2026-10-12T14:38:40.037070+00:00",
+  "config": {
+    "models": [
+      "d3-edge"
+    ],
+    "limit": 0,
+    "dataset_sha256": "30a833c0517a906198e764055996d99b417475d3b6146bb46a97150c7c8d5b72",
+    "dataset_directory": "/work/datasets",
+    "registry": {
+      "port": 11451,
+      "selector": "d3-edge",
+      "interface": "systemone",
+      "image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+      "command": [
+        "env",
+        "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3-edge/snapshots/20c745653400d191ecacd99c4eafc0c5900dc15e",
+        "D3_MODEL_REPO=vllm-sr/d3-edge",
+        "D3_MODEL_REVISION=20c745653400d191ecacd99c4eafc0c5900dc15e",
+        "D3_MODEL_NAME=d3-edge",
+        "D3_MAX_INPUT_TOKENS=8192",
+        "D3_BATCH_SIZE=8",
+        "D3_DIRECT_GPU_LOAD=0",
+        "python",
+        "/opt/d3/run_d3.py"
+      ],
+      "health_route": "/health",
+      "encoding_evidence": "reports/decision3-runtime/d3-edge-encoding.json",
+      "expected_health": {
+        "repo": "vllm-sr/d3-edge",
+        "revision": "20c745653400d191ecacd99c4eafc0c5900dc15e",
+        "device": "cuda:0",
+        "weight_dtype": "bfloat16",
+        "readout_dtype": "float32",
+        "attention_mode": "noncausal_full_attention",
+        "pooling": "last",
+        "temperature": 1.0,
+        "max_input_tokens": 8192,
+        "batch_size": 8
+      }
+    },
+    "runner_sha256": "086eac9ddc5136136dca17f83311a5b52d7e0ca6431ad24bc4ff2a93645c3640",
+    "contract_sha256": "f59cc251d1a2cdb4bc87b348539451788b5a60ac2a11f0f74e67f097f7edb1b0",
+    "shared_runner_sha256": "daf0b85e96918583f35f7ae5208ee017356e40879d51963daba0efbbafffecff",
+    "max_attempts": 1,
+    "seed": 20261010,
+    "probability_semantics": "native-distribution"
+  },
+  "provenance": {
+    "image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+    "command": [
+      "env",
+      "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3-edge/snapshots/20c745653400d191ecacd99c4eafc0c5900dc15e",
+      "D3_MODEL_REPO=vllm-sr/d3-edge",
+      "D3_MODEL_REVISION=20c745653400d191ecacd99c4eafc0c5900dc15e",
+      "D3_MODEL_NAME=d3-edge",
+      "D3_MAX_INPUT_TOKENS=8192",
+      "D3_BATCH_SIZE=8",
+      "D3_DIRECT_GPU_LOAD=0",
+      "python",
+      "/opt/d3/run_d3.py"
+    ],
+    "running_benchmark_containers": [
+      "dm-d3-edge"
+    ]
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "d3": {
+    "v1": {
+      "records": 544,
+      "valid_single_attempt": true,
+      "complete_encoding_verified": true,
+      "archive_request_hashes_verified": true,
+      "previous_metrics_unchanged": true,
+      "health_provenance_verified": true,
+      "served_models": [
+        "d3"
+      ],
+      "original_correct": 129,
+      "all_variants_correct": 516,
+      "sensitivity_correct": {
+        "all": 508,
+        "originals": 127
+      },
+      "uncertainty_mae": {
+        "choice": 0.09794136275065339,
+        "noul": 0.40612346534960375
+      },
+      "policy_pairs": [
+        {
+          "a": "incident_escalation-01",
+          "b": "incident_escalation-02",
+          "both_correct": true,
+          "changed": true
+        },
+        {
+          "a": "incident_escalation-03",
+          "b": "incident_escalation-04",
+          "both_correct": true,
+          "changed": true
+        },
+        {
+          "a": "incident_escalation-07",
+          "b": "incident_escalation-08",
+          "both_correct": true,
+          "changed": true
+        },
+        {
+          "a": "forecast_triage-01",
+          "b": "forecast_triage-02",
+          "both_correct": true,
+          "changed": true
+        },
+        {
+          "a": "forecast_triage-03",
+          "b": "forecast_triage-04",
+          "both_correct": true,
+          "changed": true
+        }
+      ],
+      "invariance": {
+        "reordered": {
+          "valid_pairs": 130,
+          "agreement": 1.0,
+          "correct_to_wrong_count": 0
+        },
+        "opaque": {
+          "valid_pairs": 130,
+          "agreement": 1.0,
+          "correct_to_wrong_count": 0
+        },
+        "injected": {
+          "valid_pairs": 130,
+          "agreement": 1.0,
+          "correct_to_wrong_count": 0
+        }
+      },
+      "critical_originals": {
+        "n": 3,
+        "misses_including_missing": 1
+      },
+      "runtime": {
+        "planned": 544,
+        "recorded": 544,
+        "valid": 544,
+        "errors": {},
+        "missing": 0,
+        "attempts": 544,
+        "retried_requests": 0,
+        "median_valid_wall_seconds": 1.3355887959478423,
+        "p95_valid_wall_seconds": 1.3991743959020824,
+        "reported_input_tokens": 141364,
+        "valid_responses_missing_usage": 0,
+        "estimated_reported_usage_cost_usd": null,
+        "cost_note": "Local compute cost unmeasured; no hosted token rate applies.",
+        "served_models": [
+          "d3"
+        ],
+        "local": {
+          "truncation_reported_count": 0,
+          "truncation_telemetry_missing_count": 544,
+          "state_tokens_dropped": null,
+          "truncated_question_count": null,
+          "cold_requests": 0,
+          "server_prediction_median_seconds": null,
+          "server_prediction_p95_seconds": null,
+          "revisions": [
+            "unknown"
+          ]
+        }
+      }
+    },
+    "v2": {
+      "records": 504,
+      "valid_single_attempt": true,
+      "complete_encoding_verified": true,
+      "archive_request_hashes_verified": true,
+      "previous_metrics_unchanged": true,
+      "health_provenance_verified": true,
+      "served_models": [
+        "d3"
+      ],
+      "condition_correct": {
+        "compact": 167,
+        "examples": 167,
+        "distractors": 167
+      },
+      "compact_brier": 0.013747234606422732,
+      "high_confidence_count": 158,
+      "high_confidence_errors": 0,
+      "runtime": {
+        "requests": 504,
+        "valid": 504,
+        "errors": 0,
+        "attempts": 504,
+        "median_seconds": 1.4196050870232284,
+        "p95_seconds": 2.1352027583518063,
+        "cold_requests": null,
+        "served_models": [
+          "d3"
+        ]
+      }
+    }
+  },
+  "d3-edge": {
+    "v1": {
+      "records": 544,
+      "valid_single_attempt": true,
+      "complete_encoding_verified": true,
+      "archive_request_hashes_verified": true,
+      "previous_metrics_unchanged": true,
+      "health_provenance_verified": true,
+      "served_models": [
+        "d3-edge"
+      ],
+      "original_correct": 85,
+      "all_variants_correct": 347,
+      "sensitivity_correct": {
+        "all": 345,
+        "originals": 85
+      },
+      "uncertainty_mae": {
+        "choice": 0.28471014432545727,
+        "noul": 0.2659443119737187
+      },
+      "policy_pairs": [
+        {
+          "a": "incident_escalation-01",
+          "b": "incident_escalation-02",
+          "both_correct": false,
+          "changed": true
+        },
+        {
+          "a": "incident_escalation-03",
+          "b": "incident_escalation-04",
+          "both_correct": true,
+          "changed": true
+        },
+        {
+          "a": "incident_escalation-07",
+          "b": "incident_escalation-08",
+          "both_correct": false,
+          "changed": false
+        },
+        {
+          "a": "forecast_triage-01",
+          "b": "forecast_triage-02",
+          "both_correct": true,
+          "changed": true
+        },
+        {
+          "a": "forecast_triage-03",
+          "b": "forecast_triage-04",
+          "both_correct": true,
+          "changed": true
+        }
+      ],
+      "invariance": {
+        "reordered": {
+          "valid_pairs": 130,
+          "agreement": 0.9384615384615385,
+          "correct_to_wrong_count": 3
+        },
+        "opaque": {
+          "valid_pairs": 130,
+          "agreement": 0.9,
+          "correct_to_wrong_count": 2
+        },
+        "injected": {
+          "valid_pairs": 130,
+          "agreement": 0.8692307692307693,
+          "correct_to_wrong_count": 5
+        }
+      },
+      "critical_originals": {
+        "n": 3,
+        "misses_including_missing": 2
+      },
+      "runtime": {
+        "planned": 544,
+        "recorded": 544,
+        "valid": 544,
+        "errors": {},
+        "missing": 0,
+        "attempts": 544,
+        "retried_requests": 0,
+        "median_valid_wall_seconds": 0.02834909304510802,
+        "p95_valid_wall_seconds": 0.033711102139204745,
+        "reported_input_tokens": 141364,
+        "valid_responses_missing_usage": 0,
+        "estimated_reported_usage_cost_usd": null,
+        "cost_note": "Local compute cost unmeasured; no hosted token rate applies.",
+        "served_models": [
+          "d3-edge"
+        ],
+        "local": {
+          "truncation_reported_count": 0,
+          "truncation_telemetry_missing_count": 544,
+          "state_tokens_dropped": null,
+          "truncated_question_count": null,
+          "cold_requests": 0,
+          "server_prediction_median_seconds": null,
+          "server_prediction_p95_seconds": null,
+          "revisions": [
+            "unknown"
+          ]
+        }
+      }
+    },
+    "v2": {
+      "records": 504,
+      "valid_single_attempt": true,
+      "complete_encoding_verified": true,
+      "archive_request_hashes_verified": true,
+      "previous_metrics_unchanged": true,
+      "health_provenance_verified": true,
+      "served_models": [
+        "d3-edge"
+      ],
+      "condition_correct": {
+        "compact": 102,
+        "examples": 86,
+        "distractors": 99
+      },
+      "compact_brier": 0.5503381579345796,
+      "high_confidence_count": 68,
+      "high_confidence_errors": 14,
+      "runtime": {
+        "requests": 504,
+        "valid": 504,
+        "errors": 0,
+        "attempts": 504,
+        "median_seconds": 0.045367314014583826,
+        "p95_seconds": 0.10189220410538836,
+        "cold_requests": null,
+        "served_models": [
+          "d3-edge"
+        ]
+      }
+    }
+  },
+  "d3_perplexity_classification_agreement": {
+    "v1": {
+      "classifications": 520,
+      "matching_labels": 520
+    },
+    "v2": {
+      "classifications": 504,
+      "matching_labels": 504
+    }
+  }
+}

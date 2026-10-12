@@ -1,8 +1,14 @@
 # Benchmark developer guide
 
+## Decision 3.0 flagship and Edge
+
+[Analysis](reports/decision3-comparison-v2/analysis.md),
+[23-configuration ranking](reports/decision3-comparison-v2/ranking.md),
+[protocol and installation](decision3/README.md). Only d3 and d3-edge were selected; no intermediate sizes.
+
 ## Microsoft Decision-1 extension
 
-[Latest 21-configuration analysis](reports/microsoft-comparison-v2/analysis.md),
+[Microsoft 21-configuration analysis](reports/microsoft-comparison-v2/analysis.md),
 [ranking](reports/microsoft-comparison-v2/ranking.md),
 [cost reconciliation](reports/microsoft-comparison-v2/costs.md), and
 [protocol/setup](microsoft/README.md). All 1,048 responses are valid; ten v2 rate-limit

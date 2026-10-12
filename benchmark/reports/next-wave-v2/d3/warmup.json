@@ -1,0 +1,18 @@
+{
+  "model": "d3",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.9998066364332514,
+        "technical": 0.0001933635667485961
+      },
+      "confidence": 0.9973356527070232
+    }
+  },
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 0
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "services": {
+    "d3": {
+      "build": {
+        "context": "/var/opt/docker/ai/decision-models-next/d3",
+        "dockerfile": "Dockerfile"
+      },
+      "command": [
+        "env",
+        "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3/snapshots/093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+        "D3_MODEL_REPO=vllm-sr/d3",
+        "D3_MODEL_REVISION=093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+        "D3_MODEL_NAME=d3",
+        "D3_MAX_INPUT_TOKENS=8192",
+        "D3_BATCH_SIZE=1",
+        "D3_DIRECT_GPU_LOAD=1",
+        "python",
+        "/opt/d3/run_d3.py"
+      ],
+      "container_name": "dm-d3",
+      "devices": [
+        {
+          "source": "/dev/kfd",
+          "target": "/dev/kfd",
+          "permissions": "rwm"
+        },
+        {
+          "source": "/dev/dri",
+          "target": "/dev/dri",
+          "permissions": "rwm"
+        }
+      ],
+      "entrypoint": null,
+      "environment": {
+        "HF_HOME": "/models/hf",
+        "HF_HUB_OFFLINE": "1",
+        "HSA_OVERRIDE_GFX_VERSION": "11.5.1",
+        "PYTORCH_ROCM_ARCH": "gfx1151"
+      },
+      "group_add": [
+        "485",
+        "488"
+      ],
+      "image": "decision-models-d3:local",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      },
+      "mem_limit": "25769803776",
+      "memswap_limit": "25769803776",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "192.168.0.90",
+          "target": 8000,
+          "published": "11450",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "no",
+      "security_opt": [
+        "label:disable"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "decision_models_d3",
+          "target": "/models",
+          "read_only": true,
+          "volume": {}
+        }
+      ]
+    },
+    "d3-edge": {
+      "build": {
+        "context": "/var/opt/docker/ai/decision-models-next/d3",
+        "dockerfile": "Dockerfile"
+      },
+      "command": [
+        "env",
+        "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3-edge/snapshots/20c745653400d191ecacd99c4eafc0c5900dc15e",
+        "D3_MODEL_REPO=vllm-sr/d3-edge",
+        "D3_MODEL_REVISION=20c745653400d191ecacd99c4eafc0c5900dc15e",
+        "D3_MODEL_NAME=d3-edge",
+        "D3_MAX_INPUT_TOKENS=8192",
+        "D3_BATCH_SIZE=8",
+        "D3_DIRECT_GPU_LOAD=0",
+        "python",
+        "/opt/d3/run_d3.py"
+      ],
+      "container_name": "dm-d3-edge",
+      "devices": [
+        {
+          "source": "/dev/kfd",
+          "target": "/dev/kfd",
+          "permissions": "rwm"
+        },
+        {
+          "source": "/dev/dri",
+          "target": "/dev/dri",
+          "permissions": "rwm"
+        }
+      ],
+      "entrypoint": null,
+      "environment": {
+        "HF_HOME": "/models/hf",
+        "HF_HUB_OFFLINE": "1",
+        "HSA_OVERRIDE_GFX_VERSION": "11.5.1",
+        "PYTORCH_ROCM_ARCH": "gfx1151"
+      },
+      "group_add": [
+        "485",
+        "488"
+      ],
+      "image": "decision-models-d3:local",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-file": "3",
+          "max-size": "10m"
+        }
+      },
+      "mem_limit": "8589934592",
+      "memswap_limit": "8589934592",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "192.168.0.90",
+          "target": 8000,
+          "published": "11451",
+          "protocol": "tcp"
+        }
+      ],
+      "restart": "no",
+      "security_opt": [
+        "label:disable"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "decision_models_d3_edge",
+          "target": "/models",
+          "read_only": true,
+          "volume": {}
+        }
+      ]
+    }
+  },
+  "volumes": {
+    "decision_models_d3": {
+      "name": "decision_models_d3",
+      "external": true
+    },
+    "decision_models_d3_edge": {
+      "name": "decision_models_d3_edge",
+      "external": true
+    }
+  }
+}

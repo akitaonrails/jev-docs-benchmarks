@@ -1,5 +1,20 @@
 # Technical and cost-benefit ranking
 
+## Decision 3.0 update: 12 October 2026
+
+The [23-configuration comparison](../benchmark/reports/decision3-comparison-v2/analysis.md)
+adds d3 and d3-edge. **d3 ties Perplexity at 99.4% compact and 501/504 overall**;
+the two models agree on every v2 label. Both are candidates when local quality
+matters and roughly 49 GiB of GPU tensor memory is acceptable. Their local dollar
+cost remains unmeasured, so no financial winner is established.
+
+Edge scores **60.7% compact**, with roughly **1.24 GiB** allocated GPU tensors.
+It trades substantial accuracy for a much smaller runtime; this test does not
+establish that trade as acceptable for a real project. No CPU test was added.
+Microsoft remains the paid hosted cost-benefit candidate using the dated 11 October
+prices and archived token usage. No hosted inference was added in this extension.
+Earlier sections below retain their original dates and recommendation scope.
+
 ## Microsoft update: 11 October 2026
 
 The [21-configuration comparison](../benchmark/reports/microsoft-comparison-v2/analysis.md)

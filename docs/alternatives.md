@@ -1,5 +1,17 @@
 # Jev alternatives: Clef, Laya, and the emerging ecosystem
 
+## Decision 3.0: flagship and Edge now measured
+
+vLLM Semantic Router released six open checkpoints; the user selected only **d3**
+and **d3-edge**. Both are Apache-2.0, with native choice, Boolean and ordinal
+questions and optional image/video inputs. [Availability and primary sources](decision3-availability.md).
+
+Our text-only [23-configuration comparison](../benchmark/reports/decision3-comparison-v2/analysis.md)
+puts d3 at **99.4% compact**, with all 504 labels matching Perplexity; Edge scores
+**60.7%** at a much smaller memory footprint. Publisher Decision Index scores and
+hardware timings remain separate evidence. No intermediate model or multimodal
+benchmark was run. Local operating costs are unmeasured.
+
 ## Microsoft Decision-1: now measured through OpenRouter
 
 The [21-configuration analysis](../benchmark/reports/microsoft-comparison-v2/analysis.md)

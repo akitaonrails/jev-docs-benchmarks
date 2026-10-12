@@ -1,0 +1,18 @@
+{
+  "image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+  "command": [
+    "env",
+    "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3-edge/snapshots/20c745653400d191ecacd99c4eafc0c5900dc15e",
+    "D3_MODEL_REPO=vllm-sr/d3-edge",
+    "D3_MODEL_REVISION=20c745653400d191ecacd99c4eafc0c5900dc15e",
+    "D3_MODEL_NAME=d3-edge",
+    "D3_MAX_INPUT_TOKENS=8192",
+    "D3_BATCH_SIZE=8",
+    "D3_DIRECT_GPU_LOAD=0",
+    "python",
+    "/opt/d3/run_d3.py"
+  ],
+  "running_benchmark_containers": [
+    "dm-d3-edge"
+  ]
+}

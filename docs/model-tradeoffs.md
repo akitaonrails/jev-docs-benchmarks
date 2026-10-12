@@ -1,5 +1,18 @@
 # Model quality and deployment tradeoffs
 
+## Decision 3.0 update: 12 October 2026
+
+The flagship d3 (nominal 27B; card total 26.09B) matches Perplexity on all 504 v2
+labels. d3-edge (nominal 0.6B; card total 0.59B) scores 60.7% compact, compared with
+99.4% for the flagship. Allocated GPU tensors are roughly 48.7 versus 1.24 GiB;
+vision weights remain loaded during these text-only tests.
+
+The [full analysis](../benchmark/reports/decision3-comparison-v2/analysis.md) separates
+GPU tensor allocation, sampled container host memory and total GPU usage. Full d3
+uses a strict direct GPU loader and ROCm reference kernels. Resource samples are
+not isolated peak measurements. No CPU, energy, cost-per-second or intermediate-size
+test was performed. Edge's footprint matters, but its policy errors remain material.
+
 ## Microsoft update: 11 October 2026
 
 Microsoft's nominal **9B** hosted model ties Jev at **97.6% compact** and exceeds

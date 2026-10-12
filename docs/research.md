@@ -1,6 +1,6 @@
 # What Jev is, what preceded it, and what is supported
 
-Research snapshot: **3 October 2026**. Claims below distinguish TypeSafe's statements, direct observations published by experimenters, and our inferences. This original literature review predates our API/local tests; see the latest [measured comparison](../benchmark/reports/microsoft-comparison-v2/analysis.md) and [current cost-benefit ranking](cost-benefit-ranking.md). The newer open implementations are compared in [Jev alternatives](alternatives.md).
+Research snapshot: **3 October 2026**. Claims below distinguish TypeSafe's statements, direct observations published by experimenters, and our inferences. This original literature review predates our API/local tests; see the latest [measured comparison](../benchmark/reports/decision3-comparison-v2/analysis.md) and [current cost-benefit ranking](cost-benefit-ranking.md). The newer open implementations are compared in [Jev alternatives](alternatives.md).
 
 ## Mechanics
 

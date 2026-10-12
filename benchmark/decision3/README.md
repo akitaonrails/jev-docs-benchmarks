@@ -1,7 +1,8 @@
 # Decision 3.0: flagship and smallest-model extension
 
 Status, 12 October 2026: both pinned models installed in homelab Docker.
-**Protocol frozen before scored execution.** The user selected only the flagship and
+**Completed: 2,096 valid single-attempt responses, no errors or input loss.**
+Both services are stopped. [Results](../reports/decision3-comparison-v2/analysis.md). The user selected only the flagship and
 smallest variants. Intermediate sizes are excluded.
 
 | Entrant | Published size label | Card's total parameters | Pinned revision |
@@ -76,3 +77,53 @@ must report exactly the independently computed complete input-token count.
 The controller verifies image, command and health provenance; rejects another
 active benchmark or substantial GPU tenant; stops the model in a finally block.
 All new packages remain in Docker. Server recipes are in [server/](server/).
+
+## Recreate the server installation
+
+The [captured compose configuration](server/compose.json) records the actual
+ports, device access, read-only model volumes, host-memory caps and commands.
+It contains homelab-specific absolute paths, GPU group IDs and LAN address; adapt
+those on another machine. The Dockerfile also depends on the homelab's pinned
+ROCm base image, described in [the general setup guide](../../docs/setup.md).
+Do not assume that private base image is publicly downloadable.
+
+On a compatible server with that base image available:
+
+```sh
+docker build -t decision-models-d3:local benchmark/decision3/server
+docker volume create decision_models_d3
+docker volume create decision_models_d3_edge
+docker run --rm -e HF_HOME=/models/hf -e HF_HUB_OFFLINE=0 \
+  -v decision_models_d3:/models decision-models-d3:local python -c \
+  'from huggingface_hub import snapshot_download; snapshot_download("vllm-sr/d3", revision="093cffbaa7be6f5dfe14252ae7e80c396c06dbd9")'
+docker run --rm -e HF_HOME=/models/hf -e HF_HUB_OFFLINE=0 \
+  -v decision_models_d3_edge:/models decision-models-d3:local python -c \
+  'from huggingface_hub import snapshot_download; snapshot_download("vllm-sr/d3-edge", revision="20c745653400d191ecacd99c4eafc0c5900dc15e")'
+```
+
+Integrate the two service entries into the server stack, preserving the read-only
+snapshot mounts. Use `docker compose up -d d3-edge` or `docker compose up -d d3`,
+never both together. Stop with `docker compose stop SERVICE`. A locally rebuilt
+image has a different digest: review and explicitly freeze its registry entry before
+running; the benchmark intentionally refuses an unexpected image or command.
+Do not blindly replace the whole existing stack with this two-service excerpt.
+
+After inference, recompute without GPU or network:
+
+```sh
+sh benchmark/decision3/score.sh
+benchmark/tools/offline.sh /work/decision3/analyze.py
+```
+
+The comparison uses the 11 October hosted-price snapshot. No hosted inference is
+added in this extension, and local electricity/hardware costs are not estimated.
+
+The server's configured question batch size is 1 for d3 and 8 for Edge. Every
+scored request contains one question, and requests are sent serially; this is not
+a concurrent throughput or batching comparison. Vision weights remain loaded even
+though these fixtures use text. Size tables retain the repository's nominal labels
+(27B and 0.6B), with the card's exact totals disclosed above.
+
+Pre-inference protocol commit: `4e57bf1`. The installation message reports
+independent choice/Noul smoke tests; our run adds an independent routing warmup,
+health checks before/after each suite, and per-request encoding equality checks.

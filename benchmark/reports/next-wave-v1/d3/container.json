@@ -1,0 +1,18 @@
+{
+  "image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+  "command": [
+    "env",
+    "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3/snapshots/093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+    "D3_MODEL_REPO=vllm-sr/d3",
+    "D3_MODEL_REVISION=093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+    "D3_MODEL_NAME=d3",
+    "D3_MAX_INPUT_TOKENS=8192",
+    "D3_BATCH_SIZE=1",
+    "D3_DIRECT_GPU_LOAD=1",
+    "python",
+    "/opt/d3/run_d3.py"
+  ],
+  "running_benchmark_containers": [
+    "dm-d3"
+  ]
+}
