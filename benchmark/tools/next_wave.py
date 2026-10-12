@@ -74,7 +74,7 @@ def run(args):
     else:
         raise RuntimeError('Service did not become ready')
     if config.get('expected_health'):
-        status, health = call(base, '/healthz')
+        status, health = call(base, config.get('health_route', '/healthz'))
         if status != 200:
             raise RuntimeError('Health provenance unavailable')
         verify_health(health, args.model)
@@ -118,7 +118,7 @@ def run(args):
         if status is None or status >= 500:
             raise RuntimeError('Infrastructure failure; partial response retained')
     if config.get('expected_health'):
-        status, health = call(base, '/healthz')
+        status, health = call(base, config.get('health_route', '/healthz'))
         if status != 200:
             raise RuntimeError('Final health provenance unavailable')
         verify_health(health, args.model)

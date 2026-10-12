@@ -1,0 +1,153 @@
+{
+  "Name": "/dm-d3",
+  "Image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+  "Mounts": [
+    {
+      "Type": "volume",
+      "Name": "decision_models_d3",
+      "Source": "/var/lib/docker/volumes/decision_models_d3/_data",
+      "Destination": "/models",
+      "Driver": "local",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": ""
+    }
+  ],
+  "HostConfig": {
+    "Binds": [
+      "decision_models_d3:/models:ro"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {
+        "max-file": "3",
+        "max-size": "10m"
+      }
+    },
+    "NetworkMode": "decision-models-next_default",
+    "PortBindings": {
+      "8000/tcp": [
+        {
+          "HostIp": "192.168.0.90",
+          "HostPort": "11450"
+        }
+      ]
+    },
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": [],
+    "GroupAdd": [
+      "485",
+      "488"
+    ],
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": [
+      "label:disable"
+    ],
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 25769803776,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": [
+      {
+        "PathOnHost": "/dev/kfd",
+        "PathInContainer": "/dev/kfd",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri",
+        "PathInContainer": "/dev/dri",
+        "CgroupPermissions": "rwm"
+      }
+    ],
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 25769803776,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+      "/proc/acpi",
+      "/proc/asound",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/sys/devices/virtual/powercap",
+      "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "Config": {
+    "Cmd": [
+      "env",
+      "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3/snapshots/093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+      "D3_MODEL_REPO=vllm-sr/d3",
+      "D3_MODEL_REVISION=093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+      "D3_MODEL_NAME=d3",
+      "D3_MAX_INPUT_TOKENS=8192",
+      "D3_BATCH_SIZE=1",
+      "D3_DIRECT_GPU_LOAD=1",
+      "python",
+      "/opt/d3/run_d3.py"
+    ],
+    "Entrypoint": null,
+    "WorkingDir": "/opt/d3"
+  }
+}

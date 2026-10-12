@@ -33,6 +33,10 @@ def main():
         running = ssh("sudo docker ps --format '{{.Names}}'").splitlines()
         if any(n.startswith('dm-') or n == 'decision-models-systemone' for n in running):
             raise RuntimeError('Another benchmark container is active; refuse overlap')
+        if model in ('d3', 'd3-edge'):
+            memory = ssh('cat /sys/class/drm/card*/device/mem_info_vram_used')
+            if max(int(n) for n in memory.split()) >= 8*2**30:
+                raise RuntimeError('GPU has another substantial tenant; leave it untouched')
         print('START', model, flush=True)
         try:
             ssh(REMOTE + 'up -d ' + model)

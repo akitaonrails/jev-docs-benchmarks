@@ -262,5 +262,69 @@
       "max_options": 255
     },
     "encoding_evidence": "reports/perplexity-runtime/encoding.json"
+  },
+  "d3": {
+    "port": 11450,
+    "selector": "d3",
+    "interface": "systemone",
+    "image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+    "command": [
+      "env",
+      "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3/snapshots/093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+      "D3_MODEL_REPO=vllm-sr/d3",
+      "D3_MODEL_REVISION=093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+      "D3_MODEL_NAME=d3",
+      "D3_MAX_INPUT_TOKENS=8192",
+      "D3_BATCH_SIZE=1",
+      "D3_DIRECT_GPU_LOAD=1",
+      "python",
+      "/opt/d3/run_d3.py"
+    ],
+    "health_route": "/health",
+    "encoding_evidence": "reports/decision3-runtime/d3-encoding.json",
+    "expected_health": {
+      "repo": "vllm-sr/d3",
+      "revision": "093cffbaa7be6f5dfe14252ae7e80c396c06dbd9",
+      "device": "cuda:0",
+      "weight_dtype": "bfloat16",
+      "readout_dtype": "float32",
+      "attention_mode": "noncausal_full_attention",
+      "pooling": "last",
+      "temperature": 1.0,
+      "max_input_tokens": 8192,
+      "batch_size": 1
+    }
+  },
+  "d3-edge": {
+    "port": 11451,
+    "selector": "d3-edge",
+    "interface": "systemone",
+    "image": "sha256:061f63f5c7da8d22b62015adc67e3db5bebc467a3bcae0ea3659640527730c07",
+    "command": [
+      "env",
+      "D3_MODEL_PATH=/models/hf/hub/models--vllm-sr--d3-edge/snapshots/20c745653400d191ecacd99c4eafc0c5900dc15e",
+      "D3_MODEL_REPO=vllm-sr/d3-edge",
+      "D3_MODEL_REVISION=20c745653400d191ecacd99c4eafc0c5900dc15e",
+      "D3_MODEL_NAME=d3-edge",
+      "D3_MAX_INPUT_TOKENS=8192",
+      "D3_BATCH_SIZE=8",
+      "D3_DIRECT_GPU_LOAD=0",
+      "python",
+      "/opt/d3/run_d3.py"
+    ],
+    "health_route": "/health",
+    "encoding_evidence": "reports/decision3-runtime/d3-edge-encoding.json",
+    "expected_health": {
+      "repo": "vllm-sr/d3-edge",
+      "revision": "20c745653400d191ecacd99c4eafc0c5900dc15e",
+      "device": "cuda:0",
+      "weight_dtype": "bfloat16",
+      "readout_dtype": "float32",
+      "attention_mode": "noncausal_full_attention",
+      "pooling": "last",
+      "temperature": 1.0,
+      "max_input_tokens": 8192,
+      "batch_size": 8
+    }
   }
 }
