@@ -1,0 +1,35 @@
+{
+  "remaining_owned_cache_ids": [
+    "3a81hoa32tddhud3b3vt5g5cr",
+    "ezw68tmoh06mne7g426mjodyp",
+    "jh3spo4szayvkkvupfz8ullq3",
+    "liu4evq6rxs922jur6n4u30wb",
+    "vf207t11a8mnvlix5ppunz6ki",
+    "vh7vm1lotvbdfynm1bp31qtzt",
+    "vyusymg06cvqqt9fexult9edj"
+  ],
+  "removed": [
+    "jev-cuda-clef",
+    "jev-cuda-d3",
+    "jev-cuda-decider",
+    "jev-cuda-encoders",
+    "jev-cuda-julia",
+    "jev-cuda-qwen",
+    "jev-cuda-simple",
+    "jev-cuda-rebuild-check",
+    "jev_cuda_d3_edge",
+    "jev_cuda_decider",
+    "jev_cuda_eikos4b",
+    "jev_cuda_gliner",
+    "jev_cuda_hf",
+    "jev_cuda_jebadiah4b",
+    "jev_cuda_julia1",
+    "jev_cuda_kev",
+    "jev_cuda_layaml",
+    "jev_cuda_simplejev"
+  ],
+  "remaining_benchmark_containers": [],
+  "remaining_images": "",
+  "remaining_volumes": "",
+  "gpu": "Thu Oct 15 20:54:25 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:01:00.0  On |                  N/A |\n|  0%   47C    P0             70W /  600W |    3365MiB /  32607MiB |      5%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            1616      G   Hyprland                                473MiB |\n|    0   N/A  N/A            1689      G   quickshell                              223MiB |\n|    0   N/A  N/A            1741      G   Xwayland                                  9MiB |\n|    0   N/A  N/A            2736      G   /usr/lib/electron39/electron             60MiB |\n|    0   N/A  N/A           36090      G   kitty                                    86MiB |\n|    0   N/A  N/A           59450      G   /usr/bin/zapfast                         91MiB |\n|    0   N/A  N/A          159603      G   ...share/Steam/ubuntu12_32/steam         13MiB |\n|    0   N/A  N/A          159936      G   ./steamwebhelper                        104MiB |\n|    0   N/A  N/A          159968      G   ...am/ubuntu12_64/steamwebhelper        595MiB |\n|    0   N/A  N/A         1228928      G   kitty                                    87MiB |\n|    0   N/A  N/A         1229280      G   kitty                                    74MiB |\n|    0   N/A  N/A         3643528      G   /usr/bin/geary                            6MiB |\n|    0   N/A  N/A         3980265      G   ...rack-uuid=3190708988185955192        664MiB |\n+-----------------------------------------------------------------------------------------+\n"
+}

@@ -1,0 +1,14 @@
+# Rebuild the measured environments from their captured, fully resolved package sets.
+FROM python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+ARG FAMILY
+COPY cuda/locks/ /opt/locks/
+RUN test -n "$FAMILY" && pip install --no-cache-dir --no-deps \
+      --extra-index-url https://download.pytorch.org/whl/cu128 \
+      -r "/opt/locks/$FAMILY.txt" \
+ && pip freeze > /opt/resolved-deps-full.txt
+COPY homelab/app.py /opt/systemone/app.py
+COPY next-wave/server/encoders/encoders_app.py /opt/encoders/encoders_app.py
+COPY next-wave/server/decider/run_decider.py /opt/run_decider.py
+COPY julia/server/julia_app.py /opt/julia/julia_app.py
+COPY decision3/server/run_d3.py /opt/d3/run_d3.py
+ENV HF_HOME=/models/hf HF_HUB_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 USE_TF=0

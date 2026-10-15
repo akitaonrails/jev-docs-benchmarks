@@ -1,0 +1,26 @@
+{
+  "source_volume": "decision_models_gliner",
+  "local_volume": "jev_cuda_gliner",
+  "all_snapshot_files_match": true,
+  "files": {
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/.gitattributes": "089e6a4d04bb799b625aae878d8b21c8cdb3fbc944dbdf0e2eccfae7c5a6536d",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/GLiNER-2.5-Decision-HF-Banner.png": "4997b9d9e7e84226dcda296409285eb6788567501ab4bec6c6a1d6bff4e1de5d",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/README.md": "09a9705ee8c30392bb5a82ac503c01b889ff7e957a4c96bf7249f05acde709a3",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/SKILL.md": "c88242139bdbde7194b1c05bfc77cd5a9ef2d975040a15708211a09700296e32",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/config.json": "501c6579278518e72dbba5a1f248b421dd5bfb13600db45d86c94c224368670b",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/encoder_config/config.json": "bd32f1484ba5a199f7a63df44df3814b839fffcf6e64478323c4689868ef6015",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/model.safetensors": "40a5a23ff860dc3dff426cecd1048cacdd29c648c96db209dad818e9686dc997",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/special_tokens_map.json": "84ea70143f533d7e99b393d87f20010887a9ac2cba955828ef313886e4e83f4f",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/tokenizer.json": "3ad87d9ffe669147063e70850927dd2da90249e2acc5c8527f1eb65df467bcc8",
+    "hf/hub/models--fastino--GLiNER2.5-Decide/snapshots/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/tokenizer_config.json": "323199a4e946039410899f3779f2aa3eaef1500213c512727ad0f623d4f21309",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/.gitattributes": "6af2fc6fb7f8b4e8d6d4ff0b968e3353767f677c9b6973e38127780ec3563842",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/GLiNER-2.5-Decision-HF-Banner.png": "4997b9d9e7e84226dcda296409285eb6788567501ab4bec6c6a1d6bff4e1de5d",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/README.md": "55531b81804b6c8160d41de57ff9559ca20b2f3779ab6e36e471dcd51127d92b",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/SKILL.md": "c88242139bdbde7194b1c05bfc77cd5a9ef2d975040a15708211a09700296e32",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/config.json": "aa29cd584316b61b0bfed94d03ee1cfdaf28b46a37686293742929c49b8bd2f7",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/encoder_config/config.json": "d0ebbcb8b458e285a39e12cc315cbaf3d1c6f631e7281e6b22dd5b4071183f83",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/model.safetensors": "9efe0f88c99f2aa794452e9559dc60e98d60d9fa2bf1b60cf2710411b6da5b4e",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/tokenizer.json": "c62446df87ae18ec98b133f8f84fc449a07cc89bbf8ef192a4cb5f9c53777a7a",
+    "hf/hub/models--fastino--GLiNER2.5-multi-Decide/snapshots/e173bca1f0c4217d7a55b3b0c705d5ece8a0218d/tokenizer_config.json": "fd4a31dc2f1f17e31638c5f0e783b81cdb2fbe6bddd116a8d9e5d50d78148cf1"
+  }
+}

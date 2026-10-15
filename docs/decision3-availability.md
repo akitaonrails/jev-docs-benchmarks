@@ -1,5 +1,9 @@
 # vLLM Semantic Router Decision 3.0
 
+**15 October deployment follow-up:** [RTX 5090 CUDA versus ROCm](cuda-rocm-comparison.md)
+compares the existing pinned open checkpoints on new hardware. Hosted models were
+not rerun, and the two 27B BF16 checkpoints exceed the 5090’s memory capacity.
+
 Verified 12 October 2026 against the official Hugging Face repositories. The six
 checkpoints are released and downloadable: d3, flash, mini, nano, lite and edge.
 The user selected **only the flagship d3 and smallest d3-edge** for this benchmark.

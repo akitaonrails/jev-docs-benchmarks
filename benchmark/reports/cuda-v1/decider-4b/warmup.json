@@ -1,0 +1,20 @@
+{
+  "model": "decider-4b-v2.1",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "confidence": 0.9992,
+      "x_p_max": 0.9996,
+      "certainty": 0.9947,
+      "probabilities": {
+        "billing": 0.9996,
+        "technical": 0.0004
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 40,
+    "output_tokens": 0
+  }
+}

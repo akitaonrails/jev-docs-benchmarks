@@ -1,0 +1,10 @@
+{
+  "protocol": "same-weight same-precision GPU-resident comparison",
+  "gpu_models": ["laya", "laya-typed", "clef-flash-local", "eikos-4b", "jebadiah-4b-v2", "kev-0.8b", "kev-4b", "kev-9b", "simple-jev", "decider-4b", "laya-multilingual", "gliner2.5-decide", "gliner2.5-multi-decide", "julia-1", "d3-edge"],
+  "capacity_exclusions": {
+    "d3": "26.09B BF16 backbone ~48.6 GiB exceeds RTX 5090 total 31.84 GiB; no same-precision GPU-resident run possible",
+    "pplx-decider-27b": "27B BF16 backbone ~49 GiB exceeds RTX 5090 total 31.84 GiB; no same-precision GPU-resident run possible"
+  },
+  "hosted_only": ["jev", "clef", "clef-flash", "openai-decisions", "microsoft-decision-1"],
+  "cpu_configuration": "julia-1-cpu is represented by the same Julia-1 checkpoint in the CUDA run; earlier CPU results remain separately archived"
+}

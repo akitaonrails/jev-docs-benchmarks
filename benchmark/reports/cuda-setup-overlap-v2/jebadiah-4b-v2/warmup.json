@@ -1,0 +1,27 @@
+{
+  "model": "/models/hf/hub/models--frontier-infra--jebadiah-4b-v2/snapshots/0816094bb1446b63326438db33619c71ede2cc4b",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "confidence": 0.96546,
+      "probabilities": {
+        "billing": 0.98273,
+        "technical": 0.01727
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 1
+  },
+  "latency_ms": 614.5,
+  "calibration": {
+    "applied": true,
+    "temperatures": {
+      "choice": 1.1167,
+      "noul": 1.3319,
+      "score": 0.8312
+    }
+  }
+}

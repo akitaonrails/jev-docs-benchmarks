@@ -1,0 +1,18 @@
+{
+  "model": "d3-edge",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.9952986720565395,
+        "technical": 0.004701327943460457
+      },
+      "confidence": 0.9568793524631894
+    }
+  },
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 0
+  }
+}

@@ -1,5 +1,9 @@
 # Benchmark developer guide
 
+## CUDA hardware comparison
+
+[Analysis](../docs/cuda-rocm-comparison.md), [paired results](reports/cuda-comparison/results.md), and [setup/cleanup](cuda/README.md). Final runs are separate from ROCm and from the preliminary runs that overlapped setup.
+
 ## Decision 3.0 flagship and Edge
 
 [Analysis](reports/decision3-comparison-v2/analysis.md),
@@ -60,7 +64,7 @@ published-rate usage value from actual charges and accounts for the daily free a
 [Hosted versus local findings](reports/comparison-v1/analysis.md) · [Six-model tables](reports/comparison-v1/results.md) · [Local evidence](reports/homelab-v1/analysis.md).
 All 1,632 local main requests completed on 10 October. Laya and Laya-typed each scored
 38.5% across classification variants; pinned local Clef-flash scored 89.0% and matched
-every hosted Clef-flash classification label. Workstation RTX 5090 testing remains deferred.
+every hosted Clef-flash classification label. The [later RTX 5090 comparison](../docs/cuda-rocm-comparison.md) adds separate CUDA archives.
 
 ## Dataset
 
@@ -83,12 +87,12 @@ image. No pip packages, SDKs, virtual environments or model weights are installe
 the host. The small `launch.py` helper uses existing host Python only to read three
 literal credential exports and invoke Docker, without executing the secrets file.
 
-Containers have no host home or Docker socket, no GPU on the hosted/offline paths,
-no privileged mode or published ports. Inputs are read-only; results are writable.
+Containers have no host home or Docker socket and no privileged mode. Hosted/offline
+paths have no GPU or published ports; CUDA model APIs bind only to localhost. Inputs are read-only; results are writable.
 Hosted execution uses outbound HTTPS. Offline scoring has networking disabled and
-receives no credentials. The local services still require a separate profile and
-`--allow-inference`; those workstation CUDA recipes have not been built or run.
-The separate AMD homelab service has completed the recorded local runs.
+receives no credentials. CUDA inference requires the explicit `--execute` lifecycle command in the
+[CUDA guide](cuda/README.md). The original stdin worker/local Compose profile is
+legacy preparation and is not used for the measured HTTP-based CUDA runs.
 
 ## Credentials
 
@@ -180,35 +184,17 @@ benchmark/tools/offline.sh /work/tools/compare.py /work/reports/hosted-v1 /work/
 is retained in raw archives. Local electricity and hardware costs are unmeasured;
 we do not assign a hosted token rate or claim zero operating cost.
 
-## Deferred workstation RTX 5090 runs
+## Workstation RTX 5090 runs
 
-[models.json](models.json) pins Laya English, Laya typed-decisions and Clef-flash
-checkpoints. Treat the two Laya checkpoints as separate entrants, without automatic
-routing. The original CUDA stdin worker remains preliminary plumbing; use the homelab adapter
-above for the validated HTTP workflow.
+Use the [CUDA reproduction guide](cuda/README.md). It covers 15 reference-precision
+GPU configurations, both frozen datasets where supported, SHA-256 checks,
+sequential service lifecycle, fresh run IDs, scoring and scoped cleanup.
 
-Laya should have a modest memory footprint. Clef-flash's 9B BF16 backbone implies
-roughly 18 GB in weights plus head/runtime/activations; actual RTX 5090 fit is untested.
-Full Clef's 27B BF16 backbone implies roughly 54 GB before overhead, so use hosted
-Clef initially. Quantization or offloading would be a separately named configuration.
-
-Docker and Compose work. `nvidia-container-runtime` exists, but Docker did not list
-an NVIDIA runtime during preparation. Check GPU integration later; no daemon settings
-were changed and no GPU container was started. Local recipes use CUDA 12.8 Torch
-wheels; local dependency resolution, runtime compatibility and pinned remote model
-code still need review. Do not run these while the GPU is occupied:
-
-```sh
-docker compose -f benchmark/compose.yaml --profile local build laya clef-flash
-# Future opt-in entrypoint; requires prepared state/questions-only requests.jsonl.
-docker compose -f benchmark/compose.yaml --profile local run --rm -T laya \
-  laya --allow-inference < requests.jsonl
-```
-
-Model caches will live in a Docker volume. Containers use no restart policy. Cleanup:
-`docker compose -f benchmark/compose.yaml --profile local --profile hosted down`.
-Add `--volumes` only to intentionally delete cached weights; images occupy separate
-Docker storage. Credentials are not part of the published repository.
+The original `docker/Dockerfile.local`, stdin worker and Compose local profile
+remain legacy preparation files. They were not used for these measured runs.
+The CUDA results use the same HTTP adapters as the homelab. Perplexity 27B and
+Decision 3 flagship exceed the 5090's 32 GiB at BF16 reference precision; they
+remain explicit capacity exclusions, with their existing ROCm results preserved.
 
 ## Sources
 

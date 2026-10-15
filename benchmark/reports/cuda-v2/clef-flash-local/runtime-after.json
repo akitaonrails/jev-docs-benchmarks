@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n22260 MiB, 94 %, 410.26 W, 67\n",
+  "container": "{\"BlockIO\":\"18.3GB / 81.9kB\",\"CPUPerc\":\"0.15%\",\"Container\":\"jev-cuda-clef-flash-local\",\"ID\":\"812b97ba981e\",\"MemPerc\":\"4.07%\",\"MemUsage\":\"3.743GiB / 91.93GiB\",\"Name\":\"jev-cuda-clef-flash-local\",\"NetIO\":\"1.06MB / 494kB\",\"PIDs\":\"89\"}\n"
+}

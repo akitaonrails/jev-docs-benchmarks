@@ -29,7 +29,7 @@ def call(base, route, request=None):
 
 def run(args):
     config = REGISTRY[args.model]
-    base = f'http://192.168.0.90:{config["port"]}'
+    base = config.get('base_url', f'http://192.168.0.90:{config["port"]}')
     route = '/v1/classify' if config['interface'] == 'gliner' else '/v1/systemone'
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
@@ -39,7 +39,7 @@ def run(args):
     provenance = json.loads((out/'container.json').read_text())
     if provenance['image'] != config['image'] or provenance['command'] != config['command']:
         raise ValueError('Container image/command differs from frozen registry')
-    if provenance['running_benchmark_containers'] != ['dm-' + args.model]:
+    if provenance['running_benchmark_containers'] != [config.get('container_name', 'dm-' + args.model)]:
         raise ValueError('Expected exactly one active benchmark model')
     settings = {'models': [args.model], 'limit': args.limit, 'dataset_sha256': manifest['sha256'],
                 'dataset_directory': str(Path(args.dataset).resolve()), 'registry': config,
@@ -128,12 +128,18 @@ def run(args):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
-    p.add_argument('--model', required=True, choices=REGISTRY)
+    p.add_argument('--registry', help='Frozen alternative deployment registry (same wire adapters)')
+    p.add_argument('--model', required=True)
     p.add_argument('--dataset', required=True)
     p.add_argument('--output', required=True)
     p.add_argument('--limit', type=int, default=0)
     p.add_argument('--execute', action='store_true')
     a = p.parse_args()
+    if a.registry:
+        REGISTRY.clear()
+        REGISTRY.update(json.loads(Path(a.registry).read_text()))
+    if a.model not in REGISTRY:
+        p.error('Unknown model')
     if not a.execute:
         p.error('Requires --execute')
     run(a)

@@ -1,0 +1,37 @@
+{
+  "model": "laya-rl-agent",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": {
+        "billing": 0.8132,
+        "technical": 0.1868
+      },
+      "confidence": 0.3054,
+      "answer_confidence": 0.8132,
+      "action": {
+        "act_probability": 1.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 32,
+    "output_tokens": 0,
+    "state_tokens": 6,
+    "state_tokens_dropped": 0,
+    "truncated": false,
+    "truncated_questions": []
+  },
+  "server": {
+    "selector": "laya-typed",
+    "repo": "convaiinnovations/laya-typed-decisions",
+    "revision": "e929ae5cf69bc34259cd2f95c9e91145b818b1f0",
+    "device": "cuda:0",
+    "cold": true,
+    "predict_s": 0.442,
+    "torch_cuda_allocated_mb": 1616,
+    "torch_cuda_peak_mb": 2310,
+    "load_s": 2.005
+  }
+}

@@ -1,5 +1,9 @@
 # Does a larger decision model score better?
 
+## Hardware comparison: 15 October 2026
+
+The [CUDA comparison](cuda-rocm-comparison.md) uses the same checkpoints, so it does not add independent models to the size/quality correlation. Small backend-dependent answer differences must not be treated as new training results. The 27B quality leaders cannot fit the 5090 at reference BF16 precision.
+
 ## Decision 3.0 update: 12 October 2026
 
 With d3 (nominal 27B) at **99.4% compact** and d3-edge (0.6B) at **60.7%**, the

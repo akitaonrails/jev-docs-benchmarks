@@ -16,11 +16,15 @@ that one model is universally best. See [methodology and limitations](#methodolo
 
 ## Start here
 
-- **Latest results:** [Decision 3.0 flagship/Edge comparison](benchmark/reports/decision3-comparison-v2/analysis.md),
+- **CUDA versus ROCm:** [RTX 5090 comparison](docs/cuda-rocm-comparison.md),
+  [paired results](benchmark/reports/cuda-comparison/results.md), and
+  [reproduction and cleanup](benchmark/cuda/README.md).
+- **Latest model additions:** [Decision 3.0 flagship/Edge comparison](benchmark/reports/decision3-comparison-v2/analysis.md),
   [23-configuration ranking](benchmark/reports/decision3-comparison-v2/ranking.md),
   [task/language tables](benchmark/reports/decision3-comparison-v2/results.md), and
   [runtime verification](benchmark/reports/decision3-comparison-v2/verification.json).
-- **Latest local setup:** [Decision 3.0 protocol and installation](benchmark/decision3/README.md).
+- **Local setup:** [CUDA workstation](benchmark/cuda/README.md) and
+  [Decision 3.0 on the ROCm homelab](benchmark/decision3/README.md).
 - **Hosted price comparison:** [Microsoft and other hosted services](benchmark/reports/microsoft-comparison-v2/costs.md).
 - **Latest hosted setup:** [Microsoft access and reproduction](benchmark/microsoft/README.md).
 - **Previous quality leader addition:** [Perplexity 27B comparison](benchmark/reports/perplexity-comparison-v2/analysis.md).
@@ -38,6 +42,23 @@ that one model is universally best. See [methodology and limitations](#methodolo
 - **Open-model coverage:** [researched shortlist](docs/next-models.md) and
   [next-wave protocol and reproduction](benchmark/next-wave/README.md).
 - **Broader coverage:** [paired English / PT-BR expansion](benchmark/expansion-v2/README.md).
+
+## RTX 5090 CUDA versus ROCm
+
+**15 configurations, 14,632 valid responses.** The same pinned models are **1.7×–10.3×
+faster in median request latency** on this RTX 5090 deployment. Compact scores
+change by at most two answers out of 168; 99.1% of v2 predictions match across
+backends. Probability outputs can still move enough to affect confidence thresholds.
+
+Jebadiah leads compact CUDA accuracy (**90.5%, 39 ms**); Kev 9B leads all v2 conditions
+combined (**441/504, 69 ms**); Clef Flash local leads original v1 policy accuracy
+among these CUDA entrants (**118/130, 86 ms v2 median**). The two 27B reference models
+need roughly 49 GiB of weights and do not fit this 32 GiB card. Hosted services
+were not rerun. Local dollar costs remain unmeasured.
+
+[Analysis](docs/cuda-rocm-comparison.md) · [Ranking](benchmark/reports/cuda-comparison/ranking.md) ·
+[All paired results](benchmark/reports/cuda-comparison/results.md) · [Reproduce and clean up](benchmark/cuda/README.md).
+These ratios compare whole machines and serving stacks, not an isolated CUDA/ROCm software effect.
 
 ## Decision 3.0: flagship ties Perplexity; Edge is a smaller compromise
 
@@ -297,7 +318,8 @@ The installed Laya checkpoints are not its separate multilingual checkpoint.
   Vendor confidence fields do not replace option probabilities in calibration metrics.
 - Local snapshot revisions are pinned. Hosted aliases are not immutable weight versions.
   Latency includes real deployment overhead; no high-concurrency throughput claim is made.
-- No fine-tuning, vision, audio, live customer data, or workstation RTX 5090 test is included.
+- No fine-tuning, vision, audio or live customer data is included. The RTX 5090
+  results form a separate CUDA deployment comparison.
   Models do not execute the tool actions described in fixtures.
 
 ## Repository layout
@@ -308,7 +330,8 @@ benchmark/datasets/           Frozen v1 cases, source policies and errata
 benchmark/expansion-v2/        Paired EN/PT-BR source cases and frozen manifest
 benchmark/tools/              Stdlib runners, validators, scoring and valuation
 benchmark/tests/              Offline correctness checks
-benchmark/docker/             Client and deferred workstation image recipes
+benchmark/docker/             Client and legacy workstation image recipes
+benchmark/cuda/                CUDA locks, lifecycle, verification and cleanup
 benchmark/homelab/             Original ROCm service and pinned downloader
 benchmark/next-wave/           New service snapshots, adapters and lifecycle protocol
 benchmark/reports/            Published metrics, raw gzip responses and provenance

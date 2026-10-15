@@ -1,0 +1,18 @@
+{
+  "final_responses": 14632,
+  "by_dataset": {
+    "v1": 7072,
+    "v2": 7560
+  },
+  "all_valid_single_attempt_http_200": true,
+  "all_current_contract_hashes_match": true,
+  "all_rocm_request_hashes_match": true,
+  "responses_with_input_token_counts": 13624,
+  "differing_reported_input_token_counts": 0,
+  "v2_changed_labels": 69,
+  "v1_changed_labels": 47,
+  "setup_overlap_classification_repeat_changes": 0,
+  "setup_overlap_responses_excluded": 6288,
+  "new_hosted_calls": 0,
+  "local_operating_cost": "unmeasured"
+}

@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n6306 MiB, 80 %, 476.48 W, 58\n",
+  "container": "{\"BlockIO\":\"73.9MB / 81.9kB\",\"CPUPerc\":\"0.05%\",\"Container\":\"jev-cuda-gliner2.5-decide\",\"ID\":\"716fbcea4c48\",\"MemPerc\":\"2.70%\",\"MemUsage\":\"2.485GiB / 91.93GiB\",\"Name\":\"jev-cuda-gliner2.5-decide\",\"NetIO\":\"1.06MB / 416kB\",\"PIDs\":\"88\"}\n"
+}

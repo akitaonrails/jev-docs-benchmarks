@@ -1,6 +1,6 @@
 # Business summary: should I care about decision models?
 
-Updated 12 October 2026. **No portfolio-wide integration is justified.** Consider
+Updated 15 October 2026. **No portfolio-wide integration is justified.** Consider
 a small experiment where an application repeatedly needs a bounded judgment—such
 as ticket routing, retrieval relevance or model selection—and the existing path
 has a measurable cost or accuracy problem. FrankClaw routing and ai-memory candidate
@@ -11,6 +11,15 @@ training. The classification task predates Jev; the useful product proposition i
 a convenient typed API with low inference overhead. A valid choice or probability
 is not proof of a correct decision. Application code still owns permissions, exact
 thresholds and actions. [Mechanics, prior art and hype claims](research.md).
+
+## CUDA deployment update
+
+The RTX 5090 runs the fitting models 1.7×–10.3× faster than the earlier homelab
+measurements, with little aggregate accuracy change. Jebadiah reaches 39 ms median
+at 90.5% compact accuracy; Kev 9B and Clef Flash are stronger on some other
+conditions. The 27B quality leaders cannot fit at reference BF16 precision.
+This makes local experimentation quicker, but does not justify broader integration
+or establish a financial saving. [Hardware comparison](cuda-rocm-comparison.md).
 
 ## What our tests support
 

@@ -1,0 +1,8 @@
+{
+  "cdi": "Host CDI UVM device major was stale; explicit UVM device and bind mounts allowed read-only cap-drop CUDA containers without host configuration changes.",
+  "encoder_build": "Initial context excluded required COPY sources. Dockerfile-specific ignore fixed the build; seven associated cache records remain in use.",
+  "warmup": "Clef and Simple-Jev required torchvision; dedicated images were built before any scored cases for those models.",
+  "controller": "Controller SIGTERM after completed Jebadiah v2 requests; resumed existing successful responses and archived them. Added termination cleanup and detached controller.",
+  "overlap": "Six initial model runs overlapped our setup; preserved separately and repeated. Final runs still shared the workstation with unrelated CPU services and Docker builds.",
+  "cleanup": "All owned runtime images, model volumes and containers removed. Seven BuildKit records (~7.36 GB) remain non-reclaimable; no disruptive daemon restart attempted."
+}

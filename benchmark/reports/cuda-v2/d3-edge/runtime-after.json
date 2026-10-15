@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n7302 MiB, 48 %, 240.12 W, 55\n",
+  "container": "{\"BlockIO\":\"61.5MB / 81.9kB\",\"CPUPerc\":\"0.03%\",\"Container\":\"jev-cuda-d3-edge\",\"ID\":\"557fe98f9c33\",\"MemPerc\":\"1.71%\",\"MemUsage\":\"1.574GiB / 91.93GiB\",\"Name\":\"jev-cuda-d3-edge\",\"NetIO\":\"1.06MB / 410kB\",\"PIDs\":\"69\"}\n"
+}

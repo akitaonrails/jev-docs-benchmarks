@@ -1,0 +1,9 @@
+{
+  "family": "simple",
+  "same_resolved_packages": true,
+  "lock_sha256": "a734c7b8a3bf2a07af1d5abbc008df211ac123ba9a40a2c2ff85b92603c5edda",
+  "original_image": "sha256:39e78a9cb366b3b6cf674cfaa99f500a26b0db1d507455d2758e07594ec570a4",
+  "rebuilt_image": "sha256:c3a4f62eb71f7e11057f179b0f72dbc77bc84b371b86194990cb2a35ef19d801",
+  "gpu_tensor_and_native_server_import_smoke": "locked-rebuild-smoke.json",
+  "full_model_benchmark_repeated_on_rebuilt_image": false
+}

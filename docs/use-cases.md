@@ -1,5 +1,9 @@
 # Real use cases and fit in my projects
 
+## Workstation deployment: 15 October 2026
+
+The [CUDA comparison](cuda-rocm-comparison.md) evaluates whether the same local models are practical on the RTX 5090. Lower latency can make routing or retrieval experiments cheaper in time, but does not fix policy errors or justify portfolio-wide integration. Evaluate each project’s labels and review costs before adoption.
+
 ## Decision 3.0 follow-up: two local resource budgets
 
 The [d3/Edge comparison](../benchmark/reports/decision3-comparison-v2/analysis.md)

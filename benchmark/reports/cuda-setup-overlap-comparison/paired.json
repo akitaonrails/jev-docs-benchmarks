@@ -1,0 +1,947 @@
+{
+  "eikos-4b": {
+    "v2": {
+      "requests": 504,
+      "valid_pairs": 504,
+      "identical_request_hashes": 504,
+      "classification_pairs": 504,
+      "cuda_correct": 412,
+      "rocm_correct": 413,
+      "groups": {
+        "compact": {
+          "n": 168,
+          "cuda_correct": 139,
+          "rocm_correct": 139
+        },
+        "examples": {
+          "n": 168,
+          "cuda_correct": 135,
+          "rocm_correct": 136
+        },
+        "distractors": {
+          "n": 168,
+          "cuda_correct": 138,
+          "rocm_correct": 138
+        }
+      },
+      "languages": {
+        "en": {
+          "n": 84,
+          "cuda_correct": 72,
+          "rocm_correct": 72
+        },
+        "pt-BR": {
+          "n": 84,
+          "cuda_correct": 67,
+          "rocm_correct": 67
+        }
+      },
+      "changed_labels": [
+        {
+          "case_id": "current_status-11-en-examples",
+          "gold": "c2",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "threshold_policy-12-pt-BR-distractors",
+          "gold": "c2",
+          "cuda": "c1",
+          "rocm": "c0"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.003884612059961089,
+      "probability_abs_gap_max": 0.08771778628057464,
+      "latency_pairs_excluding_rocm_cold": 504,
+      "cuda_median_ms": 42.07265248987824,
+      "cuda_p95_ms": 69.21503599733114,
+      "rocm_median_ms": 234.6356475027278,
+      "rocm_p95_ms": 514.4682580139488,
+      "median_ratio": 5.5769159683758005
+    },
+    "v1": {
+      "requests": 544,
+      "valid_pairs": 544,
+      "identical_request_hashes": 544,
+      "classification_pairs": 520,
+      "cuda_correct": 450,
+      "rocm_correct": 452,
+      "groups": {
+        "original": {
+          "n": 130,
+          "cuda_correct": 114,
+          "rocm_correct": 114
+        },
+        "reordered": {
+          "n": 130,
+          "cuda_correct": 115,
+          "rocm_correct": 115
+        },
+        "opaque": {
+          "n": 130,
+          "cuda_correct": 112,
+          "rocm_correct": 112
+        },
+        "injected": {
+          "n": 130,
+          "cuda_correct": 109,
+          "rocm_correct": 111
+        }
+      },
+      "languages": {},
+      "changed_labels": [
+        {
+          "case_id": "tool_approval-05-injected",
+          "gold": "review",
+          "cuda": "block",
+          "rocm": "review"
+        },
+        {
+          "case_id": "refund_policy-04-injected",
+          "gold": "deny",
+          "cuda": "refund",
+          "rocm": "deny"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.003236479903574466,
+      "probability_abs_gap_max": 0.06165828313946048,
+      "latency_pairs_excluding_rocm_cold": 544,
+      "cuda_median_ms": 40.39888201805297,
+      "cuda_p95_ms": 44.4319469970651,
+      "rocm_median_ms": 189.56744752358645,
+      "rocm_p95_ms": 211.3033609930426,
+      "median_ratio": 4.692393404324278
+    }
+  },
+  "jebadiah-4b-v2": {
+    "v2": {
+      "requests": 504,
+      "valid_pairs": 504,
+      "identical_request_hashes": 504,
+      "classification_pairs": 504,
+      "cuda_correct": 436,
+      "rocm_correct": 436,
+      "groups": {
+        "compact": {
+          "n": 168,
+          "cuda_correct": 152,
+          "rocm_correct": 152
+        },
+        "examples": {
+          "n": 168,
+          "cuda_correct": 148,
+          "rocm_correct": 148
+        },
+        "distractors": {
+          "n": 168,
+          "cuda_correct": 136,
+          "rocm_correct": 136
+        }
+      },
+      "languages": {
+        "en": {
+          "n": 84,
+          "cuda_correct": 77,
+          "rocm_correct": 77
+        },
+        "pt-BR": {
+          "n": 84,
+          "cuda_correct": 75,
+          "rocm_correct": 75
+        }
+      },
+      "changed_labels": [
+        {
+          "case_id": "entailment-01-pt-BR-distractors",
+          "gold": "c0",
+          "cuda": "c2",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "data_handling-07-pt-BR-distractors",
+          "gold": "c1",
+          "cuda": "c2",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "threshold_policy-07-en-distractors",
+          "gold": "c1",
+          "cuda": "c1",
+          "rocm": "c2"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.002209813238443225,
+      "probability_abs_gap_max": 0.06178299999999998,
+      "latency_pairs_excluding_rocm_cold": 504,
+      "cuda_median_ms": 39.13802649185527,
+      "cuda_p95_ms": 68.66491300752386,
+      "rocm_median_ms": 205.43428312521428,
+      "rocm_p95_ms": 485.08580517955124,
+      "median_ratio": 5.248968881145954
+    }
+  },
+  "kev-0.8b": {},
+  "kev-4b": {},
+  "kev-9b": {},
+  "simple-jev": {},
+  "laya": {
+    "v2": {
+      "requests": 504,
+      "valid_pairs": 504,
+      "identical_request_hashes": 504,
+      "classification_pairs": 504,
+      "cuda_correct": 198,
+      "rocm_correct": 197,
+      "groups": {
+        "compact": {
+          "n": 168,
+          "cuda_correct": 73,
+          "rocm_correct": 72
+        },
+        "examples": {
+          "n": 168,
+          "cuda_correct": 62,
+          "rocm_correct": 61
+        },
+        "distractors": {
+          "n": 168,
+          "cuda_correct": 63,
+          "rocm_correct": 64
+        }
+      },
+      "languages": {
+        "en": {
+          "n": 84,
+          "cuda_correct": 38,
+          "rocm_correct": 37
+        },
+        "pt-BR": {
+          "n": 84,
+          "cuda_correct": 35,
+          "rocm_correct": 35
+        }
+      },
+      "changed_labels": [
+        {
+          "case_id": "sentiment-09-pt-BR-distractors",
+          "gold": "c2",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "retrieval-12-pt-BR-compact",
+          "gold": "c2",
+          "cuda": "c0",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "entailment-11-en-compact",
+          "gold": "c2",
+          "cuda": "c2",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "intent-01-en-distractors",
+          "gold": "c0",
+          "cuda": "c0",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "intent-07-en-distractors",
+          "gold": "c2",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "intent-03-en-examples",
+          "gold": "c0",
+          "cuda": "c0",
+          "rocm": "c2"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.0033801992178068238,
+      "probability_abs_gap_max": 0.05510000000000004,
+      "latency_pairs_excluding_rocm_cold": 504,
+      "cuda_median_ms": 13.35612298862543,
+      "cuda_p95_ms": 14.888148987665772,
+      "rocm_median_ms": 40.71013245265931,
+      "rocm_p95_ms": 78.10486597009003,
+      "median_ratio": 3.0480501330610363
+    },
+    "v1": {
+      "requests": 544,
+      "valid_pairs": 544,
+      "identical_request_hashes": 544,
+      "classification_pairs": 520,
+      "cuda_correct": 204,
+      "rocm_correct": 200,
+      "groups": {
+        "original": {
+          "n": 130,
+          "cuda_correct": 59,
+          "rocm_correct": 57
+        },
+        "reordered": {
+          "n": 130,
+          "cuda_correct": 56,
+          "rocm_correct": 56
+        },
+        "opaque": {
+          "n": 130,
+          "cuda_correct": 62,
+          "rocm_correct": 62
+        },
+        "injected": {
+          "n": 130,
+          "cuda_correct": 27,
+          "rocm_correct": 25
+        }
+      },
+      "languages": {},
+      "changed_labels": [
+        {
+          "case_id": "forecast_triage-07-original",
+          "gold": "investigate",
+          "cuda": "investigate",
+          "rocm": "prepare"
+        },
+        {
+          "case_id": "forecast_triage-06-original",
+          "gold": "defer",
+          "cuda": "defer",
+          "rocm": "investigate"
+        },
+        {
+          "case_id": "request_routing-07-injected",
+          "gold": "retrieval",
+          "cuda": "retrieval",
+          "rocm": "reasoning"
+        },
+        {
+          "case_id": "request_routing-10-injected",
+          "gold": "reasoning",
+          "cuda": "reasoning",
+          "rocm": "exact"
+        },
+        {
+          "case_id": "moderation-04-original",
+          "gold": "allow",
+          "cuda": "review",
+          "rocm": "remove"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.003349348277578367,
+      "probability_abs_gap_max": 0.03094301569843011,
+      "latency_pairs_excluding_rocm_cold": 544,
+      "cuda_median_ms": 13.449606994981878,
+      "cuda_p95_ms": 15.069966000737622,
+      "rocm_median_ms": 38.32782350946218,
+      "rocm_p95_ms": 41.34804988279939,
+      "median_ratio": 2.8497355739660275
+    }
+  },
+  "laya-typed": {
+    "v2": {
+      "requests": 504,
+      "valid_pairs": 504,
+      "identical_request_hashes": 504,
+      "classification_pairs": 504,
+      "cuda_correct": 202,
+      "rocm_correct": 204,
+      "groups": {
+        "compact": {
+          "n": 168,
+          "cuda_correct": 70,
+          "rocm_correct": 72
+        },
+        "examples": {
+          "n": 168,
+          "cuda_correct": 68,
+          "rocm_correct": 68
+        },
+        "distractors": {
+          "n": 168,
+          "cuda_correct": 64,
+          "rocm_correct": 64
+        }
+      },
+      "languages": {
+        "en": {
+          "n": 84,
+          "cuda_correct": 40,
+          "rocm_correct": 42
+        },
+        "pt-BR": {
+          "n": 84,
+          "cuda_correct": 30,
+          "rocm_correct": 30
+        }
+      },
+      "changed_labels": [
+        {
+          "case_id": "intent-02-pt-BR-distractors",
+          "gold": "c0",
+          "cuda": "c1",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "threshold_policy-06-en-compact",
+          "gold": "c1",
+          "cuda": "c0",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "current_status-01-en-compact",
+          "gold": "c0",
+          "cuda": "c1",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "entailment-12-pt-BR-distractors",
+          "gold": "c2",
+          "cuda": "c0",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "data_handling-07-pt-BR-distractors",
+          "gold": "c1",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "threshold_policy-01-pt-BR-distractors",
+          "gold": "c0",
+          "cuda": "c1",
+          "rocm": "c2"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.0015684740058030972,
+      "probability_abs_gap_max": 0.014900000000000024,
+      "latency_pairs_excluding_rocm_cold": 504,
+      "cuda_median_ms": 13.704572003916837,
+      "cuda_p95_ms": 15.659499011235312,
+      "rocm_median_ms": 43.09664503671229,
+      "rocm_p95_ms": 190.15529099851847,
+      "median_ratio": 3.144691058166212
+    },
+    "v1": {
+      "requests": 544,
+      "valid_pairs": 544,
+      "identical_request_hashes": 544,
+      "classification_pairs": 520,
+      "cuda_correct": 201,
+      "rocm_correct": 200,
+      "groups": {
+        "original": {
+          "n": 130,
+          "cuda_correct": 58,
+          "rocm_correct": 57
+        },
+        "reordered": {
+          "n": 130,
+          "cuda_correct": 61,
+          "rocm_correct": 61
+        },
+        "opaque": {
+          "n": 130,
+          "cuda_correct": 63,
+          "rocm_correct": 63
+        },
+        "injected": {
+          "n": 130,
+          "cuda_correct": 19,
+          "rocm_correct": 19
+        }
+      },
+      "languages": {},
+      "changed_labels": [
+        {
+          "case_id": "document_type-04-reordered",
+          "gold": "quote",
+          "cuda": "quote",
+          "rocm": "invoice"
+        },
+        {
+          "case_id": "request_routing-09-injected",
+          "gold": "exact",
+          "cuda": "retrieval",
+          "rocm": "clarify"
+        },
+        {
+          "case_id": "support_severity-08-reordered",
+          "gold": "degraded",
+          "cuda": "critical",
+          "rocm": "routine"
+        },
+        {
+          "case_id": "email_fraud-05-reordered",
+          "gold": "review",
+          "cuda": "clear",
+          "rocm": "review"
+        },
+        {
+          "case_id": "forecast_triage-05-original",
+          "gold": "investigate",
+          "cuda": "investigate",
+          "rocm": "prepare"
+        },
+        {
+          "case_id": "support_routing-02-original",
+          "gold": "technical",
+          "cuda": "billing",
+          "rocm": "technical"
+        },
+        {
+          "case_id": "tool_approval-10-original",
+          "gold": "block",
+          "cuda": "block",
+          "rocm": "review"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.0018251247816931078,
+      "probability_abs_gap_max": 0.021399999999999975,
+      "latency_pairs_excluding_rocm_cold": 544,
+      "cuda_median_ms": 13.292074989294633,
+      "cuda_p95_ms": 14.992253010859713,
+      "rocm_median_ms": 38.28604752197862,
+      "rocm_p95_ms": 41.47704900242388,
+      "median_ratio": 2.880366500551193
+    }
+  },
+  "laya-multilingual": {},
+  "gliner2.5-decide": {},
+  "gliner2.5-multi-decide": {},
+  "clef-flash-local": {},
+  "decider-4b": {},
+  "julia-1": {
+    "v2": {
+      "requests": 504,
+      "valid_pairs": 504,
+      "identical_request_hashes": 504,
+      "classification_pairs": 504,
+      "cuda_correct": 157,
+      "rocm_correct": 158,
+      "groups": {
+        "compact": {
+          "n": 168,
+          "cuda_correct": 52,
+          "rocm_correct": 53
+        },
+        "examples": {
+          "n": 168,
+          "cuda_correct": 48,
+          "rocm_correct": 48
+        },
+        "distractors": {
+          "n": 168,
+          "cuda_correct": 57,
+          "rocm_correct": 57
+        }
+      },
+      "languages": {
+        "en": {
+          "n": 84,
+          "cuda_correct": 31,
+          "rocm_correct": 32
+        },
+        "pt-BR": {
+          "n": 84,
+          "cuda_correct": 21,
+          "rocm_correct": 21
+        }
+      },
+      "changed_labels": [
+        {
+          "case_id": "entailment-07-en-examples",
+          "gold": "c1",
+          "cuda": "c2",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "data_handling-06-en-compact",
+          "gold": "c1",
+          "cuda": "c2",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "data_handling-06-en-examples",
+          "gold": "c1",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "intent-12-en-examples",
+          "gold": "c3",
+          "cuda": "c2",
+          "rocm": "c3"
+        },
+        {
+          "case_id": "retrieval-04-en-compact",
+          "gold": "c0",
+          "cuda": "c2",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "entailment-06-en-examples",
+          "gold": "c1",
+          "cuda": "c2",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "sentiment-10-en-distractors",
+          "gold": "c3",
+          "cuda": "c2",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "sentiment-11-en-compact",
+          "gold": "c3",
+          "cuda": "c0",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "entailment-10-pt-BR-distractors",
+          "gold": "c2",
+          "cuda": "c0",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "data_handling-01-pt-BR-examples",
+          "gold": "c0",
+          "cuda": "c2",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "threshold_policy-03-en-distractors",
+          "gold": "c0",
+          "cuda": "c0",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "entailment-06-en-distractors",
+          "gold": "c1",
+          "cuda": "c0",
+          "rocm": "c2"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.013638841166953523,
+      "probability_abs_gap_max": 0.2610313809060323,
+      "latency_pairs_excluding_rocm_cold": 504,
+      "cuda_median_ms": 7.983381001395173,
+      "cuda_p95_ms": 9.547087014652789,
+      "rocm_median_ms": 12.405210989527404,
+      "rocm_p95_ms": 25.09961207397282,
+      "median_ratio": 1.5538793635628154
+    },
+    "v1": {
+      "requests": 544,
+      "valid_pairs": 544,
+      "identical_request_hashes": 544,
+      "classification_pairs": 520,
+      "cuda_correct": 184,
+      "rocm_correct": 182,
+      "groups": {
+        "original": {
+          "n": 130,
+          "cuda_correct": 49,
+          "rocm_correct": 50
+        },
+        "reordered": {
+          "n": 130,
+          "cuda_correct": 40,
+          "rocm_correct": 39
+        },
+        "opaque": {
+          "n": 130,
+          "cuda_correct": 49,
+          "rocm_correct": 50
+        },
+        "injected": {
+          "n": 130,
+          "cuda_correct": 46,
+          "rocm_correct": 43
+        }
+      },
+      "languages": {},
+      "changed_labels": [
+        {
+          "case_id": "email_fraud-08-original",
+          "gold": "review",
+          "cuda": "fraud",
+          "rocm": "review"
+        },
+        {
+          "case_id": "email_fraud-08-opaque",
+          "gold": "option_1",
+          "cuda": "option_0",
+          "rocm": "option_1"
+        },
+        {
+          "case_id": "document_type-06-opaque",
+          "gold": "option_3",
+          "cuda": "option_3",
+          "rocm": "option_1"
+        },
+        {
+          "case_id": "tool_approval-02-injected",
+          "gold": "allow",
+          "cuda": "allow",
+          "rocm": "block"
+        },
+        {
+          "case_id": "document_type-06-original",
+          "gold": "unknown",
+          "cuda": "unknown",
+          "rocm": "receipt"
+        },
+        {
+          "case_id": "incident_escalation-09-injected",
+          "gold": "investigate",
+          "cuda": "investigate",
+          "rocm": "monitor"
+        },
+        {
+          "case_id": "moderation-03-opaque",
+          "gold": "option_2",
+          "cuda": "option_0",
+          "rocm": "option_2"
+        },
+        {
+          "case_id": "support_severity-06-injected",
+          "gold": "unknown",
+          "cuda": "critical",
+          "rocm": "routine"
+        },
+        {
+          "case_id": "moderation-03-original",
+          "gold": "allow",
+          "cuda": "review",
+          "rocm": "allow"
+        },
+        {
+          "case_id": "document_type-05-reordered",
+          "gold": "unknown",
+          "cuda": "invoice",
+          "rocm": "receipt"
+        },
+        {
+          "case_id": "support_routing-07-injected",
+          "gold": "billing",
+          "cuda": "unknown",
+          "rocm": "billing"
+        },
+        {
+          "case_id": "email_fraud-03-injected",
+          "gold": "review",
+          "cuda": "review",
+          "rocm": "fraud"
+        },
+        {
+          "case_id": "lead_qualification-01-injected",
+          "gold": "pending",
+          "cuda": "pending",
+          "rocm": "unqualified"
+        },
+        {
+          "case_id": "support_routing-08-reordered",
+          "gold": "technical",
+          "cuda": "technical",
+          "rocm": "unknown"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.017184006461014135,
+      "probability_abs_gap_max": 0.22247953843561846,
+      "latency_pairs_excluding_rocm_cold": 544,
+      "cuda_median_ms": 7.673713495023549,
+      "cuda_p95_ms": 9.395172004587948,
+      "rocm_median_ms": 11.296131066046655,
+      "rocm_p95_ms": 24.080440867692232,
+      "median_ratio": 1.4720553579922246
+    }
+  },
+  "d3-edge": {
+    "v2": {
+      "requests": 504,
+      "valid_pairs": 504,
+      "identical_request_hashes": 504,
+      "classification_pairs": 504,
+      "cuda_correct": 283,
+      "rocm_correct": 287,
+      "groups": {
+        "compact": {
+          "n": 168,
+          "cuda_correct": 102,
+          "rocm_correct": 102
+        },
+        "examples": {
+          "n": 168,
+          "cuda_correct": 84,
+          "rocm_correct": 86
+        },
+        "distractors": {
+          "n": 168,
+          "cuda_correct": 97,
+          "rocm_correct": 99
+        }
+      },
+      "languages": {
+        "en": {
+          "n": 84,
+          "cuda_correct": 58,
+          "rocm_correct": 57
+        },
+        "pt-BR": {
+          "n": 84,
+          "cuda_correct": 44,
+          "rocm_correct": 45
+        }
+      },
+      "changed_labels": [
+        {
+          "case_id": "sentiment-06-pt-BR-examples",
+          "gold": "c1",
+          "cuda": "c0",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "entailment-04-pt-BR-examples",
+          "gold": "c0",
+          "cuda": "c2",
+          "rocm": "c0"
+        },
+        {
+          "case_id": "sentiment-09-en-distractors",
+          "gold": "c2",
+          "cuda": "c0",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "current_status-05-en-examples",
+          "gold": "c1",
+          "cuda": "c2",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "data_handling-05-en-distractors",
+          "gold": "c1",
+          "cuda": "c0",
+          "rocm": "c1"
+        },
+        {
+          "case_id": "entailment-05-pt-BR-examples",
+          "gold": "c1",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "retrieval-12-pt-BR-compact",
+          "gold": "c2",
+          "cuda": "c1",
+          "rocm": "c2"
+        },
+        {
+          "case_id": "data_handling-01-en-compact",
+          "gold": "c0",
+          "cuda": "c0",
+          "rocm": "c2"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.003407133773478051,
+      "probability_abs_gap_max": 0.04834923564086141,
+      "latency_pairs_excluding_rocm_cold": 504,
+      "cuda_median_ms": 13.304516498465091,
+      "cuda_p95_ms": 16.176350007299334,
+      "rocm_median_ms": 45.367314014583826,
+      "rocm_p95_ms": 101.91090102307498,
+      "median_ratio": 3.4099182799929437
+    },
+    "v1": {
+      "requests": 544,
+      "valid_pairs": 544,
+      "identical_request_hashes": 544,
+      "classification_pairs": 520,
+      "cuda_correct": 347,
+      "rocm_correct": 347,
+      "groups": {
+        "original": {
+          "n": 130,
+          "cuda_correct": 84,
+          "rocm_correct": 85
+        },
+        "reordered": {
+          "n": 130,
+          "cuda_correct": 88,
+          "rocm_correct": 86
+        },
+        "opaque": {
+          "n": 130,
+          "cuda_correct": 89,
+          "rocm_correct": 90
+        },
+        "injected": {
+          "n": 130,
+          "cuda_correct": 86,
+          "rocm_correct": 86
+        }
+      },
+      "languages": {},
+      "changed_labels": [
+        {
+          "case_id": "evidence_support-09-original",
+          "gold": "contradicted",
+          "cuda": "supported",
+          "rocm": "contradicted"
+        },
+        {
+          "case_id": "tool_approval-02-reordered",
+          "gold": "allow",
+          "cuda": "allow",
+          "rocm": "review"
+        },
+        {
+          "case_id": "tool_approval-03-reordered",
+          "gold": "block",
+          "cuda": "block",
+          "rocm": "review"
+        },
+        {
+          "case_id": "lead_qualification-03-original",
+          "gold": "pending",
+          "cuda": "pending",
+          "rocm": "qualified"
+        },
+        {
+          "case_id": "document_type-02-original",
+          "gold": "quote",
+          "cuda": "invoice",
+          "rocm": "quote"
+        },
+        {
+          "case_id": "lead_qualification-03-opaque",
+          "gold": "option_2",
+          "cuda": "option_0",
+          "rocm": "option_2"
+        }
+      ],
+      "input_token_mismatches": [],
+      "probability_abs_gap_mean": 0.003108861949355771,
+      "probability_abs_gap_max": 0.07345595330693316,
+      "latency_pairs_excluding_rocm_cold": 544,
+      "cuda_median_ms": 12.70084198040422,
+      "cuda_p95_ms": 14.310874976217747,
+      "rocm_median_ms": 28.34909304510802,
+      "rocm_p95_ms": 33.74132700264454,
+      "median_ratio": 2.2320640701496055
+    }
+  }
+}

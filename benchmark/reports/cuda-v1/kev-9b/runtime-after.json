@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n20044 MiB, 1 %, 86.26 W, 56\n",
+  "container": "{\"BlockIO\":\"6.08GB / 81.9kB\",\"CPUPerc\":\"0.21%\",\"Container\":\"jev-cuda-kev-9b\",\"ID\":\"103a41f2a746\",\"MemPerc\":\"4.61%\",\"MemUsage\":\"4.238GiB / 91.93GiB\",\"Name\":\"jev-cuda-kev-9b\",\"NetIO\":\"1.96MB / 921kB\",\"PIDs\":\"91\"}\n"
+}

@@ -1,5 +1,9 @@
 # Technical and cost-benefit ranking
 
+## CUDA update: 15 October 2026
+
+The [RTX 5090 comparison](cuda-rocm-comparison.md) adds local deployment latency and paired accuracy results. It does not add hosted calls or change the dated hosted-price reconciliation. Local electricity, hardware amortization and operations remain unpriced; a speedup is not a measured dollar saving. The 27B quality leaders do not fit this 32 GiB card at reference precision.
+
 ## Decision 3.0 update: 12 October 2026
 
 The [23-configuration comparison](../benchmark/reports/decision3-comparison-v2/analysis.md)

@@ -1,0 +1,19 @@
+{
+  "model": "kev-9b",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "confidence": 0.9618,
+      "probabilities": {
+        "billing": 0.9809,
+        "technical": 0.0191
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 28,
+    "output_tokens": 52
+  },
+  "latency_ms": 59.2
+}

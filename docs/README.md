@@ -1,5 +1,9 @@
 # Research and benchmark documentation
 
+## CUDA versus ROCm: 15 October 2026
+
+[Analysis](cuda-rocm-comparison.md), [paired results](../benchmark/reports/cuda-comparison/results.md), and [CUDA reproduction/cleanup](../benchmark/cuda/README.md). Same checkpoints and frozen cases on the local RTX 5090. The two 27B BF16 checkpoints exceed its VRAM capacity.
+
 ## Latest Decision 3.0 comparison
 
 [Analysis](../benchmark/reports/decision3-comparison-v2/analysis.md),
@@ -21,7 +25,7 @@ The recommended test, if a real bottleneck appears, is to compare a pinned Jev v
 [Repository overview](../README.md) explains the goals and evidence layout.
 [Setup and reproduction guide](setup.md) covers Docker, hosted credentials, pinned model downloads, and the actual AMD homelab deployment.
 
-The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. Workstation RTX 5090 runs remain deferred; AMD homelab runs completed on 10–11 October. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
+The [benchmark implementation](../benchmark/README.md) and [frozen protocol](../benchmark/PROTOCOL.md) cover 13 explicit-policy use cases, 520 classification variants and 24 separate uncertainty probes per model. AMD homelab runs began on 10–11 October; the [15 October RTX 5090 comparison](cuda-rocm-comparison.md) adds separate CUDA measurements. The [first hosted findings](../benchmark/reports/hosted-v1/analysis.md) and [full results](../benchmark/reports/hosted-v1/results.md) are now available.
 
 [Pricing verification and test cost](../benchmark/reports/hosted-v1/pricing.md) (9 October) reconciles both providers’ official rates, archived usage, free allowance and billing uncertainties.
 

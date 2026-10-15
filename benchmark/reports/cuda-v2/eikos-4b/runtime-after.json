@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n12314 MiB, 88 %, 422.63 W, 61\n",
+  "container": "{\"BlockIO\":\"4.26GB / 81.9kB\",\"CPUPerc\":\"0.06%\",\"Container\":\"jev-cuda-eikos-4b\",\"ID\":\"0245cd2823d3\",\"MemPerc\":\"1.65%\",\"MemUsage\":\"1.517GiB / 91.93GiB\",\"Name\":\"jev-cuda-eikos-4b\",\"NetIO\":\"1.06MB / 431kB\",\"PIDs\":\"69\"}\n"
+}

@@ -1,5 +1,9 @@
 # Jev alternatives: Clef, Laya, and the emerging ecosystem
 
+**15 October deployment follow-up:** [RTX 5090 CUDA versus ROCm](cuda-rocm-comparison.md)
+compares the existing pinned open checkpoints on new hardware. Hosted models were
+not rerun, and the two 27B BF16 checkpoints exceed the 5090’s memory capacity.
+
 ## Decision 3.0: flagship and Edge now measured
 
 vLLM Semantic Router released six open checkpoints; the user selected only **d3**

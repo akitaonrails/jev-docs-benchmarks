@@ -1,0 +1,18 @@
+{
+  "model": "/models/hf/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "confidence": 0.9999984502792358,
+      "probabilities": {
+        "billing": 0.9999984502792358,
+        "technical": 1.5534977819697815e-06
+      },
+      "choice": "billing"
+    }
+  },
+  "usage": {
+    "input_tokens": 1048,
+    "output_tokens": 0
+  }
+}

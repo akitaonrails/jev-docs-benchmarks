@@ -1,0 +1,29 @@
+{
+  "model": "clef-flash",
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "choice": "billing",
+      "confidence": 0.9831,
+      "probabilities": {
+        "billing": 0.9831,
+        "technical": 0.0169
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 134,
+    "output_tokens": 0
+  },
+  "server": {
+    "selector": "clef-flash",
+    "repo": "Cloudflare/clef-flash",
+    "revision": "fde727a287004204b7518dcc983fe64379776712",
+    "device": "cuda:0",
+    "cold": true,
+    "predict_s": 0.7,
+    "torch_cuda_allocated_mb": 18189,
+    "torch_cuda_peak_mb": 18237,
+    "load_s": 10.373
+  }
+}

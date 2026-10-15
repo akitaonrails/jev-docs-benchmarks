@@ -1,5 +1,9 @@
 # Setup and reproduction guide
 
+## Local RTX 5090 / CUDA reproduction
+
+The [CUDA guide](../benchmark/cuda/README.md) contains local Docker builds with resolved package locks, pinned-cache transfer and hashing, sequential lifecycle, offline scoring and scoped cleanup. It uses NVIDIA CDI and does not install benchmark packages on the host. The [comparison](cuda-rocm-comparison.md) explains the 32 GiB capacity limit and hardware confounders.
+
 This guide separates the **CPU benchmark client** from the **AMD ROCm model server**.
 All benchmark-only dependencies stay in Docker. The client does not need a GPU.
 The hosted path needs credentials; the homelab path does not send those credentials.
@@ -247,10 +251,11 @@ ignored; published gzip archives under `benchmark/reports/` are version controll
 
 ## RTX 5090 status
 
-The original `benchmark/docker/Dockerfile.local` and local Compose profile are
-**untested workstation CUDA preparation**, not the measured AMD setup. They are not
-used by the client/homelab commands above. No claim about RTX 5090 fit, speed or
-compatibility follows from the homelab measurements.
+The [CUDA workflow](../benchmark/cuda/README.md) supersedes the original
+`benchmark/docker/Dockerfile.local` and local Compose profile. It uses locked
+Docker environments, the existing NVIDIA CDI setup, verified model snapshots
+and the native HTTP adapters. See the [paired hardware analysis](cuda-rocm-comparison.md).
+The old stdin-worker recipes remain unmeasured legacy preparation.
 
 ## Next-wave ROCm services
 

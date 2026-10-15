@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n12132 MiB, 61 %, 281.43 W, 60\n",
+  "container": "{\"BlockIO\":\"1.62GB / 81.9kB\",\"CPUPerc\":\"0.15%\",\"Container\":\"jev-cuda-decider-4b\",\"ID\":\"90e75c8e610b\",\"MemPerc\":\"2.21%\",\"MemUsage\":\"2.028GiB / 91.93GiB\",\"Name\":\"jev-cuda-decider-4b\",\"NetIO\":\"1.06MB / 400kB\",\"PIDs\":\"75\"}\n"
+}

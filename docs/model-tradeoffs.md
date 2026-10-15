@@ -1,5 +1,9 @@
 # Model quality and deployment tradeoffs
 
+## CUDA deployment update: 15 October 2026
+
+The [RTX 5090 experiment](cuda-rocm-comparison.md) separates model quality from deployment speed. Fifteen public configurations fit at reference precision; the two 27B models require more VRAM than this card provides. Their stronger ROCm scores remain relevant when selecting hardware.
+
 ## Decision 3.0 update: 12 October 2026
 
 The flagship d3 (nominal 27B; card total 26.09B) matches Perplexity on all 504 v2

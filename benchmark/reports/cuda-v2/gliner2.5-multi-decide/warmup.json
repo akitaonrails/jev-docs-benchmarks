@@ -1,0 +1,18 @@
+{
+  "result": {
+    "decision": {
+      "label": "billing",
+      "confidence": 0.8308728933334351
+    }
+  },
+  "server": {
+    "repo": "fastino/GLiNER2.5-multi-Decide",
+    "revision": "e173bca1f0c4217d7a55b3b0c705d5ece8a0218d",
+    "device": "cuda:0",
+    "cold": true,
+    "predict_s": 0.315,
+    "torch_cuda_allocated_mb": 1106,
+    "torch_cuda_peak_mb": 1117,
+    "load_s": 10.228
+  }
+}

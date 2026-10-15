@@ -1,0 +1,4 @@
+{
+  "gpu": "memory.used [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n6306 MiB, 1 %, 50.27 W, 43\n",
+  "container": "{\"BlockIO\":\"0B / 81.9kB\",\"CPUPerc\":\"0.15%\",\"Container\":\"jev-cuda-laya-typed\",\"ID\":\"1626f544ce0d\",\"MemPerc\":\"1.56%\",\"MemUsage\":\"1.437GiB / 91.93GiB\",\"Name\":\"jev-cuda-laya-typed\",\"NetIO\":\"1.06MB / 577kB\",\"PIDs\":\"89\"}\n"
+}

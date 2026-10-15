@@ -1,0 +1,33 @@
+{
+  "status": "ready",
+  "model": "d3-edge",
+  "max_input_tokens": 8192,
+  "modalities": [
+    "text"
+  ],
+  "authentication": false,
+  "repo": "vllm-sr/d3-edge",
+  "revision": "20c745653400d191ecacd99c4eafc0c5900dc15e",
+  "device": "cuda:0",
+  "weight_dtype": "bfloat16",
+  "readout_dtype": "float32",
+  "context": {
+    "max_input_tokens": 8192,
+    "overflow": "max_length_exceeded per question; nothing is truncated"
+  },
+  "attention_mode": "noncausal_full_attention",
+  "pooling": "last",
+  "temperature": 1.0,
+  "batch_size": 8,
+  "loader": "transformers device_map",
+  "runtime_verified": "MODEL_MANIFEST.json fast check; full hash checked at installation",
+  "load_seconds": 12.5,
+  "torch": "2.9.1+cu128",
+  "hip": null,
+  "kernels": {
+    "torch_chunk_gated_delta_rule": "torch-reference",
+    "causal_conv1d_fn": "torch-reference",
+    "fla": "missing (ModuleNotFoundError)"
+  },
+  "gpu_memory_allocated_gib": 1.12
+}

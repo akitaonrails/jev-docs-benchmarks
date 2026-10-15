@@ -1,0 +1,42 @@
+{
+  "answers": {
+    "decision": {
+      "type": "choice",
+      "probabilities": {
+        "billing": 0.9999583404181943,
+        "technical": 4.165958180576519e-05
+      },
+      "choice": "billing",
+      "max_probability": 0.9999583404181943
+    }
+  },
+  "usage": {
+    "input_tokens": 26,
+    "per_question_tokens": {
+      "decision": 26
+    },
+    "output_tokens": 0,
+    "state_truncated": false,
+    "options_truncated": false
+  },
+  "server": {
+    "model": "julia-1",
+    "repo": "SupersonicLabs/Julia-1",
+    "revision": "a85b127321d580d65176c89ced8273f305745d85",
+    "ready": true,
+    "device": "cuda:0",
+    "weight_dtype": "float32",
+    "precision": "fp32 weights, bf16 autocast forward (native julia CUDA path)",
+    "max_length": 8192,
+    "head_length": 512,
+    "strict_encoding": true,
+    "option_token_limit": 48,
+    "options_per_question": "2-20",
+    "cpu_threads": null,
+    "torch": "2.9.1+cu128",
+    "hip": null,
+    "load_s": 4.465,
+    "cold": false,
+    "predict_s": 0.007
+  }
+}
