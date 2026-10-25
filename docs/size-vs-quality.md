@@ -141,7 +141,7 @@ The completed expansion gives **Spearman 0.920** and **Pearson(log-size, compact
 
 ## What to test next
 
-The pinned **Kev 0.8B / 4B / 9B** comparison is complete. A 27B run remains conditional on capacity. Jebadiah 4B/9B would supply a second size family for a future round; this run contains only Jebadiah 4B. Precision, input representation and runtime policy must remain explicit in any extension.
+The pinned **Kev 0.8B / 4B / 9B** comparison is complete. A 27B run remains conditional on capacity. Jebadiah 9B v2.1 and 27B v2.1, released 2026-10-10, would supply a second size family for a future round; this run contains only Jebadiah 4B v2, which remains the current 4B release. Precision, input representation and runtime policy must remain explicit in any extension.
 
 Report accuracy and paired differences separately by language, task and input condition. Also compare native probability quality, errors and truncation. Across a larger set of entrants, report both Spearman(size, score) and Pearson(log-size, score), with sensitivity to duplicate revisions, family composition and MoE total versus active parameters. Do not treat hundreds of test cases as hundreds of independent model sizes.
 

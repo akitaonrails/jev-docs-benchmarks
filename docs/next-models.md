@@ -75,7 +75,7 @@ it is not raw accuracy and is not comparable to our percent-correct tables.
 | **Decider** | Here, **Mapika Decider**, distinct from Strands and Perplexity; a family including a 4B release. | **High: Mapika/decider-4b v2.1**. |
 | **PPLX** | **Perplexity pplx-decider-v1.1-27b**, Apache-2.0 weights. | **Installed** on ROCm; [protocol and status](perplexity-decider-availability.md). |
 | **Simple-Jev** | Featherless's open inference server over an existing compatible model; no new classifier head is required. | **High as a baseline**, with one fixed Qwen checkpoint and prompt policy. |
-| **Jebadiah** | Frontier Infra's Apache-2.0 4B/9B v2 and 27B decision models. | **High: 4B v2**, then 9B v2 to test scaling. |
+| **Jebadiah** | Frontier Infra's Apache-2.0 4B v2 and 9B/27B decision models; v2.1 shipped for the 9B and 27B on 2026-10-10, and no 4B v2.1 exists. | **High: 4B v2** (still current), then **9B v2.1** to test scaling. |
 
 **Eikos:** upstream explicitly documents EN/PT training and a consistency objective
 across translations. It specializes in applying supplied financial/trading rules;
@@ -89,6 +89,13 @@ reference; an NVIDIA quantization build is not proof of AMD support. Sources:
 `frontier-infra` on the Hub. The 4B v2 uses the Qwen3.5 chat checkpoint, whereas
 v1 used the base model. English training and a 20-choice HTTP cap are disclosed.
 Its public JevBench results are interesting but cannot establish Portuguese transfer.
+Frontier Infra announced in [issue #1](https://github.com/akitaonrails/jev-docs-benchmarks/issues/1)
+that v2.1 shipped on 2026-10-10 for the 9B and 27B
+([9B v2.1 card](https://huggingface.co/frontier-infra/jebadiah-9b-v2-1),
+[27B v2.1 card](https://huggingface.co/frontier-infra/jebadiah-27b-v2-1)); the Hub
+has no 4B v2.1 repository, so our pinned 4B v2 remains the current 4B release and
+the published 4B v2 measurements stand. A future 9B round must pin v2.1, whose
+calibration and training provenance differ from v2.
 [Repository](https://github.com/getainode/jebadiah),
 [4B v2 card](https://huggingface.co/frontier-infra/jebadiah-4b-v2).
 
@@ -227,7 +234,7 @@ Conversely, popular small encoders can remain weak on broad explicit-policy task
 Start with **Eikos-4B, Jebadiah-4B-v2, Mapika Decider-4B, Kev-4B, Simple-Jev over a
 fixed Qwen-4B, Laya multilingual, and the English/multilingual GLiNER2.5-Decide pair**.
 These eight configurations include the specifically requested families, a stock-model
-readout baseline, and the missing multilingual encoders. Then add Kev/Jebadiah 9B,
+readout baseline, and the missing multilingual encoders. Then add Kev 9B and Jebadiah 9B v2.1,
 Strands v21, Von, CLM and the Apache Nimble release. PPLX has since been installed for testing. Rune, Kev-27B and local full Clef
 still require separate memory/runtime checks.
 Treat GLiDE as an additional hosted competitor until downloadable weights are verified.
@@ -250,5 +257,5 @@ Deployment would remain containerized, with pinned model/code/base revisions, a
 reviewed adapter per family, explicit model lifecycle, and cold versus warm timing.
 The initial eight configurations plus Kev 0.8B/9B have now been installed and
 benchmarked. See the [completed expanded analysis](../benchmark/reports/next-wave-comparison-v2/analysis.md).
-The additional representation track, Jebadiah 9B, Strands, Von, CLM, Nimble and
+The additional representation track, Jebadiah 9B v2.1, Strands, Von, CLM, Nimble and
 heavy-model/GLiDE extensions remain future work.
